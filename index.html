@@ -7,67 +7,69 @@
   <meta name="description" content="Benjamin Brasher &amp; Jennifer Duzant. Luxury real estate in Cancun, Playa del Carmen &amp; Tulum. $100M+ closed.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Raleway:wght@200;300;400&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { background: #F5F1EA; color: #1A1814; font-family: 'Inter', sans-serif; font-weight: 300; }
+    body { background: #F5F1EA; color: #1A1814; font-family: 'Raleway', sans-serif; font-weight: 300; }
     .nav { background: #111009; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 1.6rem 2.5rem; position: sticky; top: 0; z-index: 100; }
     .nav-left { display: flex; align-items: center; gap: 14px; }
     .hamburger { display: flex; flex-direction: column; gap: 6px; cursor: pointer; background: none; border: none; padding: 4px; }
     .hamburger span { display: block; width: 22px; height: 0.5px; background: #C4B89A; }
     .menu-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #C4B89A; }
-    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; letter-spacing: 0.3em; color: #C4B89A; text-align: center; text-transform: uppercase; text-decoration: none; }
+    .nav-logo { font-family: 'EB Garamond', serif; font-size: 22px; font-weight: 300; letter-spacing: 0.3em; color: #C4B89A; text-align: center; text-transform: uppercase; text-decoration: none; }
     .nav-right { display: flex; justify-content: flex-end; }
     .nav-inquiry { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #C4B89A; border: 0.5px solid #C4B89A; padding: 9px 20px; border-radius: 1px; background: none; text-decoration: none; transition: background 0.2s, color 0.2s; }
     .nav-inquiry:hover { background: #C4B89A; color: #111009; }
     .nav-overlay { display: none; position: fixed; inset: 0; background: #111009; z-index: 200; flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem; }
     .nav-overlay.open { display: flex; }
-    .nav-overlay a { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 300; letter-spacing: 0.12em; color: #E8E0D0; text-decoration: none; text-transform: uppercase; }
+    .nav-overlay a { font-family: 'EB Garamond', serif; font-size: 32px; font-weight: 300; letter-spacing: 0.12em; color: #E8E0D0; text-decoration: none; text-transform: uppercase; }
     .nav-close { position: absolute; top: 1.6rem; right: 2.5rem; background: none; border: none; color: #C4B89A; font-size: 24px; cursor: pointer; }
     .hero { position: relative; height: 92vh; min-height: 500px; overflow: hidden; background: #0A0908; }
     .hero-video { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); min-width: 100%; min-height: 100%; width: auto; height: auto; pointer-events: none; object-fit: cover; }
     .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(8,7,6,0.25) 0%, rgba(8,7,6,0.05) 40%, rgba(8,7,6,0.82) 100%); }
-    .hero-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 3rem 2.5rem; z-index: 2; }
-    .hero-eyebrow { font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(196,184,154,0.55); margin-bottom: 1rem; }
-    .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 5vw, 58px); font-weight: 300; color: #F5F1EA; line-height: 1.1; max-width: 560px; margin-bottom: 2rem; letter-spacing: 0.02em; }
-    .hero-cta { display: inline-block; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #C4B89A; border-bottom: 0.5px solid rgba(196,184,154,0.5); padding-bottom: 4px; text-decoration: none; }
+    .hero-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 3rem 2.5rem; z-index: 2; display: flex; justify-content: center; }
+    .hero-boxes { display: flex; gap: 0; }
+    .hero-box { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: #F5F1EA; border: 0.5px solid rgba(255,255,255,0.5); padding: 18px 48px; text-decoration: none; font-family: 'Raleway', sans-serif; font-weight: 300; transition: background 0.2s, color 0.2s; background: rgba(0,0,0,0.25); backdrop-filter: blur(4px); }
+    .hero-box:hover { background: rgba(196,184,154,0.85); color: #111009; border-color: #C4B89A; }
+    .hero-box:not(:last-child) { border-right: none; }
+    @media (max-width: 768px) { .hero-box { padding: 14px 24px; font-size: 10px; } }
     .locations { display: grid; grid-template-columns: 1fr 1fr 1fr; }
-    .location-panel { position: relative; height: clamp(320px, 45vw, 560px); overflow: hidden; cursor: pointer; text-decoration: none; display: block; }
+    .location-panel { position: relative; height: clamp(220px, 30vw, 380px); overflow: hidden; cursor: pointer; text-decoration: none; display: block; }
     .location-panel img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; display: block; }
     .location-panel:hover img { transform: scale(1.05); }
     .location-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(8,7,6,0.1) 0%, rgba(8,7,6,0.55) 100%); }
     .location-label { position: absolute; bottom: 2rem; left: 2rem; right: 2rem; }
-    .location-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(22px, 2.8vw, 36px); font-weight: 300; color: #F5F1EA; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.15; }
+    .location-name { font-family: 'EB Garamond', serif; font-size: clamp(22px, 2.8vw, 36px); font-weight: 300; color: #F5F1EA; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.15; }
     .location-sub { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(196,184,154,0.7); margin-top: 0.5rem; }
     .location-panel:not(:last-child)::after { content: ''; position: absolute; top: 0; right: 0; bottom: 0; width: 0.5px; background: rgba(196,184,154,0.15); z-index: 2; }
     .strip { display: grid; grid-template-columns: 1fr 1fr; background: #2A2820; }
     .strip-item { padding: 2rem 2.5rem; border-right: 0.5px solid rgba(196,184,154,0.08); }
     .strip-item:last-child { border-right: none; }
-    .strip-num { font-family: 'Cormorant Garamond', serif; font-size: 34px; font-weight: 300; color: #E8E0D0; margin-bottom: 0.25rem; }
+    .strip-num { font-family: 'EB Garamond', serif; font-size: 34px; font-weight: 300; color: #E8E0D0; margin-bottom: 0.25rem; }
     .strip-label { font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: #6B6452; }
     .investors { background: #111009; padding: 6rem 2.5rem; display: flex; flex-direction: column; align-items: center; text-align: center; }
     .investors-circle { width: 200px; height: 200px; border-radius: 50%; border: 0.5px solid rgba(196,184,154,0.35); display: flex; flex-direction: column; align-items: center; justify-content: center; margin-bottom: 3rem; position: relative; }
     .investors-circle::before { content: ''; position: absolute; inset: -12px; border-radius: 50%; border: 0.5px dashed rgba(196,184,154,0.2); }
-    .circle-label { font-family: 'Cormorant Garamond', serif; font-size: 13px; font-weight: 300; letter-spacing: 0.22em; text-transform: uppercase; color: #C4B89A; line-height: 1.6; }
+    .circle-label { font-family: 'EB Garamond', serif; font-size: 13px; font-weight: 300; letter-spacing: 0.22em; text-transform: uppercase; color: #C4B89A; line-height: 1.6; }
     .circle-sub { font-size: 8px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(196,184,154,0.4); margin-top: 6px; }
-    .investors-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(24px, 3vw, 38px); font-weight: 300; color: #E8E0D0; letter-spacing: 0.04em; margin-bottom: 1.25rem; }
+    .investors-title { font-family: 'EB Garamond', serif; font-size: clamp(24px, 3vw, 38px); font-weight: 300; color: #E8E0D0; letter-spacing: 0.04em; margin-bottom: 1.25rem; }
     .investors-body { font-size: 13px; color: #6B6452; line-height: 1.9; max-width: 480px; margin-bottom: 2.5rem; }
     .investors-btn { display: inline-block; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #111009; background: #C4B89A; padding: 13px 30px; border-radius: 1px; text-decoration: none; }
     .founders-wrap { background: #F5F1EA; padding: 6rem 2.5rem; }
     .founders { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; max-width: 1100px; margin: 0 auto; }
     .founders-img { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: center top; display: block; }
     .founders-eyebrow { font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: #9A9080; margin-bottom: 1.5rem; }
-    .founders-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(26px, 3vw, 38px); font-weight: 300; color: #2A2820; letter-spacing: 0.02em; margin-bottom: 1.5rem; line-height: 1.2; }
+    .founders-title { font-family: 'EB Garamond', serif; font-size: clamp(26px, 3vw, 38px); font-weight: 300; color: #2A2820; letter-spacing: 0.02em; margin-bottom: 1.5rem; line-height: 1.2; }
     .founders-body { font-size: 13px; color: #9A9080; line-height: 1.9; margin-bottom: 2rem; }
-    .founders-names { font-family: 'Cormorant Garamond', serif; font-size: 15px; font-weight: 300; font-style: italic; color: #6B6452; letter-spacing: 0.04em; }
+    .founders-names { font-family: 'EB Garamond', serif; font-size: 15px; font-weight: 300; font-style: italic; color: #6B6452; letter-spacing: 0.04em; }
     .inquiry-strip { background: #111009; padding: 5rem 2.5rem; text-align: center; }
     .inq-eyebrow { font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: #4A4840; margin-bottom: 1.5rem; }
-    .inq-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(24px, 3vw, 38px); font-weight: 300; color: #E8E0D0; margin-bottom: 2rem; letter-spacing: 0.04em; }
+    .inq-title { font-family: 'EB Garamond', serif; font-size: clamp(24px, 3vw, 38px); font-weight: 300; color: #E8E0D0; margin-bottom: 2rem; letter-spacing: 0.04em; }
     .inq-btn { display: inline-block; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #111009; background: #C4B89A; padding: 14px 32px; border-radius: 1px; text-decoration: none; }
     .footer { background: #F5F1EA; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 1.75rem 2.5rem; border-top: 0.5px solid #DDD8CE; }
     .footer-left { font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: #B0A890; }
-    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 14px; font-weight: 300; letter-spacing: 0.28em; text-transform: uppercase; color: #9A9080; text-decoration: none; }
+    .footer-logo { font-family: 'EB Garamond', serif; font-size: 14px; font-weight: 300; letter-spacing: 0.28em; text-transform: uppercase; color: #9A9080; text-decoration: none; }
     .footer-right { display: flex; justify-content: flex-end; gap: 1.75rem; }
     .footer-link { font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: #B0A890; text-decoration: none; }
     .footer-link:hover { color: #1A1814; }
@@ -93,7 +95,10 @@
     <a href="#locations" onclick="closeMenu()">Locations</a>
     <a href="#investors" onclick="closeMenu()">Investors Circle</a>
     <a href="#founders" onclick="closeMenu()">About</a>
-    <a href="#inquiry" onclick="closeMenu()">Private Inquiry</a>
+    <a href="#inquiry" onclick="closeMenu()">The Process</a>
+    <a href="#inquiry" onclick="closeMenu()">Buyer's Guide</a>
+    <a href="#inquiry" onclick="closeMenu()">Why Us?</a>
+    <a href="#inquiry" onclick="closeMenu()">Contact</a>
   </div>
 
   <nav class="nav">
@@ -111,9 +116,11 @@
     </video>
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <div class="hero-eyebrow">Riviera Maya · Mexico</div>
-      <h1 class="hero-title">Where capital meets paradise</h1>
-      <a href="#locations" class="hero-cta">Explore locations →</a>
+      <div class="hero-boxes">
+        <a href="#inquiry" class="hero-box">Sell</a>
+        <a href="#inquiry" class="hero-box">Top 10</a>
+        <a href="#inquiry" class="hero-box">Buy</a>
+      </div>
     </div>
   </section>
 
@@ -174,7 +181,7 @@
   <section class="inquiry-strip" id="inquiry">
     <div class="inq-eyebrow">Ready to move</div>
     <div class="inq-title">Start with a private conversation</div>
-    <a href="mailto:benjamin@brasherandduzant.com" class="inq-btn">Send a private inquiry</a>
+    <a href="mailto:benjamin@brasherandduzant.com" class="inq-btn">Buyer's guide to Mexico</a>
   </section>
 
   <footer class="footer">
