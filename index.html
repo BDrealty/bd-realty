@@ -26,9 +26,13 @@
     .nav-overlay a { font-family: 'EB Garamond', serif; font-size: 32px; font-weight: 300; letter-spacing: 0.12em; color: #E8E0D0; text-decoration: none; text-transform: uppercase; }
     .nav-close { position: absolute; top: 1.6rem; right: 2.5rem; background: none; border: none; color: #C4B89A; font-size: 24px; cursor: pointer; }
     .hero { position: relative; height: 92vh; min-height: 500px; overflow: hidden; background: #0A0908; }
-    .hero-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
-    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(8,7,6,0.25) 0%, rgba(8,7,6,0.05) 40%, rgba(8,7,6,0.82) 100%); }
+    .hero-slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 1.6s ease; }
+    .hero-slide.active { opacity: 1; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(8,7,6,0.25) 0%, rgba(8,7,6,0.05) 40%, rgba(8,7,6,0.82) 100%); z-index: 1; }
     .hero-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 3rem 2.5rem; z-index: 2; display: flex; justify-content: center; }
+    .hero-dots { position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 3; }
+    .hero-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,0.35); cursor: pointer; transition: background 0.3s; }
+    .hero-dot.active { background: #C4B89A; }
     .hero-boxes { display: flex; gap: 0; }
     .hero-box { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: #F5F1EA; border: 0.5px solid rgba(255,255,255,0.5); padding: 18px 48px; text-decoration: none; font-family: 'Raleway', sans-serif; font-weight: 300; transition: background 0.2s, color 0.2s; background: rgba(0,0,0,0.25); backdrop-filter: blur(4px); }
     .hero-box:hover { background: rgba(196,184,154,0.85); color: #111009; border-color: #C4B89A; }
@@ -110,10 +114,10 @@
     <div class="nav-right"><a href="#inquiry" class="nav-inquiry">Private inquiry</a></div>
   </nav>
 
-  <section class="hero">
-    <video class="hero-video" autoplay muted loop playsinline>
-      <source src="hero.mp4" type="video/mp4">
-    </video>
+  <section class="hero" id="heroSection">
+    <div class="hero-slide active" style="background-image:url('https://images.unsplash.com/photo-1613977257363-707ba9348227?w=1800&q=85&fit=crop')"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=1800&q=85&fit=crop')"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?w=1800&q=85&fit=crop')"></div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <div class="hero-boxes">
@@ -121,6 +125,11 @@
         <a href="#inquiry" class="hero-box">Top 10</a>
         <a href="#inquiry" class="hero-box">Buy</a>
       </div>
+    </div>
+    <div class="hero-dots" id="heroDots">
+      <div class="hero-dot active" onclick="goSlide(0)"></div>
+      <div class="hero-dot" onclick="goSlide(1)"></div>
+      <div class="hero-dot" onclick="goSlide(2)"></div>
     </div>
   </section>
 
@@ -197,6 +206,20 @@
   <script>
     function openMenu(){document.getElementById('navOverlay').classList.add('open');}
     function closeMenu(){document.getElementById('navOverlay').classList.remove('open');}
+    (function(){
+      var slides = document.querySelectorAll('.hero-slide');
+      var dots = document.querySelectorAll('.hero-dot');
+      var current = 0;
+      function goSlide(n){
+        slides[current].classList.remove('active');
+        dots[current].classList.remove('active');
+        current = n % slides.length;
+        slides[current].classList.add('active');
+        dots[current].classList.add('active');
+      }
+      window.goSlide = goSlide;
+      setInterval(function(){ goSlide(current + 1); }, 5000);
+    })();
   </script>
 
 </body>
