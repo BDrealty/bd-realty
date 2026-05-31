@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>B &amp; D | Luxury Real Estate · Riviera Maya</title>
   <meta name="description" content="Benjamin Brasher &amp; Jennifer Duzant. Luxury real estate in Cancun, Playa del Carmen &amp; Tulum. $100M+ closed.">
+  <link rel="preload" as="image" href="La%20Reserva%2000065.jpg">
+  <link rel="preload" as="image" href="IMG_2605%20(1).JPG">
+  <link rel="preload" as="image" href="VILLA%20XATA_62.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Raleway:wght@200;300;400&display=swap" rel="stylesheet">
@@ -210,15 +213,46 @@
       var slides = document.querySelectorAll('.hero-slide');
       var dots = document.querySelectorAll('.hero-dot');
       var current = 0;
+      var urls = [
+        'La%20Reserva%2000065.jpg',
+        'IMG_2605%20(1).JPG',
+        'VILLA%20XATA_62.jpg'
+      ];
+      var loaded = [false, false, false];
+
+      // Preload all images
+      urls.forEach(function(url, i){
+        var img = new Image();
+        img.onload = function(){ loaded[i] = true; };
+        img.src = url;
+      });
+
       function goSlide(n){
+        var next = n % slides.length;
+        // Only advance if next image is loaded
+        if(!loaded[next]){
+          // Wait until loaded
+          var check = setInterval(function(){
+            if(loaded[next]){
+              clearInterval(check);
+              switchSlide(next);
+            }
+          }, 100);
+        } else {
+          switchSlide(next);
+        }
+      }
+
+      function switchSlide(next){
         slides[current].classList.remove('active');
         dots[current].classList.remove('active');
-        current = n % slides.length;
+        current = next;
         slides[current].classList.add('active');
         dots[current].classList.add('active');
       }
+
       window.goSlide = goSlide;
-      setInterval(function(){ goSlide(current + 1); }, 5000);
+      setInterval(function(){ goSlide(current + 1); }, 5500);
     })();
   </script>
 
