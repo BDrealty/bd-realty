@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Investors Circle · B & D Realty</title>
+  <meta name="description" content="Private off-market opportunities in the Riviera Maya. B & D Investors Circle.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Raleway:wght@200;300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #F5F1EA; color: #2A2820; font-family: 'Raleway', sans-serif; font-weight: 300; }
+
+    /* NAV */
+    .nav { background: #111009; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 1.6rem 2.5rem; }
+    .nav-back { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #9A9080; text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: #C4B89A; }
+    .nav-logo { font-family: 'EB Garamond', serif; font-size: 20px; font-weight: 300; letter-spacing: 0.3em; color: #C4B89A; text-align: center; text-transform: uppercase; text-decoration: none; }
+    .nav-right { display: flex; justify-content: flex-end; }
+    .nav-cta { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #C4B89A; border: 0.5px solid #C4B89A; padding: 9px 20px; border-radius: 1px; text-decoration: none; transition: background 0.2s, color 0.2s; }
+    .nav-cta:hover { background: #C4B89A; color: #111009; }
+
+    /* HERO */
+    .hero { padding: 2.5rem 2.5rem 0; text-align: center; border-bottom: 0.5px solid rgba(196,184,154,0.35); }
+    .hero-eyebrow { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: #B0A890; margin-bottom: 1.75rem; }
+    .hero-circle { width: 150px; height: 150px; border-radius: 50%; border: 0.5px solid rgba(80,74,64,0.5); background: #3A3830; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.85rem; position: relative; box-shadow: 0 8px 40px rgba(0,0,0,0.12); }
+    .hero-circle::before { content: ''; position: absolute; inset: -14px; border-radius: 50%; border: 0.5px dashed rgba(80,74,64,0.35); }
+    .hero-circle-text { font-family: 'EB Garamond', serif; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: #C4B89A; line-height: 2; text-align: center; }
+    .hero-title { font-family: 'EB Garamond', serif; font-size: clamp(28px, 4vw, 48px); font-weight: 400; color: #2A2820; letter-spacing: 0.03em; line-height: 1.15; margin-bottom: 0.5rem; }
+    .hero-title em { font-style: italic; color: #9A7D5A; }
+    .hero-sub { font-size: 12px; color: #9A9080; line-height: 1.7; max-width: 400px; margin: 0 auto; padding-bottom: 2rem; }
+
+    /* DEALS */
+    .deals { padding: 1.5rem 2.5rem 2rem; max-width: 960px; margin: 0 auto; }
+    .deals-label { font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase; color: #B0A890; margin-bottom: 1rem; text-align: center; }
+    .deal { border: 0.5px solid rgba(164,148,120,0.25); background: #fff; padding: 1.5rem 2rem; margin-bottom: 1px; position: relative; transition: border-color 0.3s; }
+    .deal:hover { border-color: rgba(164,148,120,0.5); }
+    .deal-tag { font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase; color: #B0A890; margin-bottom: 0.5rem; }
+    .deal-title { font-family: 'EB Garamond', serif; font-size: clamp(17px, 2vw, 22px); font-weight: 400; color: #2A2820; margin-bottom: 0.85rem; line-height: 1.3; }
+    .deal-stats { display: flex; gap: 2rem; flex-wrap: wrap; }
+    .deal-stat-val { font-family: 'EB Garamond', serif; font-size: 19px; color: #9A7D5A; display: block; }
+    .deal-stat-lbl { font-size: 8px; letter-spacing: 0.14em; text-transform: uppercase; color: #B0A890; margin-top: 3px; display: block; }
+    .deal-note { font-size: 11px; color: #9A9080; line-height: 1.65; margin-top: 0.85rem; border-top: 0.5px solid rgba(164,148,120,0.15); padding-top: 0.85rem; }
+    .deal-badge { position: absolute; top: 1.5rem; right: 2rem; font-size: 8px; letter-spacing: 0.18em; text-transform: uppercase; color: #fff; background: #9A7D5A; padding: 4px 10px; border-radius: 1px; }
+
+    /* DIVIDER */
+    .divider { display: none; }
+
+    /* FORM */
+    .form-wrap { padding: 2rem 2.5rem 4rem; max-width: 560px; margin: 0 auto; text-align: center; border-top: 0.5px solid rgba(196,184,154,0.35); }
+    .form-eyebrow { font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase; color: #B0A890; margin-bottom: 0.35rem; }
+    .form-title { font-family: 'EB Garamond', serif; font-size: clamp(22px, 2.5vw, 32px); font-weight: 400; color: #2A2820; margin-bottom: 0.35rem; letter-spacing: 0.03em; }
+    .form-sub { font-size: 12px; color: #9A9080; margin-bottom: 1rem; line-height: 1.7; }
+    .form { display: flex; flex-direction: column; gap: 1rem; text-align: left; }
+    .form input { background: #fff; border: 0.5px solid rgba(164,148,120,0.3); color: #2A2820; font-family: 'Raleway', sans-serif; font-weight: 300; font-size: 13px; padding: 15px 18px; border-radius: 1px; outline: none; transition: border-color 0.2s; letter-spacing: 0.04em; }
+    .form input::placeholder { color: #C4BDB0; }
+    .form input:focus { border-color: #9A7D5A; }
+    .form-radio-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #9A9080; margin-bottom: 0.75rem; display: block; }
+    .radio-group { display: flex; gap: 1rem; }
+    .radio-opt { flex: 1; }
+    .radio-opt input[type="radio"] { display: none; }
+    .radio-opt label { display: block; text-align: center; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #9A9080; border: 0.5px solid rgba(164,148,120,0.3); padding: 14px; cursor: pointer; transition: all 0.2s; border-radius: 1px; background: #fff; }
+    .radio-opt input[type="radio"]:checked + label { background: rgba(154,125,90,0.08); border-color: #9A7D5A; color: #9A7D5A; }
+    .form-submit { background: #2A2820; color: #F5F1EA; font-family: 'Raleway', sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; padding: 16px; border: none; border-radius: 1px; cursor: pointer; margin-top: 0.5rem; transition: background 0.2s; }
+    .form-submit:hover { background: #9A7D5A; }
+    .form-note { font-size: 10px; color: #C4BDB0; text-align: center; margin-top: 1rem; letter-spacing: 0.06em; }
+
+    /* SUCCESS */
+    .success { display: none; text-align: center; padding: 3rem 0; }
+    .success-icon { font-family: 'EB Garamond', serif; font-size: 48px; color: #9A7D5A; margin-bottom: 1rem; }
+    .success-title { font-family: 'EB Garamond', serif; font-size: 26px; color: #2A2820; margin-bottom: 0.75rem; }
+    .success-sub { font-size: 12px; color: #9A9080; line-height: 1.8; }
+
+    /* FOOTER */
+    .footer { border-top: 0.5px solid #DDD8CE; padding: 1.75rem 2.5rem; display: flex; justify-content: center; }
+    .footer-logo { font-family: 'EB Garamond', serif; font-size: 13px; letter-spacing: 0.28em; text-transform: uppercase; color: #B0A890; text-decoration: none; }
+
+    @media (max-width: 768px) {
+      .nav { padding: 1.25rem 1.5rem; } .nav-cta { display: none; }
+      .hero { padding: 2rem 1.5rem 0; }
+      .deals { padding: 0.75rem 1.5rem 2rem; }
+      .deal { padding: 1.25rem 1.25rem; }
+      .deal-badge { position: static; display: inline-block; margin-bottom: 0.5rem; }
+      .deal-stats { gap: 1.5rem; }
+      .form-wrap { padding: 0.75rem 1.5rem 3rem; }
+      .radio-group { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-back">← B & D</a>
+    <a href="index.html" class="nav-logo">B & D</a>
+    <div class="nav-right"><a href="#apply" class="nav-cta">Request access</a></div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-eyebrow">Private · Off-Market · Riviera Maya</div>
+    <div class="hero-circle">
+      <div class="hero-circle-text">Investors<br>Circle</div>
+    </div>
+    <h1 class="hero-title">Deals you won't<br>find <em>anywhere else.</em></h1>
+    <p class="hero-sub">Pre-market opportunities sourced through 12 years of relationships. Shared only with people ready to move.</p>
+  </section>
+
+  <section class="deals">
+    <div class="deals-label">Recent deals made by the circle</div>
+
+    <!-- Deal 1 -->
+    <div class="deal">
+      <div class="deal-badge">Cash Flow</div>
+      <div class="deal-tag">Residential · Riviera Maya</div>
+      <div class="deal-title">Luxury Villa — Generating Income</div>
+      <div class="deal-stats">
+        <div>
+          <span class="deal-stat-val">$970,000</span>
+          <span class="deal-stat-lbl">Acquisition price</span>
+        </div>
+        <div>
+          <span class="deal-stat-val">$210,000</span>
+          <span class="deal-stat-lbl">Net cash flow / year</span>
+        </div>
+        <div>
+          <span class="deal-stat-val">21.6%</span>
+          <span class="deal-stat-lbl">Net yield</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="height:1px"></div>
+
+    <!-- Deal 2 -->
+    <div class="deal">
+      <div class="deal-badge">Value-Add</div>
+      <div class="deal-tag">Estate · Jungle · Architect-Designed</div>
+      <div class="deal-title">Abandoned Jungle Estate — 5+ Acres</div>
+      <div class="deal-stats">
+        <div>
+          <span class="deal-stat-val">$2.8M</span>
+          <span class="deal-stat-lbl">Off-market ask</span>
+        </div>
+        <div>
+          <span class="deal-stat-val">$4M → $7M</span>
+          <span class="deal-stat-lbl">As-is → refurbished value</span>
+        </div>
+      </div>
+      <div class="deal-note">2 villas · 20,000+ sq ft built · 16 ft ceilings · Designed by noted architect. Landscaping and refurbishment unlocks full value.</div>
+    </div>
+
+    <div style="height:1px"></div>
+
+    <!-- Deal 3 -->
+    <div class="deal">
+      <div class="deal-badge">Express Sale</div>
+      <div class="deal-tag">Residential · Playa del Carmen · Mayakoba</div>
+      <div class="deal-title">Divorce Sale — Mayakoba Area</div>
+      <div class="deal-stats">
+        <div>
+          <span class="deal-stat-val">$5.9M MXN</span>
+          <span class="deal-stat-lbl">Sale price</span>
+        </div>
+        <div>
+          <span class="deal-stat-val">$7.8M MXN</span>
+          <span class="deal-stat-lbl">Market value</span>
+        </div>
+        <div>
+          <span class="deal-stat-val">24% below</span>
+          <span class="deal-stat-lbl">Instant equity</span>
+        </div>
+      </div>
+      <div class="deal-note">Express sale driven by personal circumstances. Priced to close fast.</div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="form-wrap" id="apply">
+
+    <!-- STEP 1 -->
+    <div id="step1">
+      <div class="form-eyebrow">Join the circle</div>
+      <div class="form-title">Get notified first.</div>
+      <p class="form-sub">Leave your details and we'll be in touch the moment the right deal appears.</p>
+      <form class="form" id="form1" onsubmit="goStep2(event)">
+        <input type="email" id="f-email" placeholder="Email address" required>
+        <input type="tel" id="f-phone" placeholder="Phone / WhatsApp">
+        <button type="submit" class="form-submit">Request access</button>
+        <p class="form-note">Strictly confidential. We don't share your information.</p>
+      </form>
+    </div>
+
+    <!-- STEP 2 -->
+    <div id="step2" style="display:none">
+      <div class="form-eyebrow">One more step</div>
+      <div class="form-title">Tell us about you.</div>
+      <p class="form-sub">This helps us match you to the right deal — be honest, not optimistic.</p>
+      <form class="form" id="form2" onsubmit="goStep3(event)">
+
+        <div>
+          <span class="form-radio-label">Ready to move quickly if the right deal arrives?</span>
+          <div class="radio-group">
+            <div class="radio-opt">
+              <input type="radio" name="ready" id="r-yes" value="yes" required>
+              <label for="r-yes">Yes — I decide fast</label>
+            </div>
+            <div class="radio-opt">
+              <input type="radio" name="ready" id="r-maybe" value="maybe">
+              <label for="r-maybe">I need time to evaluate</label>
+            </div>
+            <div class="radio-opt">
+              <input type="radio" name="ready" id="r-no" value="no">
+              <label for="r-no">Still exploring</label>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <span class="form-radio-label">Preferred location</span>
+          <div class="radio-group">
+            <div class="radio-opt">
+              <input type="radio" name="location" id="l-cancun" value="cancun">
+              <label for="l-cancun">Cancun</label>
+            </div>
+            <div class="radio-opt">
+              <input type="radio" name="location" id="l-playa" value="playa">
+              <label for="l-playa">Playa del Carmen</label>
+            </div>
+            <div class="radio-opt">
+              <input type="radio" name="location" id="l-tulum" value="tulum">
+              <label for="l-tulum">Tulum</label>
+            </div>
+            <div class="radio-opt">
+              <input type="radio" name="location" id="l-any" value="any">
+              <label for="l-any">Open to all</label>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <span class="form-radio-label">Investment goal</span>
+          <div class="radio-group">
+            <div class="radio-opt">
+              <input type="radio" name="goal" id="g-cashflow" value="cashflow" required>
+              <label for="g-cashflow">Cash flow</label>
+            </div>
+            <div class="radio-opt">
+              <input type="radio" name="goal" id="g-gains" value="gains">
+              <label for="g-gains">Capital gains</label>
+            </div>
+            <div class="radio-opt">
+              <input type="radio" name="goal" id="g-mix" value="mix">
+              <label for="g-mix">Mix of both</label>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <span class="form-radio-label">Describe the ideal deal for you</span>
+          <textarea placeholder="Be specific — budget, property type, expected return. The more realistic, the faster we can match you." rows="4" style="width:100%;background:#fff;border:0.5px solid rgba(164,148,120,0.3);color:#2A2820;font-family:'Raleway',sans-serif;font-weight:300;font-size:13px;padding:15px 18px;border-radius:1px;outline:none;resize:vertical;letter-spacing:0.02em;line-height:1.7;"></textarea>
+        </div>
+
+        <button type="submit" class="form-submit">Continue — Book a call</button>
+      </form>
+    </div>
+
+    <!-- STEP 3: Book a call -->
+    <div id="step3" style="display:none; text-align:center; padding: 1rem 0 2rem;">
+      <div class="form-eyebrow">Last step</div>
+      <div class="form-title" style="margin-bottom:0.75rem;">Book a call with Benjamin.</div>
+      <p class="form-sub" style="margin-bottom:1.5rem;">Pick a time that works — 20 minutes is all we need.</p>
+      <a href="https://calendar.app.google/P7L3HxF1bsaGcLbD7" target="_blank" class="form-submit" style="display:inline-block; text-decoration:none; padding: 16px 32px;">Book your call →</a>
+      <p class="form-note" style="margin-top:1rem;">Or reach out directly on <a href="https://wa.me/529988654691" style="color:#9A7D5A; text-decoration:none;">WhatsApp</a></p>
+    </div>
+
+  </section>
+
+  <footer class="footer">
+    <a href="index.html" class="footer-logo">B & D · Riviera Maya</a>
+  </footer>
+
+  <script>
+    function goStep2(e){
+      e.preventDefault();
+      document.getElementById('step1').style.display = 'none';
+      document.getElementById('step2').style.display = 'block';
+      document.getElementById('apply').scrollIntoView({behavior:'smooth'});
+    }
+    function goStep3(e){
+      e.preventDefault();
+      document.getElementById('step2').style.display = 'none';
+      document.getElementById('step3').style.display = 'block';
+      document.getElementById('apply').scrollIntoView({behavior:'smooth'});
+    }
+  </script>
+
+</body>
+</html>
