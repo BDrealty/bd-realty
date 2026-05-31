@@ -60,9 +60,9 @@
     .form-radio-label { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #9A9080; margin-bottom: 0.75rem; display: block; }
     .radio-group { display: flex; gap: 1rem; }
     .radio-opt { flex: 1; }
-    .radio-opt input[type="radio"] { display: none; }
+    .radio-opt input[type="radio"], .radio-opt input[type="checkbox"] { display: none; }
     .radio-opt label { display: block; text-align: center; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #9A9080; border: 0.5px solid rgba(164,148,120,0.3); padding: 14px; cursor: pointer; transition: all 0.2s; border-radius: 1px; background: #fff; }
-    .radio-opt input[type="radio"]:checked + label { background: rgba(154,125,90,0.08); border-color: #9A7D5A; color: #9A7D5A; }
+    .radio-opt input[type="radio"]:checked + label, .radio-opt input[type="checkbox"]:checked + label { background: rgba(154,125,90,0.08); border-color: #9A7D5A; color: #9A7D5A; }
     .form-submit { background: #2A2820; color: #F5F1EA; font-family: 'Raleway', sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; padding: 16px; border: none; border-radius: 1px; cursor: pointer; margin-top: 0.5rem; transition: background 0.2s; }
     .form-submit:hover { background: #9A7D5A; }
     .form-note { font-size: 10px; color: #C4BDB0; text-align: center; margin-top: 1rem; letter-spacing: 0.06em; }
@@ -218,23 +218,31 @@
         </div>
 
         <div>
-          <span class="form-radio-label">Preferred location</span>
-          <div class="radio-group">
-            <div class="radio-opt">
-              <input type="radio" name="location" id="l-cancun" value="cancun">
+          <span class="form-radio-label">Preferred location — select all that apply</span>
+          <div class="radio-group" style="flex-wrap:wrap; gap:0.6rem;">
+            <div class="radio-opt" style="flex:none; min-width:calc(50% - 0.3rem);">
+              <input type="checkbox" name="location" id="l-cancun" value="cancun">
               <label for="l-cancun">Cancun</label>
             </div>
-            <div class="radio-opt">
-              <input type="radio" name="location" id="l-playa" value="playa">
+            <div class="radio-opt" style="flex:none; min-width:calc(50% - 0.3rem);">
+              <input type="checkbox" name="location" id="l-playa" value="playa">
               <label for="l-playa">Playa del Carmen</label>
             </div>
-            <div class="radio-opt">
-              <input type="radio" name="location" id="l-tulum" value="tulum">
+            <div class="radio-opt" style="flex:none; min-width:calc(50% - 0.3rem);">
+              <input type="checkbox" name="location" id="l-tulum" value="tulum">
               <label for="l-tulum">Tulum</label>
             </div>
-            <div class="radio-opt">
-              <input type="radio" name="location" id="l-any" value="any">
+            <div class="radio-opt" style="flex:none; min-width:calc(50% - 0.3rem);">
+              <input type="checkbox" name="location" id="l-cabos" value="cabos">
+              <label for="l-cabos">Cabos San Lucas</label>
+            </div>
+            <div class="radio-opt" style="flex:none; min-width:calc(50% - 0.3rem);">
+              <input type="checkbox" name="location" id="l-any" value="any">
               <label for="l-any">Open to all</label>
+            </div>
+            <div class="radio-opt" style="flex:none; min-width:calc(50% - 0.3rem);">
+              <input type="checkbox" name="location" id="l-other" value="other">
+              <label for="l-other">Other</label>
             </div>
           </div>
         </div>
