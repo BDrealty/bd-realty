@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Top 10 Luxury Villas · B & D Realty</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Raleway:wght@200;300;400&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #F5F1EA; color: #2A2820; font-family: 'Raleway', sans-serif; font-weight: 300; }
+
+    /* NAV */
+    .nav { background: #F5F1EA; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 1.6rem 2.5rem; border-bottom: 0.5px solid #DDD8CE; position: sticky; top: 0; z-index: 100; }
+    .nav-back { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #B0A890; text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: #2A2820; }
+    .nav-logo { font-family: 'EB Garamond', serif; font-size: 20px; font-weight: 300; letter-spacing: 0.3em; color: #2A2820; text-align: center; text-transform: uppercase; text-decoration: none; }
+    .nav-right { display: flex; justify-content: flex-end; gap: 1.25rem; align-items: center; }
+    .filter-btn { font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: #B0A890; background: none; border: none; cursor: pointer; font-family: 'Raleway', sans-serif; padding: 4px 0; border-bottom: 0.5px solid transparent; transition: all 0.2s; }
+    .filter-btn:hover, .filter-btn.active { color: #2A2820; border-bottom-color: #2A2820; }
+
+    /* HEADER */
+    .header { padding: 4rem 2.5rem 3.5rem; border-bottom: 0.5px solid #DDD8CE; display: flex; align-items: flex-end; gap: 5rem; }
+    .header-num { font-family: 'EB Garamond', serif; font-size: clamp(90px, 13vw, 160px); font-weight: 400; color: #DDD8CE; line-height: 0.85; flex-shrink: 0; }
+    .header-eyebrow { font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase; color: #B0A890; margin-bottom: 0.75rem; }
+    .header-title { font-family: 'EB Garamond', serif; font-size: clamp(34px, 4.5vw, 58px); font-weight: 400; color: #2A2820; line-height: 1.05; margin-bottom: 0.85rem; }
+    .header-title em { font-style: italic; color: #9A7D5A; }
+    .header-sub { font-family: 'Cormorant Garamond', serif; font-size: 17px; color: #9A9080; line-height: 1.7; max-width: 380px; }
+
+    /* VILLA ROW */
+    .villa { display: grid; grid-template-columns: 2fr 1fr; min-height: 75vh; border-bottom: 0.5px solid #DDD8CE; text-decoration: none; color: inherit; }
+    .villa.reverse { grid-template-columns: 1fr 2fr; }
+    .villa.reverse .v-img { order: 2; }
+    .villa.reverse .v-body { order: 1; }
+
+    .v-img { position: relative; overflow: hidden; }
+    .v-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.9s ease; }
+    .villa:hover .v-img img { transform: scale(1.03); }
+    .v-tag { position: absolute; bottom: 1.75rem; left: 1.75rem; font-size: 8px; letter-spacing: 0.24em; text-transform: uppercase; color: #fff; background: rgba(42,40,32,0.65); padding: 6px 14px; backdrop-filter: blur(6px); }
+
+    .v-body { display: flex; flex-direction: column; justify-content: center; padding: 3.5rem; background: #fff; border-left: 0.5px solid #DDD8CE; }
+    .villa.reverse .v-body { border-left: none; border-right: 0.5px solid #DDD8CE; background: #F5F1EA; }
+
+    .v-num { font-family: 'EB Garamond', serif; font-size: clamp(60px, 7vw, 96px); font-weight: 400; color: #E8E0D0; line-height: 1; margin-bottom: 1.75rem; }
+    .v-location { font-size: 8px; letter-spacing: 0.26em; text-transform: uppercase; color: #C4B89A; margin-bottom: 0.6rem; }
+    .v-name { font-family: 'EB Garamond', serif; font-size: clamp(20px, 2.2vw, 30px); font-weight: 400; color: #2A2820; line-height: 1.2; margin-bottom: 1rem; }
+    .v-desc { font-family: 'Cormorant Garamond', serif; font-size: 16px; color: #9A9080; line-height: 1.8; margin-bottom: 1.75rem; }
+    .v-specs { display: flex; gap: 1.75rem; margin-bottom: 1.75rem; flex-wrap: wrap; }
+    .v-spec-val { font-family: 'EB Garamond', serif; font-size: 20px; color: #2A2820; display: block; }
+    .v-spec-lbl { font-size: 8px; letter-spacing: 0.14em; text-transform: uppercase; color: #C4BDB0; margin-top: 3px; display: block; }
+    .v-price { font-family: 'EB Garamond', serif; font-size: 22px; color: #9A7D5A; margin-bottom: 2rem; }
+    .v-cta { display: inline-flex; align-items: center; gap: 10px; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: #2A2820; transition: gap 0.3s; }
+    .villa:hover .v-cta { gap: 18px; }
+    .v-cta-line { width: 22px; height: 0.5px; background: #2A2820; transition: width 0.3s; display: block; }
+    .villa:hover .v-cta-line { width: 38px; }
+
+    /* INQUIRY */
+    .inquiry { background: #111009; padding: 5rem 2.5rem; text-align: center; }
+    .inq-eyebrow { font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: #4A4438; margin-bottom: 1rem; }
+    .inq-title { font-family: 'EB Garamond', serif; font-size: clamp(24px, 3vw, 38px); color: #E8E0D0; margin-bottom: 2rem; font-style: italic; }
+    .inq-btn { display: inline-block; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #111009; background: #C4B89A; padding: 14px 36px; text-decoration: none; }
+
+    @media (max-width: 900px) {
+      .villa, .villa.reverse { grid-template-columns: 1fr; min-height: auto; }
+      .villa.reverse .v-img { order: 1; }
+      .villa.reverse .v-body { order: 2; border-right: none; border-left: none; }
+      .v-img { height: 65vw; }
+      .v-body { padding: 2.5rem 1.5rem; border-left: none !important; }
+      .header { flex-direction: column; gap: 1rem; padding: 2.5rem 1.5rem; }
+      .nav { padding: 1.25rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="top10.html" class="nav-back">← Top 10</a>
+    <a href="index.html" class="nav-logo">B & D</a>
+    <div class="nav-right">
+      <button class="filter-btn active" onclick="filter('all',this)">All</button>
+      <button class="filter-btn" onclick="filter('Cancun',this)">Cancun</button>
+      <button class="filter-btn" onclick="filter('Playa',this)">Playa</button>
+      <button class="filter-btn" onclick="filter('Tulum',this)">Tulum</button>
+    </div>
+  </nav>
+
+  <div class="header">
+    <div class="header-num">10</div>
+    <div>
+      <div class="header-eyebrow">Curated by B&D · Riviera Maya</div>
+      <h1 class="header-title">Luxury <em>Villas</em></h1>
+      <p class="header-sub">Hand-selected. Vetted. Ready to view. The finest private residences across Cancun, Playa del Carmen and Tulum.</p>
+    </div>
+  </div>
+
+  <!-- 01 -->
+  <a href="#" class="villa" data-location="Tulum">
+    <div class="v-img"><img src="luxury%20villa%20pool.JPG" alt="Villa 1"><div class="v-tag">Tulum · La Veleta</div></div>
+    <div class="v-body">
+      <div class="v-num">01</div>
+      <div class="v-location">Tulum · La Veleta</div>
+      <div class="v-name">Villa Name Here</div>
+      <p class="v-desc">A brief description of the property — style, feel, key features. Two to three sentences.</p>
+      <div class="v-specs">
+        <div><span class="v-spec-val">4</span><span class="v-spec-lbl">Bedrooms</span></div>
+        <div><span class="v-spec-val">450 m²</span><span class="v-spec-lbl">Built</span></div>
+        <div><span class="v-spec-val">Pool</span><span class="v-spec-lbl">Private</span></div>
+      </div>
+      <div class="v-price">$0,000,000 USD</div>
+      <div class="v-cta"><span class="v-cta-line"></span> Private inquiry</div>
+    </div>
+  </a>
+
+  <!-- 02 -->
+  <a href="#" class="villa reverse" data-location="Cancun">
+    <div class="v-img"><img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?w=1200&q=85&fit=crop" alt="Villa 2"><div class="v-tag">Cancun · Puerto Cancun</div></div>
+    <div class="v-body">
+      <div class="v-num">02</div>
+      <div class="v-location">Cancun · Puerto Cancun</div>
+      <div class="v-name">Villa Name Here</div>
+      <p class="v-desc">A brief description of the property — style, feel, key features. Two to three sentences.</p>
+      <div class="v-specs">
+        <div><span class="v-spec-val">5</span><span class="v-spec-lbl">Bedrooms</span></div>
+        <div><span class="v-spec-val">620 m²</span><span class="v-spec-lbl">Built</span></div>
+        <div><span class="v-spec-val">Pool</span><span class="v-spec-lbl">Private</span></div>
+      </div>
+      <div class="v-price">$0,000,000 USD</div>
+      <div class="v-cta"><span class="v-cta-line"></span> Private inquiry</div>
+    </div>
+  </a>
+
+  <!-- 03 -->
+  <a href="#" class="villa" data-location="Playa">
+    <div class="v-img"><img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=1200&q=85&fit=crop" alt="Villa 3"><div class="v-tag">Playa · Mayakoba</div></div>
+    <div class="v-body">
+      <div class="v-num">03</div>
+      <div class="v-location">Playa del Carmen · Mayakoba</div>
+      <div class="v-name">Villa Name Here</div>
+      <p class="v-desc">A brief description of the property — style, feel, key features. Two to three sentences.</p>
+      <div class="v-specs">
+        <div><span class="v-spec-val">3</span><span class="v-spec-lbl">Bedrooms</span></div>
+        <div><span class="v-spec-val">380 m²</span><span class="v-spec-lbl">Built</span></div>
+        <div><span class="v-spec-val">Pool</span><span class="v-spec-lbl">Private</span></div>
+      </div>
+      <div class="v-price">$0,000,000 USD</div>
+      <div class="v-cta"><span class="v-cta-line"></span> Private inquiry</div>
+    </div>
+  </a>
+
+  <!-- 04 -->
+  <a href="#" class="villa reverse" data-location="Tulum">
+    <div class="v-img"><img src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?w=1200&q=85&fit=crop" alt="Villa 4"><div class="v-tag">Tulum · Aldea Zama</div></div>
+    <div class="v-body">
+      <div class="v-num">04</div>
+      <div class="v-location">Tulum · Aldea Zama</div>
+      <div class="v-name">Villa Name Here</div>
+      <p class="v-desc">A brief description of the property — style, feel, key features. Two to three sentences.</p>
+      <div class="v-specs">
+        <div><span class="v-spec-val">6</span><span class="v-spec-lbl">Bedrooms</span></div>
+        <div><span class="v-spec-val">800 m²</span><span class="v-spec-lbl">Built</span></div>
+        <div><span class="v-spec-val">Pool</span><span class="v-spec-lbl">Private</span></div>
+      </div>
+      <div class="v-price">$0,000,000 USD</div>
+      <div class="v-cta"><span class="v-cta-line"></span> Private inquiry</div>
+    </div>
+  </a>
+
+  <!-- 05 -->
+  <a href="#" class="villa" data-location="Cancun">
+    <div class="v-img"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=85&fit=crop" alt="Villa 5"><div class="v-tag">Cancun · Zona Hotelera</div></div>
+    <div class="v-body">
+      <div class="v-num">05</div>
+      <div class="v-location">Cancun · Zona Hotelera</div>
+      <div class="v-name">Villa Name Here</div>
+      <p class="v-desc">A brief description of the property — style, feel, key features. Two to three sentences.</p>
+      <div class="v-specs">
+        <div><span class="v-spec-val">4</span><span class="v-spec-lbl">Bedrooms</span></div>
+        <div><span class="v-spec-val">520 m²</span><span class="v-spec-lbl">Built</span></div>
+        <div><span class="v-spec-val">Pool</span><span class="v-spec-lbl">Private</span></div>
+      </div>
+      <div class="v-price">$0,000,000 USD</div>
+      <div class="v-cta"><span class="v-cta-line"></span> Private inquiry</div>
+    </div>
+  </a>
+
+  <!-- 06 -->
+  <a href="#" class="villa reverse" data-location="Playa">
+    <div class="v-img"><img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=85&fit=crop" alt="Villa 6"><div class="v-tag">Playa · Playacar</div></div>
+    <div class="v-body">
+      <div class="v-num">06</div>
+      <div class="v-location">Playa del Carmen · Playacar</div>
+      <div class="v-name">Villa Name Here</div>
+      <p class="v-desc">A brief description of the property — style, feel, key features. Two to three sentences.</p>
+      <div class="v-specs">
+        <div><span class="v-spec-val">5</span><span class="v-spec-lbl">Bedrooms</span></div>
+        <div><span class="v-spec-val">490 m²</span><span class="v-spec-lbl">Built</span></div>
+        <div><span class="v-spec-val">Pool</span><span class="v-spec-lbl">Private</span></div>
+      </div>
+      <div class="v-price">$0,000,000 USD</div>
+      <div class="v-cta"><span class="v-cta-line"></span> Private inquiry</div>
+    </div>
+  </a>
+
+  <!-- 07 -->
+  <a href="#" class="villa" data-location="Tulum">
+    <div class="v-img"><img src="https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=1200&q=85&fit=crop" alt="Villa 7"><div class="v-tag">Tulum · Beach Road</div></div>
+    <div class="v-body">
+      <div class="v-num">07</div>
+      <div class="v-location">Tulum · Beach Road</div>
+      <div class="v-name">Villa Name Here</div>
+      <p class="v-desc">A brief description of the property — style, feel, key features. Two to three sentences.</p>
+      <div class="v-specs">
+        <div><span class="v-spec-val">7</span><span class="v-spec-lbl">Bedrooms</span></div>
+        <div><span class="v-spec-val">1,100 m²</span><span class="v-spec-lbl">Built</span></div>
+        <div><span class="v-spec-val">Pool</span><span class="v-spec-lbl">Private</span></div>
+      </div>
+      <div class="v-price">$0,000,000 USD</div>
+      <div class="v-cta"><span class="v-cta-line"></span> Private inquiry</div>
+    </div>
+  </a>
+
+  <!-- 08 -->
+  <a href="#" class="villa reverse" data-location="Cancun">
+    <div class="v-img"><img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=1200&q=85&fit=crop" alt="Villa 8"><div class="v-tag">Cancun · North Coast</div></div>
+    <div class="v-body">
+      <div class="v-num">08</div>
+      <div class="v-location">Cancun · North Coast</div>
+      <div class="v-name">Villa Name Here</div>
+      <p class="v-desc">A brief description of the property — style, feel, key features. Two to three sentences.</p>
+      <div class="v-specs">
+        <div><span class="v-spec-val">4</span><span class="v-spec-lbl">Bedrooms</span></div>
+        <div><span class="v-spec-val">460 m²</span><span class="v-spec-lbl">Built</span></div>
+        <div><span class="v-spec-val">Pool</span><span class="v-spec-lbl">Private</span></div>
+      </div>
+      <div class="v-price">$0,000,000 USD</div>
+      <div class="v-cta"><span class="v-cta-line"></span> Private inquiry</div>
+    </div>
+  </a>
+
+  <!-- 09 -->
+  <a href="#" class="villa" data-location="Playa">
+    <div class="v-img"><img src="https://images.unsplash.com/photo-1602343168117-bb8ced3f3272?w=1200&q=85&fit=crop" alt="Villa 9"><div class="v-tag">Playa · Quinta</div></div>
+    <div class="v-body">
+      <div class="v-num">09</div>
+      <div class="v-location">Playa del Carmen · Quinta</div>
+      <div class="v-name">Villa Name Here</div>
+      <p class="v-desc">A brief description of the property — style, feel, key features. Two to three sentences.</p>
+      <div class="v-specs">
+        <div><span class="v-spec-val">3</span><span class="v-spec-lbl">Bedrooms</span></div>
+        <div><span class="v-spec-val">340 m²</span><span class="v-spec-lbl">Built</span></div>
+        <div><span class="v-spec-val">Pool</span><span class="v-spec-lbl">Private</span></div>
+      </div>
+      <div class="v-price">$0,000,000 USD</div>
+      <div class="v-cta"><span class="v-cta-line"></span> Private inquiry</div>
+    </div>
+  </a>
+
+  <!-- 10 -->
+  <a href="#" class="villa reverse" data-location="Tulum">
+    <div class="v-img"><img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1200&q=85&fit=crop" alt="Villa 10"><div class="v-tag">Tulum · La Reserva</div></div>
+    <div class="v-body">
+      <div class="v-num">10</div>
+      <div class="v-location">Tulum · La Reserva</div>
+      <div class="v-name">Villa Name Here</div>
+      <p class="v-desc">A brief description of the property — style, feel, key features. Two to three sentences.</p>
+      <div class="v-specs">
+        <div><span class="v-spec-val">8</span><span class="v-spec-lbl">Bedrooms</span></div>
+        <div><span class="v-spec-val">1,400 m²</span><span class="v-spec-lbl">Built</span></div>
+        <div><span class="v-spec-val">Pool</span><span class="v-spec-lbl">Private</span></div>
+      </div>
+      <div class="v-price">$0,000,000 USD</div>
+      <div class="v-cta"><span class="v-cta-line"></span> Private inquiry</div>
+    </div>
+  </a>
+
+  <section class="inquiry">
+    <div class="inq-eyebrow">None of these feel right?</div>
+    <div class="inq-title">We have more. Let's talk.</div>
+    <a href="investors.html" class="inq-btn">Private inquiry</a>
+  </section>
+
+  <script>
+    function filter(loc, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.villa').forEach(el => {
+        el.style.display = (loc === 'all' || el.dataset.location === loc) ? 'grid' : 'none';
+      });
+    }
+  </script>
+
+</body>
+</html>
