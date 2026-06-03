@@ -37,10 +37,12 @@
     .hero-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,0.35); cursor: pointer; transition: background 0.3s; }
     .hero-dot.active { background: #C4B89A; }
     .hero-boxes { display: flex; gap: 0; }
-    .hero-box { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: #F5F1EA; border: 0.5px solid rgba(255,255,255,0.5); padding: 18px 48px; text-decoration: none; font-family: 'Raleway', sans-serif; font-weight: 300; transition: background 0.2s, color 0.2s; background: rgba(0,0,0,0.25); backdrop-filter: blur(4px); }
-    .hero-box:hover { background: rgba(196,184,154,0.85); color: #111009; border-color: #C4B89A; }
+    .hero-box { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: #F5F1EA; border: 0.5px solid rgba(255,255,255,0.5); padding: 22px 56px; text-decoration: none; font-family: 'Raleway', sans-serif; font-weight: 300; transition: background 0.3s, color 0.3s, transform 0.2s; background: rgba(0,0,0,0.3); backdrop-filter: blur(6px); cursor: pointer; }
+    .hero-box:hover { background: rgba(196,184,154,0.9); color: #111009; border-color: #C4B89A; transform: translateY(-2px); }
     .hero-box:not(:last-child) { border-right: none; }
-    @media (max-width: 768px) { .hero-box { padding: 14px 24px; font-size: 10px; } }
+    .hero-box.featured { font-size: 13px; letter-spacing: 0.24em; padding: 28px 72px; background: rgba(196,184,154,0.15); border-color: rgba(196,184,154,0.8); }
+    .hero-box.featured:hover { background: #C4B89A; color: #111009; }
+    @media (max-width: 768px) { .hero-box { padding: 16px 28px; font-size: 10px; } .hero-box.featured { padding: 20px 36px; font-size: 11px; } }
     .locations { display: grid; grid-template-columns: 1fr 1fr 1fr; }
     .location-panel { position: relative; height: clamp(220px, 30vw, 380px); overflow: hidden; cursor: pointer; text-decoration: none; display: block; }
     .location-panel img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; display: block; }
@@ -124,9 +126,9 @@
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <div class="hero-boxes">
-        <a href="#inquiry" class="hero-box">Sell</a>
-        <a href="#inquiry" class="hero-box">Top 10</a>
-        <a href="#inquiry" class="hero-box">Buy</a>
+        <a href="sell.html" class="hero-box">Sell</a>
+        <a href="top10.html" class="hero-box featured">Top 10</a>
+        <a href="buy.html" class="hero-box">Buy</a>
       </div>
     </div>
     <div class="hero-dots" id="heroDots">
