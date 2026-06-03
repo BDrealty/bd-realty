@@ -38,11 +38,11 @@
       position: absolute; inset: 0;
       background-size: cover; background-position: center;
       transform: scale(1.06);
-      filter: grayscale(60%) brightness(0.25);
+      filter: grayscale(30%) brightness(0.45);
       transition: filter 0.6s ease, transform 0.8s ease;
     }
     .card:hover .card-bg {
-      filter: grayscale(0%) brightness(0.55);
+      filter: grayscale(0%) brightness(0.7);
       transform: scale(1.0);
     }
 
@@ -116,8 +116,8 @@
     .card:hover .card-cta-line { width: 36px; }
 
     /* Special: Investors card */
-    .card.investors-card .card-bg { filter: grayscale(60%) brightness(0.2); }
-    .card.investors-card:hover .card-bg { filter: grayscale(0%) brightness(0.45); }
+    .card.investors-card .card-bg { filter: grayscale(30%) brightness(0.45); }
+    .card.investors-card:hover .card-bg { filter: grayscale(0%) brightness(0.7); }
     .card.investors-card::before {
       content: '';
       position: absolute; inset: 0;
@@ -167,7 +167,7 @@
 
     <!-- Luxury Villas -->
     <a href="top10-villas.html" class="card">
-      <div class="card-bg" style="background-image:url('luxury-villa-pool.jpg')"></div>
+      <div class="card-bg" style="background-image:url('luxury%20villa%20pool.png')"></div>
       <div class="card-vignette"></div>
       <div class="card-num">10</div>
       <div class="card-content">
@@ -180,7 +180,7 @@
 
     <!-- Investors → goes to Investors Circle page -->
     <a href="investors.html" class="card investors-card">
-      <div class="card-bg" style="background-image:url('shark-tower.jpg')"></div>
+      <div class="card-bg" style="background-image:url('shark%20tower.png')"></div>
       <div class="card-vignette"></div>
       <div class="card-num">10</div>
       <div class="card-content">
