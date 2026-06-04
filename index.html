@@ -72,6 +72,11 @@
     .founders-title { font-family: 'EB Garamond', serif; font-size: clamp(26px, 3vw, 38px); font-weight: 300; color: #2A2820; letter-spacing: 0.02em; margin-bottom: 1.5rem; line-height: 1.2; }
     .founders-body { font-size: 13px; color: #9A9080; line-height: 1.9; margin-bottom: 2rem; }
     .founders-names { font-family: 'EB Garamond', serif; font-size: 15px; font-weight: 300; font-style: italic; color: #6B6452; letter-spacing: 0.04em; }
+    .consult-strip { background: #E8E0D0; padding: 5rem 2.5rem; text-align: center; }
+    .consult-eyebrow { font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: #B0A890; margin-bottom: 1.5rem; }
+    .consult-title { font-family: 'EB Garamond', serif; font-size: clamp(24px, 3vw, 38px); font-weight: 300; color: #2A2820; margin-bottom: 2rem; letter-spacing: 0.04em; }
+    .consult-btn { display: inline-block; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #2A2820; border: 0.5px solid #9A7D5A; padding: 14px 32px; border-radius: 1px; text-decoration: none; transition: background 0.2s, color 0.2s; }
+    .consult-btn:hover { background: #2A2820; color: #F5F1EA; border-color: #2A2820; }
     .inquiry-strip { background: #111009; padding: 5rem 2.5rem; text-align: center; }
     .inq-eyebrow { font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: #4A4840; margin-bottom: 1.5rem; }
     .inq-title { font-family: 'EB Garamond', serif; font-size: clamp(24px, 3vw, 38px); font-weight: 300; color: #E8E0D0; margin-bottom: 2rem; letter-spacing: 0.04em; }
@@ -138,37 +143,11 @@
     </div>
   </section>
 
-  <section class="locations" id="locations">
-    <a href="#inquiry" class="location-panel">
-      <img src="https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?w=900&q=80&fit=crop" alt="Cancun" loading="lazy">
-      <div class="location-overlay"></div>
-      <div class="location-label">
-        <div class="location-name">Cancun</div>
-        <div class="location-sub">Hotel Zone &amp; North Coast</div>
-      </div>
-    </a>
-    <a href="#inquiry" class="location-panel">
-      <img src="https://images.unsplash.com/photo-1552074284-5e88ef1aef18?w=900&q=80&fit=crop" alt="Playa del Carmen" loading="lazy">
-      <div class="location-overlay"></div>
-      <div class="location-label">
-        <div class="location-name">Playa del<br>Carmen</div>
-        <div class="location-sub">Quinta Avenida &amp; Mayakoba</div>
-      </div>
-    </a>
-    <a href="#inquiry" class="location-panel">
-      <img src="https://images.unsplash.com/photo-1578922746465-3a80a228f223?w=900&q=80&fit=crop" alt="Tulum" loading="lazy">
-      <div class="location-overlay"></div>
-      <div class="location-label">
-        <div class="location-name">Tulum</div>
-        <div class="location-sub">Beach Road &amp; La Reserva</div>
-      </div>
-    </a>
+  <section class="consult-strip">
+    <div class="consult-eyebrow">Ready to move</div>
+    <div class="consult-title">Start with a private conversation</div>
+    <a href="https://calendar.app.google/P7L3HxF1bsaGcLbD7" target="_blank" class="consult-btn">Free consultation call</a>
   </section>
-
-  <div class="strip">
-    <div class="strip-item"><div class="strip-num">$100M+</div><div class="strip-label">Closed volume</div></div>
-    <div class="strip-item"><div class="strip-num">12 yrs</div><div class="strip-label">Riviera Maya market</div></div>
-  </div>
 
   <section class="investors" id="investors">
     <a href="investors.html" class="investors-circle" style="text-decoration:none;">
@@ -193,8 +172,9 @@
   </div>
 
   <section class="inquiry-strip" id="inquiry">
-    <div class="inq-eyebrow">Ready to move</div>
-    <div class="inq-title">Start with a private conversation</div>
+    <div class="inq-eyebrow">Thinking about buying abroad?</div>
+    <div class="inq-title">Does buying in Mexico<br>seem complicated?</div>
+    <p style="font-size:13px; color:#6B6452; max-width:400px; margin: 0 auto 2rem; line-height:1.8;">It doesn't have to be. We put together a complete guide — legal structure, costs, process, and what to avoid. Free, no strings attached.</p>
     <a href="buyers-guide.html" class="inq-btn">Buyer's guide to Mexico</a>
   </section>
 
