@@ -10,7 +10,7 @@
   <link rel="preload" as="image" href="VILLA%20XATA_62.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Raleway:wght@200;300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Raleway:wght@200;300;400&family=Cormorant+Garamond:wght@300;400&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -24,10 +24,13 @@
     .nav-right { display: flex; justify-content: flex-end; }
     .nav-inquiry { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #C4B89A; border: 0.5px solid #C4B89A; padding: 9px 20px; border-radius: 1px; background: none; text-decoration: none; transition: background 0.2s, color 0.2s; }
     .nav-inquiry:hover { background: #C4B89A; color: #111009; }
-    .nav-overlay { display: none; position: fixed; inset: 0; background: #111009; z-index: 200; flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem; }
+    .nav-overlay { display: none; position: fixed; inset: 0; background: #0D0C0A; z-index: 200; flex-direction: column; align-items: center; justify-content: center; gap: 0; }
     .nav-overlay.open { display: flex; }
-    .nav-overlay a { font-family: 'EB Garamond', serif; font-size: 32px; font-weight: 300; letter-spacing: 0.12em; color: #E8E0D0; text-decoration: none; text-transform: uppercase; }
-    .nav-close { position: absolute; top: 1.6rem; right: 2.5rem; background: none; border: none; color: #C4B89A; font-size: 24px; cursor: pointer; }
+    .nav-overlay a { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 4vw, 42px); font-weight: 300; letter-spacing: 0.22em; color: #C8C0B0; text-decoration: none; text-transform: uppercase; padding: 0.85rem 0; transition: color 0.3s, letter-spacing 0.3s; border-bottom: 0.5px solid rgba(196,184,154,0.06); width: 100%; text-align: center; }
+    .nav-overlay a:first-of-type { border-top: 0.5px solid rgba(196,184,154,0.06); }
+    .nav-overlay a:hover { color: #C4B89A; letter-spacing: 0.28em; }
+    .nav-close { position: absolute; top: 1.6rem; right: 2.5rem; background: none; border: none; color: #4A4438; font-size: 18px; cursor: pointer; letter-spacing: 0.1em; font-family: 'Raleway', sans-serif; font-weight: 300; transition: color 0.2s; }
+    .nav-close:hover { color: #C4B89A; }
     .hero { position: relative; height: 92vh; min-height: 500px; overflow: hidden; background: #0A0908; }
     .hero-slide { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 1.6s ease; }
     .hero-slide.active { opacity: 1; }
@@ -110,7 +113,7 @@
     <a href="#locations" onclick="closeMenu()">Locations</a>
     <a href="investors.html" onclick="closeMenu()">Investors Circle</a>
     <a href="#founders" onclick="closeMenu()">About</a>
-    <a href="#inquiry" onclick="closeMenu()">The Process</a>
+    <a href="the-process.html" onclick="closeMenu()">The Process</a>
     <a href="buyers-guide.html" onclick="closeMenu()">Buyer's Guide</a>
     <a href="#inquiry" onclick="closeMenu()">Why Us?</a>
     <a href="#inquiry" onclick="closeMenu()">Contact</a>
@@ -150,7 +153,7 @@
       <div class="founders-text">
         <div class="founders-eyebrow">The founders</div>
         <h2 class="founders-title">Built by closers.<br>Designed for private clients.</h2>
-        <p class="founders-body">Jennifer and I built B&amp;D Realty after 12 years in the Riviera Maya, seeing the same problem again and again: plenty of agents could show property, but very few could truly read the deal — or stay close enough to the client when it mattered. My background is in portfolio management and high-conversion sales, with a focus on numbers, positioning, negotiation, and execution. Jennifer brings a background in event organization, where discretion, precision, timing, and client experience are non-negotiable.<br><br>Coming from the UK and France, we bring an international standard to a local market we know deeply. But more than anything, we built B&amp;D Realty to be the kind of advisory the market was missing: present, honest, strategic, and fully invested in the outcome. For buyers, investors, and sellers who expect more than access to listings, our role is simple — bring clarity, protect the deal, and stand beside you from first conversation to closing table.</p>
+        <p class="founders-body">Jennifer and I built B&amp;D Realty after 12 years in the Riviera Maya, seeing the same problem again and again: plenty of agents could show property, but very few could truly read the deal, or stay close enough to the client when it mattered. My background is in portfolio management and high-conversion sales, with a focus on numbers, positioning, negotiation, and execution. Jennifer brings a background in event organization, where discretion, precision, timing, and client experience are non-negotiable.<br><br>Coming from the UK and France, we bring an international standard to a local market we know deeply. But more than anything, we built B&amp;D Realty to be the kind of advisory the market was missing: present, honest, strategic, and fully invested in the outcome. For buyers, investors, and sellers who expect more than access to listings, our role is simple, bring clarity, protect the deal, and stand beside you from first conversation to closing table.</p>
         <div class="founders-names">Benjamin Brasher &amp; Jennifer Duzant</div>
       </div>
     </div>

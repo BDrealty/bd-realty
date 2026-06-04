@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Process · B & D Realty</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Raleway:wght@200;300;400&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #F5F1EA; color: #2A2820; font-family: 'Raleway', sans-serif; font-weight: 300; }
+
+    /* NAV */
+    .nav { background: #111009; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 1.6rem 2.5rem; }
+    .nav-back { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #6B6452; text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: #C4B89A; }
+    .nav-logo { font-family: 'EB Garamond', serif; font-size: 20px; font-weight: 300; letter-spacing: 0.3em; color: #C4B89A; text-align: center; text-transform: uppercase; text-decoration: none; }
+    .nav-right { display: flex; justify-content: flex-end; }
+    .nav-cta { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #C4B89A; border: 0.5px solid #C4B89A; padding: 9px 20px; border-radius: 1px; text-decoration: none; transition: background 0.2s, color 0.2s; }
+    .nav-cta:hover { background: #C4B89A; color: #111009; }
+
+    /* HEADER */
+    .header { padding: 6rem 2.5rem 5rem; max-width: 860px; margin: 0 auto; }
+    .header-eyebrow { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: #B0A890; margin-bottom: 1.25rem; }
+    .header-title { font-family: 'EB Garamond', serif; font-size: clamp(38px, 5.5vw, 68px); font-weight: 400; color: #2A2820; line-height: 1.05; margin-bottom: 1.5rem; }
+    .header-title em { font-style: italic; color: #9A7D5A; }
+    .header-sub { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: #9A9080; line-height: 1.75; max-width: 560px; }
+
+    /* PROMISE BAR */
+    .promise { background: #2A2820; padding: 2.5rem 2.5rem; display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap; }
+    .promise-item { text-align: center; }
+    .promise-val { font-family: 'EB Garamond', serif; font-size: 28px; color: #C4B89A; display: block; }
+    .promise-lbl { font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase; color: #4A4438; margin-top: 4px; display: block; }
+
+    /* STEPS */
+    .steps { max-width: 860px; margin: 0 auto; padding: 5rem 2.5rem 6rem; }
+
+    .step { display: grid; grid-template-columns: 80px 1fr; gap: 0; margin-bottom: 0; position: relative; }
+
+    /* vertical connector line */
+    .step:not(:last-child) .step-line { position: absolute; left: 39px; top: 52px; bottom: -1px; width: 0.5px; background: #DDD8CE; z-index: 0; }
+
+    .step-left { display: flex; flex-direction: column; align-items: center; padding-top: 4px; position: relative; z-index: 1; }
+    .step-num { width: 42px; height: 42px; border-radius: 50%; border: 0.5px solid #C4B89A; display: flex; align-items: center; justify-content: center; background: #F5F1EA; flex-shrink: 0; }
+    .step-num span { font-family: 'EB Garamond', serif; font-size: 15px; color: #9A7D5A; }
+
+    .step-body { padding: 0 0 4rem 2.5rem; }
+    .step-tag { font-size: 8px; letter-spacing: 0.24em; text-transform: uppercase; color: #C4B89A; margin-bottom: 0.5rem; }
+    .step-title { font-family: 'EB Garamond', serif; font-size: clamp(22px, 2.8vw, 30px); font-weight: 400; color: #2A2820; margin-bottom: 0.85rem; line-height: 1.2; }
+    .step-desc { font-family: 'Cormorant Garamond', serif; font-size: 17px; color: #6B6452; line-height: 1.85; }
+    .step-note { display: inline-block; margin-top: 1rem; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: #B0A890; border-bottom: 0.5px solid #DDD8CE; padding-bottom: 2px; }
+
+    /* AFTER DEAL */
+    .after-deal { background: #E8E0D0; padding: 6rem 2.5rem; border-top: 0.5px solid #DDD8CE; }
+    .after-inner { max-width: 860px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .after-eyebrow { font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase; color: #B0A890; margin-bottom: 1rem; }
+    .after-title { font-family: 'EB Garamond', serif; font-size: clamp(30px, 3.5vw, 46px); font-weight: 400; color: #2A2820; line-height: 1.2; }
+    .after-title em { font-style: italic; color: #9A7D5A; }
+    .after-body { font-family: 'Cormorant Garamond', serif; font-size: 17px; color: #6B6452; line-height: 1.85; margin-bottom: 1.25rem; }
+    .after-items { margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; }
+    .after-item { display: flex; align-items: flex-start; gap: 1rem; font-size: 11px; letter-spacing: 0.06em; color: #9A9080; line-height: 1.6; }
+    .after-item-dot { width: 4px; height: 4px; border-radius: 50%; background: #9A7D5A; margin-top: 6px; flex-shrink: 0; }
+    @media (max-width: 768px) { .after-inner { grid-template-columns: 1fr; gap: 2.5rem; } .after-deal { padding: 4rem 1.5rem; } }
+
+    /* TRANSPARENCY BLOCK */
+    .transparency { background: #E8E0D0; padding: 5rem 2.5rem; }
+    .transparency-inner { max-width: 760px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .trans-eyebrow { font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase; color: #B0A890; margin-bottom: 1rem; }
+    .trans-title { font-family: 'EB Garamond', serif; font-size: clamp(26px, 3vw, 38px); font-weight: 400; color: #2A2820; line-height: 1.2; margin-bottom: 1.25rem; }
+    .trans-title em { font-style: italic; color: #9A7D5A; }
+    .trans-body { font-family: 'Cormorant Garamond', serif; font-size: 17px; color: #6B6452; line-height: 1.85; }
+    .trans-quote { font-family: 'EB Garamond', serif; font-style: italic; font-size: 22px; color: #9A7D5A; line-height: 1.5; margin-bottom: 1rem; }
+    .trans-quote-attr { font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: #B0A890; }
+
+    /* CTA */
+    .cta { background: #111009; padding: 5rem 2.5rem; text-align: center; }
+    .cta-eyebrow { font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase; color: #4A4438; margin-bottom: 1rem; }
+    .cta-title { font-family: 'EB Garamond', serif; font-size: clamp(24px, 3vw, 38px); color: #E8E0D0; margin-bottom: 2rem; }
+    .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .cta-btn { display: inline-block; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #111009; background: #C4B89A; padding: 14px 32px; text-decoration: none; transition: background 0.2s; }
+    .cta-btn:hover { background: #D4C8AA; }
+    .cta-btn-outline { display: inline-block; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #C4B89A; border: 0.5px solid #C4B89A; padding: 14px 32px; text-decoration: none; transition: background 0.2s, color 0.2s; }
+    .cta-btn-outline:hover { background: #C4B89A; color: #111009; }
+
+    @media (max-width: 768px) {
+      .nav { padding: 1.25rem 1.5rem; } .nav-cta { display: none; }
+      .header { padding: 4rem 1.5rem 3rem; }
+      .promise { gap: 2rem; }
+      .steps { padding: 3rem 1.5rem 4rem; }
+      .step { grid-template-columns: 52px 1fr; }
+      .step:not(:last-child) .step-line { left: 25px; }
+      .step-body { padding: 0 0 3rem 1.5rem; }
+      .transparency-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .transparency { padding: 3.5rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-back">← Home</a>
+    <a href="index.html" class="nav-logo">B & D</a>
+    <div class="nav-right"><a href="https://calendar.app.google/P7L3HxF1bsaGcLbD7" target="_blank" class="nav-cta">Book a call</a></div>
+  </nav>
+
+  <div class="header">
+    <div class="header-eyebrow">How we work</div>
+    <h1 class="header-title">A clear path,<br>from first call<br>to <em>closing.</em></h1>
+    <p class="header-sub">No surprises. No pressure. Just a structured process built over 12 years, designed to protect you and get the deal done right.</p>
+  </div>
+
+
+  <div class="steps">
+
+    <div class="step">
+      <div class="step-line"></div>
+      <div class="step-left"><div class="step-num"><span>01</span></div></div>
+      <div class="step-body">
+        <div class="step-tag">First call</div>
+        <div class="step-title">We talk. Really talk.</div>
+        <p class="step-desc">Not emails, not a contact form, a real conversation. We want to understand who you are, what you're looking for, your budget, and what matters most. You get a clear picture of who you're dealing with before anything else happens.</p>
+        <span class="step-note">15–30 minutes · No obligation</span>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-line"></div>
+      <div class="step-left"><div class="step-num"><span>02</span></div></div>
+      <div class="step-body">
+        <div class="step-tag">Property search</div>
+        <div class="step-title">You only see what's worth your time.</div>
+        <p class="step-desc">Based on what you've told us, we go to work. There is no MLS in Mexico, the market is fragmented, and not every developer or seller deserves your attention. We filter everything, reputation, delivery history, numbers, and send you only what genuinely fits, with our straight honest take on each one.</p>
+        <span class="step-note">No inbox flooding. Only what's relevant.</span>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-line"></div>
+      <div class="step-left"><div class="step-num"><span>03</span></div></div>
+      <div class="step-body">
+        <div class="step-tag">Video call</div>
+        <div class="step-title">We go through it together.</div>
+        <p class="step-desc">A video call to walk through the shortlist, screen-share properties, dig into the numbers, answer every question. If a partner or spouse is part of the decision, this is the moment to bring them in. By the end of this call, we know exactly what we're going after.</p>
+        <span class="step-note">You arrive having already reviewed the selection we've sent.</span>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-line"></div>
+      <div class="step-left"><div class="step-num"><span>04</span></div></div>
+      <div class="step-body">
+        <div class="step-tag">Visit preparation</div>
+        <div class="step-title">When you come, everything is ready.</div>
+        <p class="step-desc">About a week before you arrive, we go over your shortlist one more time, confirm availability, and schedule your viewings in half-days, enough to see everything without hitting information overload. You land knowing exactly what the plan is.</p>
+        <span class="step-note">Can't make it in person? We can move forward remotely too.</span>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-left"><div class="step-num"><span>05</span></div></div>
+      <div class="step-body">
+        <div class="step-tag">Offer & deposit</div>
+        <div class="step-title">When it's right, we move fast.</div>
+        <p class="step-desc">Good properties don't wait. When you've found the one, we negotiate on your behalf, price, terms, timeline, and guide you through securing it with a deposit. We've seen too many clients lose their favourite property by waiting a week too long.</p>
+        <span class="step-note">We handle the negotiation. You make the final call.</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- AFTER THE DEAL -->
+  <div class="after-deal">
+    <div class="after-inner">
+      <div class="after-left">
+        <div class="after-eyebrow">After the deal</div>
+        <div class="after-title">You don't become<br>a past client.<br><em>You become family.</em></div>
+      </div>
+      <div class="after-right">
+        <p class="after-body">The closing isn't the end of our relationship, it's the beginning of a longer one. We check in. We stay involved. Whether it's a question about your rental income, a renovation recommendation, or the right moment to sell, we're still there.</p>
+        <p class="after-body">We built B&D Realty to work with people for years, not transactions. The clients we've had the longest are the ones who came back, and brought their friends.</p>
+        <div class="after-items">
+          <div class="after-item">
+            <div class="after-item-dot"></div>
+            <span>Regular check-ins on your investment</span>
+          </div>
+          <div class="after-item">
+            <div class="after-item-dot"></div>
+            <span>Market updates that affect your property</span>
+          </div>
+          <div class="after-item">
+            <div class="after-item-dot"></div>
+            <span>Trusted referrals, management, renovation, legal</span>
+          </div>
+          <div class="after-item">
+            <div class="after-item-dot"></div>
+            <span>Always a call away, not just when you need to buy again</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="transparency">
+    <div class="transparency-inner">
+      <div>
+        <div class="trans-eyebrow">Our commitment</div>
+        <div class="trans-title">Transparent by design.<br><em>Long-term by choice.</em></div>
+        <p class="trans-body">We are investors here ourselves. We've made the mistakes, learned the market, and built the relationships. This process exists because we want clients who come back, not clients who feel burned and walk away.</p>
+      </div>
+      <div>
+        <p class="trans-quote">"Cuentas claras, amistades largas."</p>
+        <p class="trans-quote-attr">Spanish proverb, Transparency creates long-term friendships.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cta">
+    <div class="cta-eyebrow">Ready when you are</div>
+    <div class="cta-title">Step one starts with a call.</div>
+    <div class="cta-btns">
+      <a href="https://calendar.app.google/P7L3HxF1bsaGcLbD7" target="_blank" class="cta-btn">Book a free call</a>
+      <a href="buyers-guide.html" class="cta-btn-outline">Buyer's guide to Mexico</a>
+    </div>
+  </div>
+
+</body>
+</html>
