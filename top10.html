@@ -138,6 +138,14 @@
 </head>
 <body>
 
+  <div class="lang-bar">
+    <button class="lang-btn active" data-lang="en" onclick="bdSetLang('en')">EN</button>
+    <button class="lang-btn" data-lang="es" onclick="bdSetLang('es')">ES</button>
+    <button class="lang-btn" data-lang="fr" onclick="bdSetLang('fr')">FR</button>
+    <button class="lang-btn" data-lang="ru" onclick="bdSetLang('ru')">RU</button>
+    <button class="lang-btn" data-lang="de" onclick="bdSetLang('de')">DE</button>
+  </div>
+
   <nav class="nav">
     <a href="index.html" class="nav-back">← Home</a>
     <a href="index.html" class="nav-logo">B & D</a>
@@ -146,10 +154,10 @@
 
   <div class="header">
     <div class="header-eyebrow">Riviera Maya · Curated by B & D</div>
-    <h1 class="header-title">The <em>Top 10</em></h1>
+    <h1 class="header-title" data-i18n="top10.title">The <em>Top 10</em></h1>
     <div class="header-line"></div>
     <div class="header-box">
-      <p class="header-body">No browsing. No noise. We've done the work so you don't have to. Every property on this list has been vetted, visited, and validated by B&D. Due diligence done. You go straight to the best.</p>
+      <p class="header-body" data-i18n="top10.body">No browsing. No noise. We've done the work so you don't have to. Every property on this list has been vetted, visited, and validated by B&D. Due diligence done. You go straight to the best.</p>
     </div>
   </div>
 
@@ -161,8 +169,8 @@
       <div class="card-vignette"></div>
       <div class="card-num">10</div>
       <div class="card-content">
-        <span class="card-tag">01 — Category</span>
-        <div class="card-title">Beachfront</div>
+        <span class="card-tag">01, Category</span>
+        <div class="card-title" data-i18n="top10.cat1">Beachfront</div>
         <p class="card-desc">The finest oceanfront properties across Cancun, Playa & Tulum.</p>
         <div class="card-cta"><span class="card-cta-line"></span> Explore</div>
       </div>
@@ -174,8 +182,8 @@
       <div class="card-vignette"></div>
       <div class="card-num">10</div>
       <div class="card-content">
-        <span class="card-tag">02 — Category</span>
-        <div class="card-title">Luxury Villas</div>
+        <span class="card-tag">02, Category</span>
+        <div class="card-title" data-i18n="top10.cat2">Luxury Villas</div>
         <p class="card-desc">Architect-designed residences for those who don't compromise.</p>
         <div class="card-cta"><span class="card-cta-line"></span> Explore</div>
       </div>
@@ -187,8 +195,8 @@
       <div class="card-vignette"></div>
       <div class="card-num">10</div>
       <div class="card-content">
-        <span class="card-tag">03 — Category</span>
-        <div class="card-title">Investors Circle</div>
+        <span class="card-tag">03, Category</span>
+        <div class="card-title" data-i18n="top10.cat3">Investors Circle</div>
         <p class="card-desc">High-yield assets with strong rental income and capital upside. Private access only.</p>
         <div class="card-cta"><span class="card-cta-line"></span> Request access</div>
       </div>
@@ -200,14 +208,16 @@
       <div class="card-vignette"></div>
       <div class="card-num">10</div>
       <div class="card-content">
-        <span class="card-tag">04 — Category</span>
-        <div class="card-title">Value</div>
-        <p class="card-desc">Smart buys — underpriced, undervalued, and under the radar.</p>
+        <span class="card-tag">04, Category</span>
+        <div class="card-title" data-i18n="top10.cat4">Value</div>
+        <p class="card-desc">Smart buys, underpriced, undervalued, and under the radar.</p>
         <div class="card-cta"><span class="card-cta-line"></span> Explore</div>
       </div>
     </a>
 
   </div>
 
+  <script src="lang.js"></script>
+  <script>bdInitLang();</script>
 </body>
 </html>

@@ -15,6 +15,9 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body { background: #F5F1EA; color: #1A1814; font-family: 'Raleway', sans-serif; font-weight: 300; }
+    .lang-bar { background: #0D0C0A; display: flex; justify-content: flex-end; padding: 0.5rem 2.5rem; gap: 1.25rem; }
+    .lang-btn { font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: #4A4438; background: none; border: none; cursor: pointer; font-family: 'Raleway', sans-serif; padding: 2px 0; border-bottom: 0.5px solid transparent; transition: all 0.2s; }
+    .lang-btn:hover, .lang-btn.active { color: #C4B89A; border-bottom-color: #C4B89A; }
     .nav { background: #111009; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 1.6rem 2.5rem; position: sticky; top: 0; z-index: 100; }
     .nav-left { display: flex; align-items: center; gap: 14px; }
     .hamburger { display: flex; flex-direction: column; gap: 6px; cursor: pointer; background: none; border: none; padding: 4px; }
@@ -108,15 +111,23 @@
 </head>
 <body>
 
+  <div class="lang-bar">
+    <button class="lang-btn active" data-lang="en" onclick="bdSetLang('en')">EN</button>
+    <button class="lang-btn" data-lang="es" onclick="bdSetLang('es')">ES</button>
+    <button class="lang-btn" data-lang="fr" onclick="bdSetLang('fr')">FR</button>
+    <button class="lang-btn" data-lang="ru" onclick="bdSetLang('ru')">RU</button>
+    <button class="lang-btn" data-lang="de" onclick="bdSetLang('de')">DE</button>
+  </div>
+
   <div class="nav-overlay" id="navOverlay">
     <button class="nav-close" onclick="closeMenu()">✕</button>
-    <a href="#locations" onclick="closeMenu()">Locations</a>
-    <a href="investors.html" onclick="closeMenu()">Investors Circle</a>
-    <a href="#founders" onclick="closeMenu()">About</a>
-    <a href="the-process.html" onclick="closeMenu()">The Process</a>
-    <a href="buyers-guide.html" onclick="closeMenu()">Buyer's Guide</a>
-    <a href="#inquiry" onclick="closeMenu()">Why Us?</a>
-    <a href="#inquiry" onclick="closeMenu()">Contact</a>
+    <a href="#locations" onclick="closeMenu()" data-i18n="nav.locations">Locations</a>
+    <a href="investors.html" onclick="closeMenu()" data-i18n="nav.investors">Investors Circle</a>
+    <a href="#founders" onclick="closeMenu()" data-i18n="nav.about">About</a>
+    <a href="the-process.html" onclick="closeMenu()" data-i18n="nav.process">The Process</a>
+    <a href="buyers-guide.html" onclick="closeMenu()" data-i18n="nav.guide">Buyer's Guide</a>
+    <a href="#inquiry" onclick="closeMenu()" data-i18n="nav.whyus">Why Us?</a>
+    <a href="#inquiry" onclick="closeMenu()" data-i18n="nav.contact">Contact</a>
   </div>
 
   <nav class="nav">
@@ -135,9 +146,9 @@
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <div class="hero-boxes">
-        <a href="sell.html" class="hero-box">Sell</a>
-        <a href="top10.html" class="hero-box featured">Top 10</a>
-        <a href="buy.html" class="hero-box">Buy</a>
+        <a href="sell.html" class="hero-box" data-i18n="hero.sell">Sell</a>
+        <a href="top10.html" class="hero-box featured" data-i18n="hero.top10">Top 10</a>
+        <a href="buy.html" class="hero-box" data-i18n="hero.buy">Buy</a>
       </div>
     </div>
     <div class="hero-dots" id="heroDots">
@@ -151,19 +162,19 @@
     <div class="founders">
       <img class="founders-img" src="founders.png" alt="Benjamin Brasher and Jennifer Duzant, founders of B&amp;D Realty" loading="lazy">
       <div class="founders-text">
-        <div class="founders-eyebrow">The founders</div>
-        <h2 class="founders-title">Built by closers.<br>Designed for private clients.</h2>
-        <p class="founders-body">Jennifer and I built B&amp;D Realty after 12 years in the Riviera Maya, seeing the same problem again and again: plenty of agents could show property, but very few could truly read the deal, or stay close enough to the client when it mattered. My background is in portfolio management and high-conversion sales, with a focus on numbers, positioning, negotiation, and execution. Jennifer brings a background in event organization, where discretion, precision, timing, and client experience are non-negotiable.<br><br>Coming from the UK and France, we bring an international standard to a local market we know deeply. But more than anything, we built B&amp;D Realty to be the kind of advisory the market was missing: present, honest, strategic, and fully invested in the outcome. For buyers, investors, and sellers who expect more than access to listings, our role is simple, bring clarity, protect the deal, and stand beside you from first conversation to closing table.</p>
+        <div class="founders-eyebrow" data-i18n="founders.eyebrow">The founders</div>
+        <h2 class="founders-title" data-i18n="founders.title">Built by closers.<br>Designed for private clients.</h2>
+        <p class="founders-body" data-i18n="founders.body">Jennifer and I built B&amp;D Realty after 12 years in the Riviera Maya, seeing the same problem again and again: plenty of agents could show property, but very few could truly read the deal, or stay close enough to the client when it mattered. My background is in portfolio management and high-conversion sales, with a focus on numbers, positioning, negotiation, and execution. Jennifer brings a background in event organization, where discretion, precision, timing, and client experience are non-negotiable.<br><br>Coming from the UK and France, we bring an international standard to a local market we know deeply. But more than anything, we built B&amp;D Realty to be the kind of advisory the market was missing: present, honest, strategic, and fully invested in the outcome. For buyers, investors, and sellers who expect more than access to listings, our role is simple, bring clarity, protect the deal, and stand beside you from first conversation to closing table.</p>
         <div class="founders-names">Benjamin Brasher &amp; Jennifer Duzant</div>
       </div>
     </div>
   </div>
 
   <section class="consult-strip">
-    <div class="consult-title">Buying abroad can be confusing.<br>Let's start with a conversation.</div>
+    <div class="consult-title" data-i18n="consult.title">Buying abroad can be confusing.<br>Let's start with a conversation.</div>
     <div class="consult-btns">
-      <a href="https://calendar.app.google/P7L3HxF1bsaGcLbD7" target="_blank" class="consult-btn">Free consultation call</a>
-      <a href="buyers-guide.html" class="consult-btn">Buyer's guide to Mexico</a>
+      <a href="https://calendar.app.google/P7L3HxF1bsaGcLbD7" target="_blank" class="consult-btn" data-i18n="consult.btn1">Free consultation call</a>
+      <a href="buyers-guide.html" class="consult-btn" data-i18n="consult.btn2">Buyer's guide to Mexico</a>
     </div>
   </section>
 
@@ -172,8 +183,8 @@
       <div class="circle-label">Investors<br>Circle</div>
       <div class="circle-sub">B &amp; D</div>
     </a>
-    <div class="investors-title">Private access. Curated returns.</div>
-    <p class="investors-body">An exclusive network for investors seeking pre-market opportunities across the Riviera Maya. Off-plan allocations, developer relationships, and a track record that speaks at closing.</p>
+    <div class="investors-title" data-i18n="investors.title">Private access. Curated returns.</div>
+    <p class="investors-body" data-i18n="investors.body">An exclusive network for investors seeking pre-market opportunities across the Riviera Maya. Off-plan allocations, developer relationships, and a track record that speaks at closing.</p>
     <a href="investors.html" class="investors-btn">Request access</a>
   </section>
 
@@ -191,6 +202,7 @@
   <script>
     function openMenu(){document.getElementById('navOverlay').classList.add('open');}
     function closeMenu(){document.getElementById('navOverlay').classList.remove('open');}
+
     (function(){
       var slides = document.querySelectorAll('.hero-slide');
       var dots = document.querySelectorAll('.hero-dot');
@@ -237,6 +249,8 @@
       setInterval(function(){ goSlide(current + 1); }, 5500);
     })();
   </script>
+  <script src="lang.js"></script>
+  <script>bdInitLang();</script>
 
 </body>
 </html>

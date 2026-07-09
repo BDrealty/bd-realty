@@ -10,6 +10,9 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
+    .lang-bar { background: #0D0C0A; display: flex; justify-content: flex-end; padding: 0.5rem 2.5rem; gap: 1.25rem; }
+    .lang-btn { font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: #4A4438; background: none; border: none; cursor: pointer; font-family: 'Raleway', sans-serif; padding: 2px 0; border-bottom: 0.5px solid transparent; transition: all 0.2s; }
+    .lang-btn:hover, .lang-btn.active { color: #C4B89A; border-bottom-color: #C4B89A; }
     body { background: #F5F1EA; color: #2A2820; font-family: 'Raleway', sans-serif; font-weight: 300; }
 
     /* NAV */
@@ -99,6 +102,14 @@
 </head>
 <body>
 
+  <div class="lang-bar">
+    <button class="lang-btn active" data-lang="en" onclick="bdSetLang('en')">EN</button>
+    <button class="lang-btn" data-lang="es" onclick="bdSetLang('es')">ES</button>
+    <button class="lang-btn" data-lang="fr" onclick="bdSetLang('fr')">FR</button>
+    <button class="lang-btn" data-lang="ru" onclick="bdSetLang('ru')">RU</button>
+    <button class="lang-btn" data-lang="de" onclick="bdSetLang('de')">DE</button>
+  </div>
+
   <nav class="nav">
     <a href="index.html" class="nav-back">← Home</a>
     <a href="index.html" class="nav-logo">B & D</a>
@@ -106,9 +117,9 @@
   </nav>
 
   <div class="header">
-    <div class="header-eyebrow">How we work</div>
-    <h1 class="header-title">A clear path,<br>from first call<br>to <em>closing.</em></h1>
-    <p class="header-sub">No surprises. No pressure. Just a structured process built over 12 years, designed to protect you and get the deal done right.</p>
+    <div class="header-eyebrow" data-i18n="proc.eyebrow">How we work</div>
+    <h1 class="header-title" data-i18n="proc.title">A clear path,<br>from first call<br>to <em>closing.</em></h1>
+    <p class="header-sub" data-i18n="proc.sub">No surprises. No pressure. Just a structured process built over 12 years, designed to protect you and get the deal done right.</p>
   </div>
 
 
@@ -174,7 +185,7 @@
   <div class="after-deal">
     <div class="after-inner">
       <div class="after-left">
-        <div class="after-eyebrow">After the deal</div>
+        <div class="after-eyebrow" data-i18n="proc.after.eyebrow">After the deal</div>
         <div class="after-title">You don't become<br>a past client.<br><em>You become family.</em></div>
       </div>
       <div class="after-right">
@@ -217,13 +228,15 @@
   </div>
 
   <div class="cta">
-    <div class="cta-eyebrow">Ready when you are</div>
-    <div class="cta-title">Step one starts with a call.</div>
+    <div class="cta-eyebrow" data-i18n="proc.cta.eyebrow">Ready when you are</div>
+    <div class="cta-title" data-i18n="proc.cta.title">Step one starts with a call.</div>
     <div class="cta-btns">
       <a href="https://calendar.app.google/P7L3HxF1bsaGcLbD7" target="_blank" class="cta-btn">Book a free call</a>
       <a href="buyers-guide.html" class="cta-btn-outline">Buyer's guide to Mexico</a>
     </div>
   </div>
 
+  <script src="lang.js"></script>
+  <script>bdInitLang();</script>
 </body>
 </html>

@@ -10,6 +10,9 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
+    .lang-bar { background: #0D0C0A; display: flex; justify-content: flex-end; padding: 0.5rem 2.5rem; gap: 1.25rem; }
+    .lang-btn { font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: #4A4438; background: none; border: none; cursor: pointer; font-family: 'Raleway', sans-serif; padding: 2px 0; border-bottom: 0.5px solid transparent; transition: all 0.2s; }
+    .lang-btn:hover, .lang-btn.active { color: #C4B89A; border-bottom-color: #C4B89A; }
     body { background: #F5F1EA; color: #2A2820; font-family: 'Raleway', sans-serif; font-weight: 300; }
 
     /* NAV */
@@ -75,6 +78,14 @@
 </head>
 <body>
 
+  <div class="lang-bar">
+    <button class="lang-btn active" data-lang="en" onclick="bdSetLang('en')">EN</button>
+    <button class="lang-btn" data-lang="es" onclick="bdSetLang('es')">ES</button>
+    <button class="lang-btn" data-lang="fr" onclick="bdSetLang('fr')">FR</button>
+    <button class="lang-btn" data-lang="ru" onclick="bdSetLang('ru')">RU</button>
+    <button class="lang-btn" data-lang="de" onclick="bdSetLang('de')">DE</button>
+  </div>
+
   <nav class="nav">
     <a href="top10.html" class="nav-back">← Top 10</a>
     <a href="index.html" class="nav-logo">B & D</a>
@@ -102,7 +113,7 @@
       <div class="v-num">01</div>
       <div class="v-location">Tulum · La Veleta</div>
       <div class="v-name">Villa Name Here</div>
-      <p class="v-desc">A brief description of the property — style, feel, key features. Two to three sentences.</p>
+      <p class="v-desc">A brief description of the property, style, feel, key features. Two to three sentences.</p>
       <div class="v-specs">
         <div><span class="v-spec-val">4</span><span class="v-spec-lbl">Bedrooms</span></div>
         <div><span class="v-spec-val">450 m²</span><span class="v-spec-lbl">Built</span></div>
@@ -120,7 +131,7 @@
       <div class="v-num">02</div>
       <div class="v-location">Cancun · Puerto Cancun</div>
       <div class="v-name">Villa Name Here</div>
-      <p class="v-desc">A brief description of the property — style, feel, key features. Two to three sentences.</p>
+      <p class="v-desc">A brief description of the property, style, feel, key features. Two to three sentences.</p>
       <div class="v-specs">
         <div><span class="v-spec-val">5</span><span class="v-spec-lbl">Bedrooms</span></div>
         <div><span class="v-spec-val">620 m²</span><span class="v-spec-lbl">Built</span></div>
@@ -138,7 +149,7 @@
       <div class="v-num">03</div>
       <div class="v-location">Playa del Carmen · Mayakoba</div>
       <div class="v-name">Villa Name Here</div>
-      <p class="v-desc">A brief description of the property — style, feel, key features. Two to three sentences.</p>
+      <p class="v-desc">A brief description of the property, style, feel, key features. Two to three sentences.</p>
       <div class="v-specs">
         <div><span class="v-spec-val">3</span><span class="v-spec-lbl">Bedrooms</span></div>
         <div><span class="v-spec-val">380 m²</span><span class="v-spec-lbl">Built</span></div>
@@ -156,7 +167,7 @@
       <div class="v-num">04</div>
       <div class="v-location">Tulum · Aldea Zama</div>
       <div class="v-name">Villa Name Here</div>
-      <p class="v-desc">A brief description of the property — style, feel, key features. Two to three sentences.</p>
+      <p class="v-desc">A brief description of the property, style, feel, key features. Two to three sentences.</p>
       <div class="v-specs">
         <div><span class="v-spec-val">6</span><span class="v-spec-lbl">Bedrooms</span></div>
         <div><span class="v-spec-val">800 m²</span><span class="v-spec-lbl">Built</span></div>
@@ -174,7 +185,7 @@
       <div class="v-num">05</div>
       <div class="v-location">Cancun · Zona Hotelera</div>
       <div class="v-name">Villa Name Here</div>
-      <p class="v-desc">A brief description of the property — style, feel, key features. Two to three sentences.</p>
+      <p class="v-desc">A brief description of the property, style, feel, key features. Two to three sentences.</p>
       <div class="v-specs">
         <div><span class="v-spec-val">4</span><span class="v-spec-lbl">Bedrooms</span></div>
         <div><span class="v-spec-val">520 m²</span><span class="v-spec-lbl">Built</span></div>
@@ -192,7 +203,7 @@
       <div class="v-num">06</div>
       <div class="v-location">Playa del Carmen · Playacar</div>
       <div class="v-name">Villa Name Here</div>
-      <p class="v-desc">A brief description of the property — style, feel, key features. Two to three sentences.</p>
+      <p class="v-desc">A brief description of the property, style, feel, key features. Two to three sentences.</p>
       <div class="v-specs">
         <div><span class="v-spec-val">5</span><span class="v-spec-lbl">Bedrooms</span></div>
         <div><span class="v-spec-val">490 m²</span><span class="v-spec-lbl">Built</span></div>
@@ -210,7 +221,7 @@
       <div class="v-num">07</div>
       <div class="v-location">Tulum · Beach Road</div>
       <div class="v-name">Villa Name Here</div>
-      <p class="v-desc">A brief description of the property — style, feel, key features. Two to three sentences.</p>
+      <p class="v-desc">A brief description of the property, style, feel, key features. Two to three sentences.</p>
       <div class="v-specs">
         <div><span class="v-spec-val">7</span><span class="v-spec-lbl">Bedrooms</span></div>
         <div><span class="v-spec-val">1,100 m²</span><span class="v-spec-lbl">Built</span></div>
@@ -228,7 +239,7 @@
       <div class="v-num">08</div>
       <div class="v-location">Cancun · North Coast</div>
       <div class="v-name">Villa Name Here</div>
-      <p class="v-desc">A brief description of the property — style, feel, key features. Two to three sentences.</p>
+      <p class="v-desc">A brief description of the property, style, feel, key features. Two to three sentences.</p>
       <div class="v-specs">
         <div><span class="v-spec-val">4</span><span class="v-spec-lbl">Bedrooms</span></div>
         <div><span class="v-spec-val">460 m²</span><span class="v-spec-lbl">Built</span></div>
@@ -246,7 +257,7 @@
       <div class="v-num">09</div>
       <div class="v-location">Playa del Carmen · Quinta</div>
       <div class="v-name">Villa Name Here</div>
-      <p class="v-desc">A brief description of the property — style, feel, key features. Two to three sentences.</p>
+      <p class="v-desc">A brief description of the property, style, feel, key features. Two to three sentences.</p>
       <div class="v-specs">
         <div><span class="v-spec-val">3</span><span class="v-spec-lbl">Bedrooms</span></div>
         <div><span class="v-spec-val">340 m²</span><span class="v-spec-lbl">Built</span></div>
@@ -264,7 +275,7 @@
       <div class="v-num">10</div>
       <div class="v-location">Tulum · La Reserva</div>
       <div class="v-name">Villa Name Here</div>
-      <p class="v-desc">A brief description of the property — style, feel, key features. Two to three sentences.</p>
+      <p class="v-desc">A brief description of the property, style, feel, key features. Two to three sentences.</p>
       <div class="v-specs">
         <div><span class="v-spec-val">8</span><span class="v-spec-lbl">Bedrooms</span></div>
         <div><span class="v-spec-val">1,400 m²</span><span class="v-spec-lbl">Built</span></div>
@@ -291,5 +302,7 @@
     }
   </script>
 
+  <script src="lang.js"></script>
+  <script>bdInitLang();</script>
 </body>
 </html>

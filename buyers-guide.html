@@ -10,6 +10,9 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
+    .lang-bar { background: #0D0C0A; display: flex; justify-content: flex-end; padding: 0.5rem 2.5rem; gap: 1.25rem; }
+    .lang-btn { font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: #4A4438; background: none; border: none; cursor: pointer; font-family: 'Raleway', sans-serif; padding: 2px 0; border-bottom: 0.5px solid transparent; transition: all 0.2s; }
+    .lang-btn:hover, .lang-btn.active { color: #C4B89A; border-bottom-color: #C4B89A; }
     body { background: #F5F1EA; color: #2A2820; font-family: 'Raleway', sans-serif; font-weight: 300; }
 
     /* NAV */
@@ -81,6 +84,14 @@
 </head>
 <body>
 
+  <div class="lang-bar">
+    <button class="lang-btn active" data-lang="en" onclick="bdSetLang('en')">EN</button>
+    <button class="lang-btn" data-lang="es" onclick="bdSetLang('es')">ES</button>
+    <button class="lang-btn" data-lang="fr" onclick="bdSetLang('fr')">FR</button>
+    <button class="lang-btn" data-lang="ru" onclick="bdSetLang('ru')">RU</button>
+    <button class="lang-btn" data-lang="de" onclick="bdSetLang('de')">DE</button>
+  </div>
+
   <nav class="nav">
     <a href="index.html" class="nav-back">← Home</a>
     <a href="index.html" class="nav-logo">B & D</a>
@@ -99,9 +110,9 @@
 
     <div class="hero-form">
       <div id="formWrap">
-        <div class="form-eyebrow">Free download</div>
-        <div class="form-title">Get the guide.</div>
-        <p class="form-sub">Everything you need to know before you buy — legal structure, costs, locations, and what to avoid. Straight talk, no fluff.</p>
+        <div class="form-eyebrow" data-i18n="guide.eyebrow">Free download</div>
+        <div class="form-title" data-i18n="guide.title">Get the guide.</div>
+        <p class="form-sub">Everything you need to know before you buy, legal structure, costs, locations, and what to avoid. Straight talk, no fluff.</p>
 
         <form class="form" id="guideForm" onsubmit="submitGuide(event)">
           <div class="form-row">
@@ -144,14 +155,14 @@
             </select>
           </div>
 
-          <button type="submit" class="form-submit">Download the guide →</button>
+          <button type="submit" class="form-submit" data-i18n="guide.btn">Download the guide →</button>
           <p class="form-note">No spam. No pressure. Just the guide.</p>
         </form>
       </div>
 
       <div class="success" id="successMsg">
         <div class="success-icon">✦</div>
-        <div class="success-title">Your guide is ready.</div>
+        <div class="success-title" data-i18n="guide.success.title">Your guide is ready.</div>
         <p class="success-sub">Click below to download. We'll be in touch if you'd like to talk through any of it.</p>
         <a href="Buyers%20Guide%20Ben%20new%20B%26D%20REalty" download="BD_Buyers_Guide_Mexico.pdf" class="success-btn">Download now →</a>
       </div>
@@ -161,8 +172,8 @@
   <!-- WHAT'S INSIDE -->
   <div class="inside">
     <div class="inside-inner">
-      <div class="inside-eyebrow">What's inside</div>
-      <div class="inside-title">6 chapters. Everything you need.</div>
+      <div class="inside-eyebrow" data-i18n="guide.inside.eyebrow">What's inside</div>
+      <div class="inside-title" data-i18n="guide.inside.title">6 chapters. Everything you need.</div>
       <div class="inside-grid">
         <div class="inside-item">
           <div class="inside-num">01</div>
@@ -177,22 +188,22 @@
         <div class="inside-item">
           <div class="inside-num">03</div>
           <div class="inside-name">The Process</div>
-          <p class="inside-desc">Step by step — from offer to closing, what happens and when.</p>
+          <p class="inside-desc">Step by step, from offer to closing, what happens and when.</p>
         </div>
         <div class="inside-item" style="border-top: 0.5px solid #DDD8CE; margin-top: -0.5px;">
           <div class="inside-num">04</div>
           <div class="inside-name">Costs to Expect</div>
-          <p class="inside-desc">Acquisition tax, notario fees, trust setup — the real numbers.</p>
+          <p class="inside-desc">Acquisition tax, notario fees, trust setup, the real numbers.</p>
         </div>
         <div class="inside-item" style="border-top: 0.5px solid #DDD8CE; margin-top: -0.5px;">
           <div class="inside-num">05</div>
           <div class="inside-name">The Locations</div>
-          <p class="inside-desc">Cancun, Playa del Carmen, Tulum — where to buy and why it matters.</p>
+          <p class="inside-desc">Cancun, Playa del Carmen, Tulum, where to buy and why it matters.</p>
         </div>
         <div class="inside-item" style="border-top: 0.5px solid #DDD8CE; margin-top: -0.5px;">
           <div class="inside-num">06</div>
           <div class="inside-name">Common Mistakes</div>
-          <p class="inside-desc">What buyers get wrong — and how to avoid them before it costs you.</p>
+          <p class="inside-desc">What buyers get wrong, and how to avoid them before it costs you.</p>
         </div>
       </div>
     </div>
@@ -206,5 +217,7 @@
     }
   </script>
 
+  <script src="lang.js"></script>
+  <script>bdInitLang();</script>
 </body>
 </html>

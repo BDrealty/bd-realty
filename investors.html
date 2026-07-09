@@ -11,6 +11,9 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
+    .lang-bar { background: #0D0C0A; display: flex; justify-content: flex-end; padding: 0.5rem 2.5rem; gap: 1.25rem; }
+    .lang-btn { font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: #4A4438; background: none; border: none; cursor: pointer; font-family: 'Raleway', sans-serif; padding: 2px 0; border-bottom: 0.5px solid transparent; transition: all 0.2s; }
+    .lang-btn:hover, .lang-btn.active { color: #C4B89A; border-bottom-color: #C4B89A; }
     body { background: #F5F1EA; color: #2A2820; font-family: 'Raleway', sans-serif; font-weight: 300; }
 
     /* NAV */
@@ -91,6 +94,14 @@
 </head>
 <body>
 
+  <div class="lang-bar">
+    <button class="lang-btn active" data-lang="en" onclick="bdSetLang('en')">EN</button>
+    <button class="lang-btn" data-lang="es" onclick="bdSetLang('es')">ES</button>
+    <button class="lang-btn" data-lang="fr" onclick="bdSetLang('fr')">FR</button>
+    <button class="lang-btn" data-lang="ru" onclick="bdSetLang('ru')">RU</button>
+    <button class="lang-btn" data-lang="de" onclick="bdSetLang('de')">DE</button>
+  </div>
+
   <nav class="nav">
     <a href="index.html" class="nav-back">← B & D</a>
     <a href="index.html" class="nav-logo">B & D</a>
@@ -102,18 +113,18 @@
     <div class="hero-circle">
       <div class="hero-circle-text">Investors<br>Circle</div>
     </div>
-    <h1 class="hero-title">Deals you won't<br>find <em>anywhere else.</em></h1>
-    <p class="hero-sub">Pre-market opportunities sourced through 12 years of relationships. Shared only with people ready to move.</p>
+    <h1 class="hero-title" data-i18n="inv.title">Deals you won't<br>find <em>anywhere else.</em></h1>
+    <p class="hero-sub" data-i18n="inv.sub">Pre-market opportunities sourced through 12 years of relationships. Shared only with people ready to move.</p>
   </section>
 
   <section class="deals">
-    <div class="deals-label">Recent deals made by the circle</div>
+    <div class="deals-label" data-i18n="inv.deals.label">Recent deals made by the circle</div>
 
     <!-- Deal 1 -->
     <div class="deal">
       <div class="deal-badge">Cash Flow</div>
       <div class="deal-tag">Residential · Riviera Maya</div>
-      <div class="deal-title">Luxury Villa — Generating Income</div>
+      <div class="deal-title">Luxury Villa, Generating Income</div>
       <div class="deal-stats">
         <div>
           <span class="deal-stat-val">$970,000</span>
@@ -136,7 +147,7 @@
     <div class="deal">
       <div class="deal-badge">Value-Add</div>
       <div class="deal-tag">Estate · Jungle · Architect-Designed</div>
-      <div class="deal-title">Abandoned Jungle Estate — 5+ Acres</div>
+      <div class="deal-title">Abandoned Jungle Estate, 5+ Acres</div>
       <div class="deal-stats">
         <div>
           <span class="deal-stat-val">$2.8M</span>
@@ -156,7 +167,7 @@
     <div class="deal">
       <div class="deal-badge">Express Sale</div>
       <div class="deal-tag">Residential · Playa del Carmen · Mayakoba</div>
-      <div class="deal-title">Divorce Sale — Mayakoba Area</div>
+      <div class="deal-title">Divorce Sale, Mayakoba Area</div>
       <div class="deal-stats">
         <div>
           <span class="deal-stat-val">$5.9M MXN</span>
@@ -181,13 +192,13 @@
 
     <!-- STEP 1 -->
     <div id="step1">
-      <div class="form-eyebrow">Join the circle</div>
-      <div class="form-title">Get notified first.</div>
-      <p class="form-sub">Leave your details and we'll be in touch the moment the right deal appears.</p>
+      <div class="form-eyebrow" data-i18n="inv.join.eyebrow">Join the circle</div>
+      <div class="form-title" data-i18n="inv.join.title">Get notified first.</div>
+      <p class="form-sub" data-i18n="inv.join.sub">Leave your details and we'll be in touch the moment the right deal appears.</p>
       <form class="form" id="form1" onsubmit="goStep2(event)">
         <input type="email" id="f-email" placeholder="Email address" required>
         <input type="tel" id="f-phone" placeholder="Phone / WhatsApp">
-        <button type="submit" class="form-submit">Request access</button>
+        <button type="submit" class="form-submit"data-i18n="inv.btn.access">Request access</button>
         <p class="form-note">Strictly confidential. We don't share your information.</p>
       </form>
     </div>
@@ -204,7 +215,7 @@
           <div class="radio-group">
             <div class="radio-opt">
               <input type="radio" name="ready" id="r-yes" value="yes" required>
-              <label for="r-yes">Yes — I decide fast</label>
+              <label for="r-yes">Yes, I decide fast</label>
             </div>
             <div class="radio-opt">
               <input type="radio" name="ready" id="r-maybe" value="maybe">
@@ -218,7 +229,7 @@
         </div>
 
         <div>
-          <span class="form-radio-label">Preferred location — select all that apply</span>
+          <span class="form-radio-label">Preferred location, select all that apply</span>
           <div class="radio-group" style="flex-wrap:wrap; gap:0.6rem;">
             <div class="radio-opt" style="flex:none; min-width:calc(50% - 0.3rem);">
               <input type="checkbox" name="location" id="l-cancun" value="cancun">
@@ -267,10 +278,10 @@
 
         <div>
           <span class="form-radio-label">Describe the ideal deal for you</span>
-          <textarea placeholder="Be specific — budget, property type, expected return. The more realistic, the faster we can match you." rows="4" style="width:100%;background:#fff;border:0.5px solid rgba(164,148,120,0.3);color:#2A2820;font-family:'Raleway',sans-serif;font-weight:300;font-size:13px;padding:15px 18px;border-radius:1px;outline:none;resize:vertical;letter-spacing:0.02em;line-height:1.7;"></textarea>
+          <textarea placeholder="Be specific, budget, property type, expected return. The more realistic, the faster we can match you." rows="4" style="width:100%;background:#fff;border:0.5px solid rgba(164,148,120,0.3);color:#2A2820;font-family:'Raleway',sans-serif;font-weight:300;font-size:13px;padding:15px 18px;border-radius:1px;outline:none;resize:vertical;letter-spacing:0.02em;line-height:1.7;"></textarea>
         </div>
 
-        <button type="submit" class="form-submit">Continue — Book a call</button>
+        <button type="submit" class="form-submit">Continue, Book a call</button>
       </form>
     </div>
 
@@ -278,7 +289,7 @@
     <div id="step3" style="display:none; text-align:center; padding: 1rem 0 2rem;">
       <div class="form-eyebrow">Last step</div>
       <div class="form-title" style="margin-bottom:0.75rem;">Book a call with Benjamin.</div>
-      <p class="form-sub" style="margin-bottom:1.5rem;">Pick a time that works — 20 minutes is all we need.</p>
+      <p class="form-sub" style="margin-bottom:1.5rem;">Pick a time that works, 20 minutes is all we need.</p>
       <a href="https://calendar.app.google/P7L3HxF1bsaGcLbD7" target="_blank" class="form-submit" style="display:inline-block; text-decoration:none; padding: 16px 32px;">Book your call →</a>
       <p class="form-note" style="margin-top:1rem;">Or reach out directly on <a href="https://wa.me/529988654691" style="color:#9A7D5A; text-decoration:none;">WhatsApp</a></p>
     </div>
@@ -304,5 +315,7 @@
     }
   </script>
 
+  <script src="lang.js"></script>
+  <script>bdInitLang();</script>
 </body>
 </html>
