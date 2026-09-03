@@ -36,29 +36,29 @@
     .city-tab:hover { background: #F5F1EA; color: #2A2820; }
     .city-tab.active { background: #2A2820; color: #C4B89A; }
 
-    /* DEVELOPMENTS GRID */
-    .devs-section { padding: 3rem 2.5rem 5rem; max-width: 1200px; margin: 0 auto; }
+    /* DEVELOPMENTS STACK */
+    .devs-section { padding: 2rem 0 5rem; }
     .city-grid { display: none; }
-    .city-grid.active { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; animation: fadeUp 0.4s ease; }
+    .city-grid.active { display: flex; flex-direction: column; gap: 0; animation: fadeUp 0.4s ease; }
     @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
 
-    .dev-card { cursor: pointer; position: relative; border-radius: 2px; overflow: hidden; height: 520px; background: #2A2820; transition: transform 0.3s ease, box-shadow 0.3s ease; }
-    .dev-card:hover { transform: translateY(-8px); box-shadow: 0 24px 60px rgba(42,40,32,0.25); }
-    .dev-card-img { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform 0.5s ease; }
-    .dev-card:hover .dev-card-img { transform: scale(1.05); }
-    .dev-card-vignette { position: absolute; inset: 0; background: linear-gradient(to top, rgba(17,16,9,0.9) 0%, rgba(17,16,9,0.15) 55%, transparent 100%); }
-    .dev-card-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 2.5rem 2rem; }
-    .dev-card-num { font-family: 'EB Garamond', serif; font-size: 11px; color: #C4B89A; letter-spacing: 0.15em; margin-bottom: 0.6rem; opacity: 0.7; }
-    .dev-card-name { font-family: 'EB Garamond', serif; font-size: 26px; color: #E8E0D0; line-height: 1.2; }
-    .dev-card-price { font-size: 11px; letter-spacing: 0.1em; color: #C4B89A; margin-top: 0.6rem; text-transform: uppercase; }
-    .dev-card-cta { display: flex; align-items: center; gap: 8px; margin-top: 1rem; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(196,184,154,0.8); opacity: 0; transition: opacity 0.25s ease; }
-    .dev-card:hover .dev-card-cta { opacity: 1; }
-    .dev-card-cta-line { display: block; width: 24px; height: 0.5px; background: #C4B89A; }
+    .dev-card { cursor: pointer; position: relative; overflow: hidden; height: 30vh; min-height: 220px; background: #2A2820; border-bottom: 0.5px solid rgba(196,184,154,0.1); }
+    .dev-card:hover .dev-card-img { transform: scale(1.04); }
+    .dev-card-img { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform 0.7s ease; }
+    .dev-card-vignette { position: absolute; inset: 0; background: linear-gradient(to right, rgba(17,16,9,0.75) 0%, rgba(17,16,9,0.2) 60%, transparent 100%); }
+    .dev-card-content { position: absolute; bottom: 0; left: 0; top: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 2rem 3rem; max-width: 560px; }
+    .dev-card-num { font-family: 'EB Garamond', serif; font-size: 11px; color: #C4B89A; letter-spacing: 0.2em; margin-bottom: 0.75rem; opacity: 0.8; }
+    .dev-card-name { font-family: 'EB Garamond', serif; font-size: clamp(22px, 3vw, 38px); color: #E8E0D0; line-height: 1.1; }
+    .dev-card-price { font-size: 10px; letter-spacing: 0.12em; color: #C4B89A; margin-top: 0.4rem; text-transform: uppercase; }
+    .dev-card-cta { display: flex; align-items: center; gap: 10px; margin-top: 0.75rem; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(196,184,154,0.9); transition: gap 0.3s ease; }
+    .dev-card:hover .dev-card-cta { gap: 16px; }
+    .dev-card-cta-line { display: block; width: 30px; height: 0.5px; background: #C4B89A; transition: width 0.3s ease; }
+    .dev-card:hover .dev-card-cta-line { width: 50px; }
 
     /* MODAL */
     .modal-overlay { position: fixed; inset: 0; background: rgba(17,16,9,0.7); backdrop-filter: blur(6px); z-index: 100; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.35s ease; padding: 2rem; }
     .modal-overlay.open { opacity: 1; pointer-events: all; }
-    .modal { background: #F5F1EA; max-width: 1000px; width: 100%; border-radius: 2px; overflow: hidden; display: grid; grid-template-columns: 1fr 1fr; max-height: 90vh; transform: translateY(30px); transition: transform 0.35s ease; }
+    .modal { background: #F5F1EA; width: 80%; max-width: 1200px; border-radius: 2px; overflow: hidden; display: grid; grid-template-columns: 1fr 1fr; height: 80vh; transform: translateY(30px); transition: transform 0.35s ease; }
     .modal-overlay.open .modal { transform: translateY(0); }
     .modal-img { position: relative; min-height: 400px; background-size: cover; background-position: center; }
     .modal-img-vignette { position: absolute; inset: 0; background: linear-gradient(to right, rgba(17,16,9,0.15), rgba(17,16,9,0)); }
@@ -89,12 +89,12 @@
     .modal-cta-icon { font-size: 15px; line-height: 1; }
 
     @media (max-width: 900px) {
-      .city-grid.active { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+      .dev-card-content { padding: 2.5rem 2rem; max-width: 100%; }
       .modal { grid-template-columns: 1fr; }
       .modal-img { min-height: 260px; }
     }
     @media (max-width: 600px) {
-      .city-grid.active { grid-template-columns: 1fr; }
+      .dev-card { height: 28vh; min-height: 180px; }
       .city-tab { font-size: 14px; padding: 0.9rem 0.5rem; }
       .modal-body { padding: 2rem 1.5rem; }
     }
