@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Top Developments · B & D Realty</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Raleway:wght@200;300;400&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body { background: #F5F1EA; color: #2A2820; font-family: 'Raleway', sans-serif; font-weight: 400; }
+
+    /* NAV */
+    .nav { background: #111009; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 1.6rem 2.5rem; }
+    .nav-back { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #6B6452; text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: #C4B89A; }
+    .nav-logo { font-family: 'EB Garamond', serif; font-size: 20px; font-weight: 300; letter-spacing: 0.3em; color: #C4B89A; text-align: center; text-transform: uppercase; text-decoration: none; }
+    .nav-right { display: flex; justify-content: flex-end; }
+
+    /* HERO */
+    .hero { background: #111009; padding: 5rem 2.5rem 4rem; text-align: center; border-bottom: 0.5px solid rgba(196,184,154,0.15); }
+    .hero-eyebrow { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #7A6E60; margin-bottom: 1rem; }
+    .hero-title { font-family: 'EB Garamond', serif; font-size: clamp(36px, 5vw, 64px); font-weight: 400; color: #E8E0D0; line-height: 1.1; margin-bottom: 1rem; }
+    .hero-title em { font-style: italic; color: #C4B89A; }
+    .hero-sub { font-family: 'Cormorant Garamond', serif; font-size: 19px; color: #9A9080; font-weight: 300; letter-spacing: 0; max-width: 560px; margin: 0 auto; line-height: 1.8; }
+
+    /* CITY SELECTOR */
+    .city-wrap { padding: 3.5rem 2.5rem 0; max-width: 900px; margin: 0 auto; }
+    .city-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #7A6E60; text-align: center; margin-bottom: 1.5rem; }
+    .city-tabs { display: flex; gap: 0; border: 0.5px solid #DDD8CE; border-radius: 2px; overflow: hidden; }
+    .city-tab { flex: 1; padding: 1.1rem 1rem; text-align: center; font-family: 'EB Garamond', serif; font-size: 18px; letter-spacing: 0.08em; color: #9A9080; background: #fff; border: none; cursor: pointer; border-right: 0.5px solid #DDD8CE; transition: all 0.25s ease; }
+    .city-tab:last-child { border-right: none; }
+    .city-tab:hover { background: #F5F1EA; color: #2A2820; }
+    .city-tab.active { background: #2A2820; color: #C4B89A; }
+
+    /* DEVELOPMENTS GRID */
+    .devs-section { padding: 3rem 2.5rem 5rem; max-width: 1200px; margin: 0 auto; }
+    .city-grid { display: none; }
+    .city-grid.active { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.5rem; animation: fadeUp 0.4s ease; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+    .dev-card { cursor: pointer; position: relative; border-radius: 2px; overflow: hidden; aspect-ratio: 3/4; background: #2A2820; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .dev-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(42,40,32,0.2); }
+    .dev-card-img { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform 0.5s ease; }
+    .dev-card:hover .dev-card-img { transform: scale(1.05); }
+    .dev-card-vignette { position: absolute; inset: 0; background: linear-gradient(to top, rgba(17,16,9,0.85) 0%, rgba(17,16,9,0.1) 60%, transparent 100%); }
+    .dev-card-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.5rem 1.25rem; }
+    .dev-card-num { font-family: 'EB Garamond', serif; font-size: 11px; color: #C4B89A; letter-spacing: 0.15em; margin-bottom: 0.4rem; opacity: 0.7; }
+    .dev-card-name { font-family: 'EB Garamond', serif; font-size: 17px; color: #E8E0D0; line-height: 1.25; }
+    .dev-card-price { font-size: 10px; letter-spacing: 0.1em; color: #C4B89A; margin-top: 0.4rem; text-transform: uppercase; }
+    .dev-card-cta { display: flex; align-items: center; gap: 8px; margin-top: 0.75rem; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(196,184,154,0.7); opacity: 0; transition: opacity 0.25s ease; }
+    .dev-card:hover .dev-card-cta { opacity: 1; }
+    .dev-card-cta-line { display: block; width: 20px; height: 0.5px; background: #C4B89A; }
+
+    /* MODAL */
+    .modal-overlay { position: fixed; inset: 0; background: rgba(17,16,9,0.7); backdrop-filter: blur(6px); z-index: 100; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.35s ease; padding: 2rem; }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal { background: #F5F1EA; max-width: 1000px; width: 100%; border-radius: 2px; overflow: hidden; display: grid; grid-template-columns: 1fr 1fr; max-height: 90vh; transform: translateY(30px); transition: transform 0.35s ease; }
+    .modal-overlay.open .modal { transform: translateY(0); }
+    .modal-img { position: relative; min-height: 400px; background-size: cover; background-position: center; }
+    .modal-img-vignette { position: absolute; inset: 0; background: linear-gradient(to right, rgba(17,16,9,0.15), rgba(17,16,9,0)); }
+    .modal-body { padding: 3rem 2.5rem; overflow-y: auto; }
+    .modal-close { position: absolute; top: 1.25rem; right: 1.5rem; background: none; border: none; cursor: pointer; font-size: 20px; color: #9A9080; transition: color 0.2s; z-index: 10; line-height: 1; }
+    .modal-close:hover { color: #2A2820; }
+    .modal-wrap { position: relative; }
+    .modal-eyebrow { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #7A6E60; margin-bottom: 0.75rem; }
+    .modal-title { font-family: 'EB Garamond', serif; font-size: clamp(26px, 3vw, 38px); color: #2A2820; line-height: 1.15; margin-bottom: 0.5rem; }
+    .modal-price { font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: #9A7D5A; margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 0.5px solid #DDD8CE; }
+    .modal-section { margin-bottom: 1.75rem; }
+    .modal-section-label { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: #7A6E60; margin-bottom: 0.5rem; }
+    .modal-section-text { font-size: 16px; font-weight: 400; color: #3A3530; line-height: 1.85; }
+    .modal-tag { display: inline-block; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: #2A2820; background: #DDD8CE; padding: 5px 12px; border-radius: 1px; }
+    .modal-btn { display: inline-block; margin-top: 2rem; background: #2A2820; color: #E8E0D0; font-family: 'Raleway', sans-serif; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; padding: 14px 28px; border-radius: 1px; text-decoration: none; transition: background 0.2s; }
+    .modal-btn:hover { background: #9A7D5A; }
+
+    @media (max-width: 900px) {
+      .city-grid.active { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+      .modal { grid-template-columns: 1fr; }
+      .modal-img { min-height: 260px; }
+    }
+    @media (max-width: 600px) {
+      .city-grid.active { grid-template-columns: 1fr; }
+      .city-tab { font-size: 14px; padding: 0.9rem 0.5rem; }
+      .modal-body { padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="top10.html" class="nav-back">← Back</a>
+    <a href="index.html" class="nav-logo">B & D</a>
+    <div class="nav-right"></div>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-eyebrow">B&D Realty · Riviera Maya</div>
+    <h1 class="hero-title">Top <em>Developments</em></h1>
+    <p class="hero-sub">The 15 residential developments we stand behind. Selected for quality, track record, and genuine value.</p>
+  </div>
+
+  <div class="city-wrap">
+    <div class="city-label">Choose a destination</div>
+    <div class="city-tabs">
+      <button class="city-tab active" onclick="selectCity('tulum', this)">Tulum</button>
+      <button class="city-tab" onclick="selectCity('playa', this)">Playa del Carmen</button>
+      <button class="city-tab" onclick="selectCity('cancun', this)">Cancún</button>
+    </div>
+  </div>
+
+  <div class="devs-section">
+
+    <!-- TULUM -->
+    <div class="city-grid active" id="grid-tulum">
+
+      <div class="dev-card" onclick="openModal('la-reserva')">
+        <div class="dev-card-img" style="background-image:url('https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=85&fit=crop')"></div>
+        <div class="dev-card-vignette"></div>
+        <div class="dev-card-content">
+          <div class="dev-card-num">01 · Tulum</div>
+          <div class="dev-card-name">La Reserva</div>
+          <div class="dev-card-price">From $380,000</div>
+          <div class="dev-card-cta"><span class="dev-card-cta-line"></span> View</div>
+        </div>
+      </div>
+
+      <div class="dev-card" onclick="openModal('aflora')">
+        <div class="dev-card-img" style="background-image:url('https://images.unsplash.com/photo-1540541338287-41700207dee6?w=800&q=85&fit=crop')"></div>
+        <div class="dev-card-vignette"></div>
+        <div class="dev-card-content">
+          <div class="dev-card-num">02 · Tulum</div>
+          <div class="dev-card-name">Aflora</div>
+          <div class="dev-card-price">From $280,000</div>
+          <div class="dev-card-cta"><span class="dev-card-cta-line"></span> View</div>
+        </div>
+      </div>
+
+      <div class="dev-card" onclick="openModal('kaybe')">
+        <div class="dev-card-img" style="background-image:url('https://images.unsplash.com/photo-1445019980597-93fa8acb246c?w=800&q=85&fit=crop')"></div>
+        <div class="dev-card-vignette"></div>
+        <div class="dev-card-content">
+          <div class="dev-card-num">03 · Tulum</div>
+          <div class="dev-card-name">KAYBÉ</div>
+          <div class="dev-card-price">From $320,000</div>
+          <div class="dev-card-cta"><span class="dev-card-cta-line"></span> View</div>
+        </div>
+      </div>
+
+      <div class="dev-card" onclick="openModal('candela')">
+        <div class="dev-card-img" style="background-image:url('https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=800&q=85&fit=crop')"></div>
+        <div class="dev-card-vignette"></div>
+        <div class="dev-card-content">
+          <div class="dev-card-num">04 · Tulum</div>
+          <div class="dev-card-name">Candela</div>
+          <div class="dev-card-price">From $250,000</div>
+          <div class="dev-card-cta"><span class="dev-card-cta-line"></span> View</div>
+        </div>
+      </div>
+
+      <div class="dev-card" onclick="openModal('azulik')">
+        <div class="dev-card-img" style="background-image:url('https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?w=800&q=85&fit=crop')"></div>
+        <div class="dev-card-vignette"></div>
+        <div class="dev-card-content">
+          <div class="dev-card-num">05 · Tulum</div>
+          <div class="dev-card-name">Azulik</div>
+          <div class="dev-card-price">From $650,000</div>
+          <div class="dev-card-cta"><span class="dev-card-cta-line"></span> View</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- PLAYA DEL CARMEN -->
+    <div class="city-grid" id="grid-playa">
+
+      <div class="dev-card" onclick="openModal('rosewood')">
+        <div class="dev-card-img" style="background-image:url('https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&q=85&fit=crop')"></div>
+        <div class="dev-card-vignette"></div>
+        <div class="dev-card-content">
+          <div class="dev-card-num">01 · Playa</div>
+          <div class="dev-card-name">Rosewood Mayakoba</div>
+          <div class="dev-card-price">From $1,200,000</div>
+          <div class="dev-card-cta"><span class="dev-card-cta-line"></span> View</div>
+        </div>
+      </div>
+
+      <div class="dev-card" onclick="openModal('xcalacoco')">
+        <div class="dev-card-img" style="background-image:url('https://images.unsplash.com/photo-1592595896551-12b371d546d5?w=800&q=85&fit=crop')"></div>
+        <div class="dev-card-vignette"></div>
+        <div class="dev-card-content">
+          <div class="dev-card-num">02 · Playa</div>
+          <div class="dev-card-name">Distrito Xcalacoco</div>
+          <div class="dev-card-price">From $220,000</div>
+          <div class="dev-card-cta"><span class="dev-card-cta-line"></span> View</div>
+        </div>
+      </div>
+
+      <div class="dev-card" onclick="openModal('mareazul')">
+        <div class="dev-card-img" style="background-image:url('https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=800&q=85&fit=crop')"></div>
+        <div class="dev-card-vignette"></div>
+        <div class="dev-card-content">
+          <div class="dev-card-num">03 · Playa</div>
+          <div class="dev-card-name">Mareazul</div>
+          <div class="dev-card-price">From $350,000</div>
+          <div class="dev-card-cta"><span class="dev-card-cta-line"></span> View</div>
+        </div>
+      </div>
+
+      <div class="dev-card" onclick="openModal('awa')">
+        <div class="dev-card-img" style="background-image:url('https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800&q=85&fit=crop')"></div>
+        <div class="dev-card-vignette"></div>
+        <div class="dev-card-content">
+          <div class="dev-card-num">04 · Playa</div>
+          <div class="dev-card-name">AWA Playacar</div>
+          <div class="dev-card-price">From $290,000</div>
+          <div class="dev-card-cta"><span class="dev-card-cta-line"></span> View</div>
+        </div>
+      </div>
+
+      <div class="dev-card" onclick="openModal('viceroy')">
+        <div class="dev-card-img" style="background-image:url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=85&fit=crop')"></div>
+        <div class="dev-card-vignette"></div>
+        <div class="dev-card-content">
+          <div class="dev-card-num">05 · Playa</div>
+          <div class="dev-card-name">Viceroy Residences</div>
+          <div class="dev-card-price">From $480,000</div>
+          <div class="dev-card-cta"><span class="dev-card-cta-line"></span> View</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CANCÚN -->
+    <div class="city-grid" id="grid-cancun">
+
+      <div class="dev-card" onclick="openModal('sls')">
+        <div class="dev-card-img" style="background-image:url('https://images.unsplash.com/photo-1586375300773-8384e3e4916f?w=800&q=85&fit=crop')"></div>
+        <div class="dev-card-vignette"></div>
+        <div class="dev-card-content">
+          <div class="dev-card-num">01 · Cancún</div>
+          <div class="dev-card-name">SLS Bahia Beach</div>
+          <div class="dev-card-price">From $550,000</div>
+          <div class="dev-card-cta"><span class="dev-card-cta-line"></span> View</div>
+        </div>
+      </div>
+
+      <div class="dev-card" onclick="openModal('shark')">
+        <div class="dev-card-img" style="background-image:url('https://cdn.mycasa.mx/public/uploads/posts/ec321fc3-d57d-475a-9362-f0ed1cbc2ca0.png')"></div>
+        <div class="dev-card-vignette"></div>
+        <div class="dev-card-content">
+          <div class="dev-card-num">02 · Cancún</div>
+          <div class="dev-card-name">Shark Tower</div>
+          <div class="dev-card-price">From $892,000</div>
+          <div class="dev-card-cta"><span class="dev-card-cta-line"></span> View</div>
+        </div>
+      </div>
+
+      <div class="dev-card" onclick="openModal('aria')">
+        <div class="dev-card-img" style="background-image:url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=85&fit=crop')"></div>
+        <div class="dev-card-vignette"></div>
+        <div class="dev-card-content">
+          <div class="dev-card-num">03 · Cancún</div>
+          <div class="dev-card-name">Aria</div>
+          <div class="dev-card-price">From $420,000</div>
+          <div class="dev-card-cta"><span class="dev-card-cta-line"></span> View</div>
+        </div>
+      </div>
+
+      <div class="dev-card" onclick="openModal('la-amada')">
+        <div class="dev-card-img" style="background-image:url('https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=85&fit=crop')"></div>
+        <div class="dev-card-vignette"></div>
+        <div class="dev-card-content">
+          <div class="dev-card-num">04 · Cancún</div>
+          <div class="dev-card-name">La Amada</div>
+          <div class="dev-card-price">From $380,000</div>
+          <div class="dev-card-cta"><span class="dev-card-cta-line"></span> View</div>
+        </div>
+      </div>
+
+      <div class="dev-card" onclick="openModal('st-regis')">
+        <div class="dev-card-img" style="background-image:url('https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800&q=85&fit=crop')"></div>
+        <div class="dev-card-vignette"></div>
+        <div class="dev-card-content">
+          <div class="dev-card-num">05 · Cancún</div>
+          <div class="dev-card-name">St. Regis Costa Mujeres</div>
+          <div class="dev-card-price">From $1,500,000</div>
+          <div class="dev-card-cta"><span class="dev-card-cta-line"></span> View</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MODAL -->
+  <div class="modal-overlay" id="modal" onclick="closeModalOutside(event)">
+    <div class="modal modal-wrap">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div class="modal-img" id="modal-img"></div>
+      <div class="modal-body">
+        <div class="modal-eyebrow" id="modal-eyebrow"></div>
+        <h2 class="modal-title" id="modal-title"></h2>
+        <div class="modal-price" id="modal-price"></div>
+        <div class="modal-section">
+          <div class="modal-section-label">About</div>
+          <p class="modal-section-text" id="modal-bio"></p>
+        </div>
+        <div class="modal-section">
+          <div class="modal-section-label">Why we love it</div>
+          <p class="modal-section-text" id="modal-why"></p>
+        </div>
+        <div class="modal-section">
+          <div class="modal-section-label">Positioning</div>
+          <span class="modal-tag" id="modal-position"></span>
+        </div>
+        <a href="index.html#inquiry" class="modal-btn">Talk to us about this →</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const developments = {
+      'la-reserva': {
+        eyebrow: '01 · Tulum',
+        title: 'La Reserva',
+        price: 'From $380,000 USD',
+        image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200&q=90&fit=crop',
+        bio: 'La Reserva is one of Tulum\'s most respected boutique developments — jungle-integrated residences set around natural cenotes, built by a developer with a clean delivery record in one of the most talked-about markets in Mexico.',
+        why: 'The developer keeps its word. La Reserva is one of the few projects in Tulum that delivered exactly what it promised — nature-integrated architecture, cenote access, and a genuine community feel. That reputation travels.',
+        position: 'Eco-Luxury Boutique'
+      },
+      'aflora': {
+        eyebrow: '02 · Tulum',
+        title: 'Aflora',
+        price: 'From $280,000 USD',
+        image: 'https://images.unsplash.com/photo-1540541338287-41700207dee6?w=1200&q=90&fit=crop',
+        bio: 'Aflora brings wellness-forward design to Tulum\'s jungle corridor — pool-lined residences with strong rental appeal and a lifestyle proposition that speaks directly to the market\'s core buyer.',
+        why: 'Strong rental yield combined with genuine quality finishes. Aflora attracts the Tulum repeat visitor who decides to buy — and that buyer keeps coming back.',
+        position: 'Wellness Residential'
+      },
+      'kaybe': {
+        eyebrow: '03 · Tulum',
+        title: 'KAYBÉ',
+        price: 'From $320,000 USD',
+        image: 'https://images.unsplash.com/photo-1445019980597-93fa8acb246c?w=1200&q=90&fit=crop',
+        bio: 'KAYBÉ offers contemporary jungle architecture with a design-led identity and strong operator management. Purpose-built for the discerning buyer who wants Tulum\'s aesthetic without sacrificing returns.',
+        why: 'Clean design, strong operator, and a location that hits the sweet spot between beach road access and jungle seclusion. The kind of project that photographs well and performs consistently.',
+        position: 'Contemporary Luxury Condo'
+      },
+      'candela': {
+        eyebrow: '04 · Tulum',
+        title: 'Candela',
+        price: 'From $250,000 USD',
+        image: 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=1200&q=90&fit=crop',
+        bio: 'Candela is a boutique development built around sustainability and curated community — small-scale by design, with developer-managed operations and a commitment to the Tulum ethos that goes beyond marketing.',
+        why: 'No greenwashing. Candela is one of the few developments where the sustainability story is actually built in, not bolted on. For buyers who care about that, it makes all the difference.',
+        position: 'Sustainable Boutique'
+      },
+      'azulik': {
+        eyebrow: '05 · Tulum',
+        title: 'Azulik Residences',
+        price: 'From $650,000 USD',
+        image: 'https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?w=1200&q=90&fit=crop',
+        bio: 'Azulik is the most recognized name in Tulum. Its residences bring the brand\'s iconic treehouse aesthetic into full ownership — handcrafted architecture, no right angles, no electricity by design, and an international following that drives occupancy.',
+        why: 'Brand recognition that travels globally. Guests book Azulik by name. That translates directly into rental occupancy and premium nightly rates that few other developments in the corridor can match.',
+        position: 'Iconic Brand · Ultra Boutique'
+      },
+      'rosewood': {
+        eyebrow: '01 · Playa del Carmen',
+        title: 'Rosewood Mayakoba',
+        price: 'From $1,200,000 USD',
+        image: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1200&q=90&fit=crop',
+        bio: 'The pinnacle of Playa del Carmen\'s luxury offering. Private residences set within the Mayakoba ecological reserve — fully managed, fully serviced, and positioned within a gated community that rivals anything in the Caribbean.',
+        why: 'The Rosewood brand sells itself. Buyers step into a fully managed asset backed by one of the world\'s most respected hotel brands. The infrastructure, the service, and the cachet are already in place.',
+        position: 'Ultra-Luxury Branded Residences'
+      },
+      'xcalacoco': {
+        eyebrow: '02 · Playa del Carmen',
+        title: 'Distrito Xcalacoco',
+        price: 'From $220,000 USD',
+        image: 'https://images.unsplash.com/photo-1592595896551-12b371d546d5?w=1200&q=90&fit=crop',
+        bio: 'A master-planned residential community north of Playa\'s centre, offering entry-point pricing in a corridor that is actively developing. Smart fundamentals, clean delivery, and proximity to infrastructure that is still being priced in.',
+        why: 'Location before it\'s priced for location. Xcalacoco is where Playa is going — and Distrito gets you there before the market catches up.',
+        position: 'Value-Growth Residential'
+      },
+      'mareazul': {
+        eyebrow: '03 · Playa del Carmen',
+        title: 'Mareazul',
+        price: 'From $350,000 USD',
+        image: 'https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=1200&q=90&fit=crop',
+        bio: 'An established beachfront community on Playa\'s north coast with direct beach access, a pool, beach club, and a proven rental history. Already built. Already performing. No pre-construction risk.',
+        why: 'The beachfront access alone commands premium rental rates. Mareazul is the rare Playa buy where what you see is exactly what you get — and what you get is genuinely good.',
+        position: 'Established Beachfront'
+      },
+      'awa': {
+        eyebrow: '04 · Playa del Carmen',
+        title: 'AWA Playacar',
+        price: 'From $290,000 USD',
+        image: 'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=1200&q=90&fit=crop',
+        bio: 'AWA sits within Playacar Phase II — one of Playa\'s most established gated communities with its own golf course, security, and proximity to 5th Avenue. Boutique architecture layered onto a location with decades of proven demand.',
+        why: 'Playacar delivers consistency. Gated, green, golf-adjacent, and five minutes from 5th Avenue. AWA layers boutique design onto a proven location without charging the Mayakoba premium.',
+        position: 'Boutique · Gated Community'
+      },
+      'viceroy': {
+        eyebrow: '05 · Playa del Carmen',
+        title: 'Viceroy Residences',
+        price: 'From $480,000 USD',
+        image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&q=90&fit=crop',
+        bio: 'Viceroy Residences brings internationally recognised hotel brand management to Playa del Carmen. Buyers access a fully serviced residence with hotel amenities and a brand-managed rental programme.',
+        why: 'Buyers get the lifestyle and the yield without the operator headache. The Viceroy name travels well. That means occupancy without effort — which is exactly what most buyers in this market are actually looking for.',
+        position: 'Luxury Branded Residences'
+      },
+      'sls': {
+        eyebrow: '01 · Cancún',
+        title: 'SLS Bahia Beach',
+        price: 'From $550,000 USD',
+        image: 'https://images.unsplash.com/photo-1586375300773-8384e3e4916f?w=1200&q=90&fit=crop',
+        bio: 'SLS Hotels branded residences on Cancún\'s hotel zone — a bold, design-led tower with the full SLS lifestyle proposition behind it. Rooftop, nightlife, beach access, and a name that the international market already knows.',
+        why: 'SLS brings a very specific, high-spending demographic. Buyers tap into that. The brand draws guests who pay premium rates, which translates directly into rental income that generic condo towers simply cannot match.',
+        position: 'Branded Luxury · Hotel Zone'
+      },
+      'shark': {
+        eyebrow: '02 · Cancún',
+        title: 'Shark Tower',
+        price: 'From $892,000 USD',
+        image: 'https://cdn.mycasa.mx/public/uploads/posts/ec321fc3-d57d-475a-9362-f0ed1cbc2ca0.png',
+        bio: 'The most iconic building in Cancún. Twenty floors of curved, fin-shaped architecture rising from the Puerto Cancún marina — with a private marina, beach club, infinity pool, and a marine conservation laboratory built into its foundation.',
+        why: 'There is no building in the Riviera Maya more photographed, more talked about, or more instantly recognised. That is brand equity you cannot manufacture. It sells on sight, and it holds value for exactly that reason.',
+        position: 'Architectural Icon · Marina Lifestyle'
+      },
+      'aria': {
+        eyebrow: '03 · Cancún',
+        title: 'Aria',
+        price: 'From $420,000 USD',
+        image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&q=90&fit=crop',
+        bio: 'Aria is a refined residential tower in Puerto Cancún — clean architecture, strong finishes, ocean views, and a location that benefits directly from everything the master-planned Puerto Cancún community has built around it.',
+        why: 'Aria delivers quality without the brand premium. For buyers who want Puerto Cancún\'s lifestyle at a rational price point, Aria is the clearest answer in the market right now.',
+        position: 'Premium Residential'
+      },
+      'la-amada': {
+        eyebrow: '04 · Cancún',
+        title: 'La Amada',
+        price: 'From $380,000 USD',
+        image: 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=1200&q=90&fit=crop',
+        bio: 'A boutique beachfront tower north of Cancún\'s hotel zone with direct white sand access, 24-hour security, and the kind of Caribbean beach that has become genuinely scarce in the corridor.',
+        why: 'True beachfront, real sand, no crowding. La Amada is the kind of property that holds value because what it sits on cannot be replicated. Beachfront in this corridor is a finite asset.',
+        position: 'Beachfront Boutique'
+      },
+      'st-regis': {
+        eyebrow: '05 · Cancún',
+        title: 'St. Regis Costa Mujeres',
+        price: 'From $1,500,000 USD',
+        image: 'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=1200&q=90&fit=crop',
+        bio: 'The northernmost ultra-luxury address in the corridor. St. Regis branded residences with full hotel services, an 18-hole golf course, private beach, and the fastest-growing real estate market in the Cancún area behind them.',
+        why: 'The St. Regis name commands the highest rental rates in the market. Costa Mujeres is growing fast, and first movers here have already seen strong appreciation. This is the rarest combination: brand, beach, and growth corridor.',
+        position: 'Ultra-Luxury Branded · Growth Corridor'
+      }
+    };
+
+    function selectCity(city, btn) {
+      document.querySelectorAll('.city-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.city-grid').forEach(g => g.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('grid-' + city).classList.add('active');
+    }
+
+    function openModal(id) {
+      const d = developments[id];
+      if (!d) return;
+      document.getElementById('modal-eyebrow').textContent = d.eyebrow;
+      document.getElementById('modal-title').textContent = d.title;
+      document.getElementById('modal-price').textContent = d.price;
+      document.getElementById('modal-img').style.backgroundImage = `url('${d.image}')`;
+      document.getElementById('modal-bio').textContent = d.bio;
+      document.getElementById('modal-why').textContent = d.why;
+      document.getElementById('modal-position').textContent = d.position;
+      document.getElementById('modal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      document.getElementById('modal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function closeModalOutside(e) {
+      if (e.target === document.getElementById('modal')) closeModal();
+    }
+
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  </script>
+
+  <script src="lang.js"></script>
+  <script>if (typeof bdInitLang === 'function') bdInitLang();</script>
+</body>
+</html>
