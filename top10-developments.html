@@ -60,8 +60,15 @@
     .modal-overlay.open { opacity: 1; pointer-events: all; }
     .modal { background: #F5F1EA; width: 80%; max-width: 1200px; border-radius: 2px; overflow: hidden; display: grid; grid-template-columns: 1fr 1fr; height: 80vh; transform: translateY(30px); transition: transform 0.35s ease; }
     .modal-overlay.open .modal { transform: translateY(0); }
-    .modal-img { position: relative; min-height: 400px; background-size: cover; background-position: center; }
+    .modal-img { position: relative; min-height: 400px; background-size: cover; background-position: center; transition: background-image 0.4s ease; overflow: hidden; }
     .modal-img-vignette { position: absolute; inset: 0; background: linear-gradient(to right, rgba(17,16,9,0.15), rgba(17,16,9,0)); }
+    .gallery-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(17,16,9,0.55); border: 0.5px solid rgba(196,184,154,0.3); color: #C4B89A; font-size: 22px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 5; transition: background 0.2s; line-height: 1; border-radius: 1px; padding: 0; }
+    .gallery-btn:hover { background: rgba(17,16,9,0.85); }
+    .gallery-btn.prev { left: 1rem; }
+    .gallery-btn.next { right: 1rem; }
+    .gallery-dots { position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%); display: flex; gap: 7px; z-index: 5; }
+    .gallery-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(196,184,154,0.35); cursor: pointer; transition: background 0.2s; border: none; padding: 0; }
+    .gallery-dot.active { background: #C4B89A; }
     .modal-body { padding: 3rem 2.5rem; overflow-y: auto; }
     .modal-close { position: absolute; top: 1.25rem; right: 1.5rem; background: none; border: none; cursor: pointer; font-size: 20px; color: #9A9080; transition: color 0.2s; z-index: 10; line-height: 1; }
     .modal-close:hover { color: #2A2820; }
@@ -313,7 +320,12 @@
   <div class="modal-overlay" id="modal" onclick="closeModalOutside(event)">
     <div class="modal modal-wrap">
       <button class="modal-close" onclick="closeModal()">✕</button>
-      <div class="modal-img" id="modal-img"></div>
+      <div class="modal-img" id="modal-img">
+        <div class="modal-img-vignette"></div>
+        <button class="gallery-btn prev" id="gallery-prev" onclick="galleryNav(-1)">‹</button>
+        <button class="gallery-btn next" id="gallery-next" onclick="galleryNav(1)">›</button>
+        <div class="gallery-dots" id="gallery-dots"></div>
+      </div>
       <div class="modal-body">
         <div class="modal-eyebrow" id="modal-eyebrow"></div>
         <h2 class="modal-title" id="modal-title"></h2>
@@ -362,6 +374,88 @@
   <script>
     const BEN = 'https://wa.me/529988654691?text=';
     const JEN = 'https://wa.me/529982918258?text=';
+
+    // Real development photos (3 per property, sourced from official sites)
+    const devPhotos = {
+      'la-reserva': [
+        'https://images.squarespace-cdn.com/content/v1/61802b46f06088788bf47de4/ea7a03e3-cbab-4c9c-8158-1f7b1e3be335/_ALF3219.jpg',
+        'https://h-img2.us2.cloudbeds.com/uploads/227907633541248/lareserva-8-16~~69fe5d68d27f8.jpg',
+        'https://h-img3.us2.cloudbeds.com/uploads/227907633541248/la_reserva_00037~~69fe5afa27c8e.jpg'
+      ],
+      'aflora': [
+        'https://images.squarespace-cdn.com/content/v1/6225560cc712345f59a59301/fdb44a34-691b-492f-87af-232119c627e9/aflora-tulum-exteriors-pool-12.jpg',
+        'https://images.squarespace-cdn.com/content/v1/6225560cc712345f59a59301/3a65de39-a7b0-48f5-8c5f-b459e4df90f4/aflora-tulum-aerial-10.jpg',
+        'https://images.squarespace-cdn.com/content/v1/6225560cc712345f59a59301/5de5dd80-db81-41e8-9c52-643ea0a227ad/AfloraDIC2_60.jpg'
+      ],
+      'kaybe': [
+        'https://kaybe.mx/img/Group%20117.webp',
+        'https://kaybe.mx/img/Group%20118.webp',
+        'https://kaybe.mx/img/Group%20119.webp'
+      ],
+      'candela': [
+        'https://plalla.com/wp-content/uploads/2023/04/vista-aerea-villas-candela-tulum.webp',
+        'https://plalla.com/wp-content/uploads/2023/04/alberca-candela-tulum.webp',
+        'https://plalla.com/wp-content/uploads/2023/04/terraza-candela-tulum.webp'
+      ],
+      'azulik': [
+        'https://azulik.com/wp-content/uploads/2026/03/residences-1024x576.webp',
+        'https://azulik.com/wp-content/uploads/2026/03/Residences_Lobby_003-1024x576.webp',
+        'https://azulik.com/wp-content/uploads/2026/03/headpress-819x1024.webp'
+      ],
+      'rosewood': [
+        'https://five-star-alliance.s3.amazonaws.com/field/image/nodes/2009/11728/11728_0_rosewoodmayakoba_fsa-g.jpg',
+        'https://five-star-alliance.s3.amazonaws.com/field/image/nodes/2009/11728/11728_1_rosewoodmayakoba_fsa-g.jpg',
+        'https://five-star-alliance.s3.amazonaws.com/field/image/nodes/2009/11728/11728_3_rosewoodmayakoba_fsa-g.jpg'
+      ],
+      'xcalacoco': [
+        'https://static.wixstatic.com/media/75248b_f361b0bcb352409d8b48e1be2dba5e7e~mv2.jpg',
+        'https://static.wixstatic.com/media/75248b_364dab5416624e298b0f54df638c24ae%7Emv2.jpg',
+        'https://static.wixstatic.com/media/75248b_141266115ed7426ba9b4daf5e1166201~mv2.jpg'
+      ],
+      'mareazul': [
+        'https://plalla.com/wp-content/uploads/2021/07/vista-playa-mareazul.jpg',
+        'https://plalla.com/wp-content/uploads/2021/07/albercas-privadas-mareazul.jpg',
+        'https://plalla.com/wp-content/uploads/2021/07/terraza-mareazul.jpg'
+      ],
+      'awa': [
+        'https://rivieramayacozy.com/wp-content/uploads/2022/12/awa-corasol-1-1200x720.jpg',
+        'https://rivieramayacozy.com/wp-content/uploads/2022/12/awa-corasol-2-1200x720.jpg',
+        'https://rivieramayacozy.com/wp-content/uploads/2022/12/awa-corasol-3-1200x720.jpg'
+      ],
+      'viceroy': [
+        'https://rivieramayacozy.com/wp-content/uploads/2026/07/viceroy-playa-del-carmen-42-1200x810.webp',
+        'https://rivieramayacozy.com/wp-content/uploads/2026/07/viceroy-playa-del-carmen-40-1200x810.webp',
+        'https://rivieramayacozy.com/wp-content/uploads/2026/07/viceroy-playa-del-carmen-39-1200x810.webp'
+      ],
+      'sls': [
+        'https://slshotels.com/wp-content/uploads/sites/37/2024/03/sls-cancun-beach-hero-background.jpg',
+        'https://slshotels.com/wp-content/uploads/sites/37/2025/01/sls-cancun-restaurants-bars-bungalow-beach-club.jpg',
+        'https://slshotels.com/wp-content/uploads/sites/37/2024/04/sls-cancun-wellness-swimming-pool.jpg'
+      ],
+      'shark': [
+        'https://res.cloudinary.com/luximia/image/upload/v1640282831/Shark/Home/our-project-home_tmrnuv.jpg',
+        'https://res.cloudinary.com/luximia/image/upload/v1614352943/Shark/Home/port_zu9cie.jpg',
+        'https://res.cloudinary.com/luximia/image/upload/v1640282831/Shark/Home/infinity-amenities-home_kbuhki.jpg'
+      ],
+      'aria': [
+        'https://www.inmobilia.mx/hs-fs/hubfs/Principal%20v2-Jun-30-2021-04-58-04-97-PM.jpg?width=2500&name=Principal%20v2-Jun-30-2021-04-58-04-97-PM.jpg',
+        'https://www.inmobilia.mx/hs-fs/hubfs/AriaPuertoCanc%C3%BAnGaleria%231.jpg?width=2500&name=AriaPuertoCanc%C3%BAnGaleria%231.jpg',
+        'https://www.inmobilia.mx/hs-fs/hubfs/DJI_0036%20v2.jpg?width=2500&name=DJI_0036%20v2.jpg'
+      ],
+      'la-amada': [
+        'https://plalla.com/wp-content/uploads/2024/07/Vista-Aerea-La-Amada-Residences-Playa-Mujeres.webp',
+        'https://plalla.com/wp-content/uploads/2024/07/vista-aerea-club-de-playa-la-amada-residences-playa-mujeres.webp',
+        'https://plalla.com/wp-content/uploads/2024/07/rooftop-la-amada-residences-playa-mujeres.webp'
+      ],
+      'st-regis': [
+        'https://srrcostamujeres.com/images/residences/banner.jpg',
+        'https://srrcostamujeres.com/images/residences/swipe/RSD-01.jpg',
+        'https://srrcostamujeres.com/images/residences/swipe/RESIDENCES_01.jpg'
+      ]
+    };
+
+    let galleryPhotos = [];
+    let galleryIndex = 0;
     const developments = {
       'la-reserva': {
         wa: BEN,
@@ -530,6 +624,18 @@
       }
     };
 
+    // Update card backgrounds with real development photos
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.dev-card').forEach(card => {
+        const match = card.getAttribute('onclick') && card.getAttribute('onclick').match(/'([^']+)'/);
+        const id = match && match[1];
+        if (id && devPhotos[id] && devPhotos[id][0]) {
+          const img = card.querySelector('.dev-card-img');
+          if (img) img.style.backgroundImage = `url('${devPhotos[id][0]}')`;
+        }
+      });
+    });
+
     function selectCity(city, btn) {
       document.querySelectorAll('.city-tab').forEach(t => t.classList.remove('active'));
       document.querySelectorAll('.city-grid').forEach(g => g.classList.remove('active'));
@@ -543,7 +649,10 @@
       document.getElementById('modal-eyebrow').textContent = d.eyebrow;
       document.getElementById('modal-title').textContent = d.title;
       document.getElementById('modal-price').textContent = d.price;
-      document.getElementById('modal-img').style.backgroundImage = `url('${d.image}')`;
+      // Gallery setup
+      galleryPhotos = devPhotos[id] || (d.image ? [d.image] : []);
+      galleryIndex = 0;
+      updateGallery();
       document.getElementById('modal-bio').innerHTML = d.bio.split('\n\n').map(p => `<p style="margin-bottom:1.1em">${p}</p>`).join('');
       document.getElementById('modal-why').textContent = d.why;
       document.getElementById('modal-position').textContent = d.position;
@@ -567,6 +676,34 @@
       document.getElementById('modal-info').href = `mailto:brasher.benjamin@gmail.com?subject=Dossier Request: ${encodeURIComponent(d.title)}&body=Hi Ben, I'd like to receive the full dossier for ${encodeURIComponent(d.title)}.`;
       document.getElementById('modal').classList.add('open');
       document.body.style.overflow = 'hidden';
+    }
+
+    function updateGallery() {
+      const img = document.getElementById('modal-img');
+      if (galleryPhotos.length > 0) {
+        img.style.backgroundImage = `url('${galleryPhotos[galleryIndex]}')`;
+      }
+      // Show/hide nav buttons
+      const show = galleryPhotos.length > 1;
+      document.getElementById('gallery-prev').style.display = show ? 'flex' : 'none';
+      document.getElementById('gallery-next').style.display = show ? 'flex' : 'none';
+      // Dots
+      const dots = document.getElementById('gallery-dots');
+      dots.innerHTML = '';
+      if (show) {
+        galleryPhotos.forEach((_, i) => {
+          const d = document.createElement('button');
+          d.className = 'gallery-dot' + (i === galleryIndex ? ' active' : '');
+          d.onclick = () => { galleryIndex = i; updateGallery(); };
+          dots.appendChild(d);
+        });
+      }
+    }
+
+    function galleryNav(dir) {
+      if (!galleryPhotos.length) return;
+      galleryIndex = (galleryIndex + dir + galleryPhotos.length) % galleryPhotos.length;
+      updateGallery();
     }
 
     function closeModal() {
