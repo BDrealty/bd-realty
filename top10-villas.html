@@ -41,35 +41,90 @@
     .villas-section { padding: 2rem 0 5rem; }
     .villa-cards { display: flex; flex-direction: column; gap: 0; max-width: 1400px; margin: 0 auto; padding: 3rem 2.5rem 0; }
 
-    .villa-card { display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; border-bottom: 0.5px solid #DDD8CE; animation: fadeUp 0.4s ease; }
+    .villa-card { display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; border-bottom: 0.5px solid #DDD8CE; cursor: pointer; animation: fadeUp 0.4s ease; transition: opacity 0.2s; }
     .villa-card:first-child { border-top: 0.5px solid #DDD8CE; }
+    .villa-card:hover { opacity: 0.92; }
     .villa-card.hidden { display: none; }
-    /* Alternate: even cards flip photo to right */
     .villa-card:nth-child(even) .villa-card-img { order: 2; }
     .villa-card:nth-child(even) .villa-card-body { order: 1; }
 
-    .villa-card-img { min-height: 500px; background-size: cover; background-position: center; }
-    .villa-card-body { padding: 3.5rem; display: flex; flex-direction: column; gap: 1.25rem; background: #fff; justify-content: center; }
+    .villa-card-img { min-height: 500px; background-size: cover; background-position: center; position: relative; }
+    .villa-card-img::after { content: 'View Property →'; position: absolute; bottom: 1.5rem; right: 1.5rem; background: rgba(255,255,255,0.92); font-family: 'Raleway', sans-serif; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: #2A2820; padding: 8px 14px; border-radius: 1px; opacity: 0; transition: opacity 0.3s; }
+    .villa-card:hover .villa-card-img::after { opacity: 1; }
+    .villa-card-body { padding: 3.5rem; display: flex; flex-direction: column; gap: 1rem; background: #fff; justify-content: center; }
     .villa-card-eyebrow { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #9A7D5A; }
-    .villa-card-name { font-family: 'EB Garamond', serif; font-size: clamp(26px, 2.8vw, 40px); color: #2A2820; font-weight: 400; line-height: 1.1; }
+    .villa-card-name { font-family: 'EB Garamond', serif; font-size: clamp(26px, 2.8vw, 42px); color: #2A2820; font-weight: 400; line-height: 1.1; }
     .villa-card-specs { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
     .villa-card-specs span { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #9A9080; }
     .villa-spec-sep { color: #DDD8CE !important; letter-spacing: 0 !important; }
-    .villa-card-price { font-family: 'EB Garamond', serif; font-size: 24px; color: #2A2820; letter-spacing: 0.02em; }
-    .villa-card-desc { font-size: 14px; line-height: 1.9; color: #6A6050; font-weight: 300; flex-grow: 1; }
-    .villa-card-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-    .villa-tag { font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: #9A7D5A; background: #F5F1EA; padding: 5px 12px; border-radius: 1px; border: 0.5px solid #DDD8CE; }
-    .villa-card-ctas { display: flex; gap: 0.75rem; margin-top: 0.5rem; padding-top: 1.5rem; border-top: 0.5px solid #DDD8CE; }
-    .villa-cta-btn { display: flex; align-items: center; gap: 10px; padding: 13px 18px; border-radius: 1px; text-decoration: none; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; font-family: 'Raleway', sans-serif; transition: all 0.2s; }
-    .villa-cta-btn.whatsapp { background: #25D366; color: #fff; }
-    .villa-cta-btn.whatsapp:hover { background: #1da851; }
-    .villa-cta-btn.listing { background: transparent; color: #2A2820; border: 0.5px solid #C4B89A; }
-    .villa-cta-btn.listing:hover { background: #F5F1EA; }
+    .villa-card-price { font-family: 'EB Garamond', serif; font-size: 26px; color: #2A2820; letter-spacing: 0.01em; margin-top: 0.5rem; }
 
     /* EMPTY STATE */
     .empty-state { display: none; text-align: center; padding: 5rem 2rem; color: #9A9080; font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; }
     .empty-state span { display: block; margin-top: 0.75rem; font-family: 'Raleway', sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: #7A6E60; }
 
+    /* FULL-SCREEN MODAL */
+    .modal-overlay { position: fixed; inset: 0; z-index: 200; background: #F5F1EA; overflow-y: auto; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+
+    .modal-close { position: fixed; top: 1.5rem; right: 2rem; z-index: 300; background: rgba(245,241,234,0.9); border: 0.5px solid #DDD8CE; border-radius: 1px; cursor: pointer; font-size: 18px; color: #6B6452; width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; backdrop-filter: blur(4px); }
+    .modal-close:hover { color: #2A2820; background: #fff; }
+
+    /* GALLERY */
+    .modal-gallery { position: relative; width: 100%; height: 70vh; background: #2A2820; overflow: hidden; }
+    .modal-gallery-img { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 0.5s ease; }
+    .modal-gallery-img.active { opacity: 1; }
+    .gallery-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(245,241,234,0.85); border: none; color: #2A2820; font-size: 20px; width: 46px; height: 46px; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 5; transition: background 0.2s; border-radius: 1px; }
+    .gallery-btn:hover { background: #fff; }
+    .gallery-btn.prev { left: 1.5rem; }
+    .gallery-btn.next { right: 1.5rem; }
+    .gallery-dots { position: absolute; bottom: 1.25rem; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 5; }
+    .gallery-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.4); cursor: pointer; transition: background 0.2s; border: none; padding: 0; }
+    .gallery-dot.active { background: #fff; }
+    .gallery-counter { position: absolute; bottom: 1.25rem; right: 1.5rem; font-size: 10px; letter-spacing: 0.12em; color: rgba(255,255,255,0.6); font-family: 'Raleway', sans-serif; }
+
+    /* MODAL CONTENT */
+    .modal-content { display: grid; grid-template-columns: 1fr 380px; max-width: 1200px; margin: 0 auto; padding: 3.5rem 2.5rem 5rem; gap: 4rem; }
+
+    .modal-left .modal-eyebrow { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #9A7D5A; margin-bottom: 0.75rem; }
+    .modal-left .modal-title { font-family: 'EB Garamond', serif; font-size: clamp(30px, 3.5vw, 48px); color: #2A2820; font-weight: 400; line-height: 1.1; margin-bottom: 1.5rem; }
+    .modal-left .modal-price { font-family: 'EB Garamond', serif; font-size: 26px; color: #2A2820; margin-bottom: 0.75rem; }
+    .modal-left .modal-specs { display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 0.5px solid #DDD8CE; }
+    .modal-left .modal-specs span { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #9A9080; }
+    .modal-left .modal-specs .sep { color: #DDD8CE; }
+    .modal-section-label { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: #9A7D5A; margin-bottom: 0.75rem; }
+    .modal-desc { font-size: 15px; line-height: 1.95; color: #3A3530; font-weight: 300; }
+
+    /* RIGHT PANEL */
+    .modal-right { display: flex; flex-direction: column; gap: 0; }
+    .modal-agent-card { background: #fff; border: 0.5px solid #DDD8CE; border-radius: 2px; padding: 2rem; display: flex; align-items: center; gap: 1.25rem; margin-bottom: 1rem; }
+    .modal-agent-photo { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; object-position: top; flex-shrink: 0; border: 0.5px solid #DDD8CE; }
+    .modal-agent-name { font-family: 'EB Garamond', serif; font-size: 18px; color: #2A2820; }
+    .modal-agent-role { font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: #9A7D5A; margin-top: 3px; }
+
+    .modal-ctas { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.5rem; }
+    .modal-cta-btn { display: flex; align-items: center; gap: 12px; padding: 14px 20px; border-radius: 1px; text-decoration: none; font-family: 'Raleway', sans-serif; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; transition: all 0.2s; border: none; cursor: pointer; width: 100%; }
+    .modal-cta-btn.whatsapp { background: #25D366; color: #fff; }
+    .modal-cta-btn.whatsapp:hover { background: #1da851; }
+    .modal-cta-btn.calendar { background: #2A2820; color: #E8E0D0; }
+    .modal-cta-btn.calendar:hover { background: #9A7D5A; }
+
+    /* CONTACT FORM */
+    .modal-form { background: #fff; border: 0.5px solid #DDD8CE; border-radius: 2px; padding: 1.75rem; }
+    .modal-form-title { font-family: 'EB Garamond', serif; font-size: 18px; color: #2A2820; margin-bottom: 1.25rem; }
+    .form-field { margin-bottom: 0.9rem; }
+    .form-field label { display: block; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: #9A9080; margin-bottom: 0.4rem; }
+    .form-field input, .form-field textarea { width: 100%; padding: 10px 12px; border: 0.5px solid #DDD8CE; border-radius: 1px; font-family: 'Raleway', sans-serif; font-size: 13px; color: #2A2820; background: #F5F1EA; outline: none; transition: border-color 0.2s; }
+    .form-field input:focus, .form-field textarea:focus { border-color: #C4B89A; }
+    .form-field textarea { resize: vertical; min-height: 90px; }
+    .form-submit { width: 100%; padding: 13px; background: #2A2820; color: #E8E0D0; border: none; border-radius: 1px; font-family: 'Raleway', sans-serif; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; transition: background 0.2s; margin-top: 0.5rem; }
+    .form-submit:hover { background: #9A7D5A; }
+    .form-success { display: none; text-align: center; padding: 1.5rem; font-family: 'Cormorant Garamond', serif; font-size: 18px; color: #9A7D5A; }
+
+    @media (max-width: 1024px) {
+      .modal-content { grid-template-columns: 1fr; gap: 2.5rem; }
+      .modal-gallery { height: 55vw; min-height: 320px; }
+    }
     @media (max-width: 900px) {
       .villa-card { grid-template-columns: 1fr; }
       .villa-card:nth-child(even) .villa-card-img { order: 0; }
@@ -77,6 +132,7 @@
       .villa-card-img { min-height: 300px; }
       .villa-cards { padding: 1.5rem 0 0; }
       .villa-card-body { padding: 2rem 1.5rem; }
+      .modal-content { padding: 2rem 1.5rem 4rem; }
     }
     @media (max-width: 600px) {
       .filter-tab { font-size: 14px; padding: 0.9rem 0.5rem; }
@@ -94,7 +150,7 @@
   <div class="hero">
     <div class="hero-eyebrow">B&D Realty · Individual Properties</div>
     <h1 class="hero-title">Luxury <em>Villas</em></h1>
-    <p class="hero-sub">Exclusive individual properties currently available across the Riviera Maya. Each one is available to visit — reach out to book a tour.</p>
+    <p class="hero-sub">Exclusive individual properties currently available across the Riviera Maya. Click any property to explore in full.</p>
   </div>
 
   <div class="filter-wrap">
@@ -110,8 +166,7 @@
   <div class="villas-section">
     <div class="villa-cards" id="villa-cards">
 
-      <!-- Villa Coco Dar Lalla — Tulum -->
-      <div class="villa-card" data-city="tulum">
+      <div class="villa-card" data-city="tulum" onclick="openVilla('coco')">
         <div class="villa-card-img" style="background-image:url('coco-11.jpg')"></div>
         <div class="villa-card-body">
           <div class="villa-card-eyebrow">Aldea Zama · Tulum</div>
@@ -120,23 +175,10 @@
             <span>4 Bed</span><span class="villa-spec-sep"> · </span><span>3 Bath</span><span class="villa-spec-sep"> · </span><span>360 m² Living</span><span class="villa-spec-sep"> · </span><span>460 m² Land</span>
           </div>
           <div class="villa-card-price">$1,050,000 USD</div>
-          <p class="villa-card-desc">A 4-bedroom architectural masterpiece by a renowned French designer. A dramatic entrance with a striking iron door opens into a bright, open-concept kitchen, living, and dining area with 6-meter ceilings and floor-to-ceiling windows leading to the pool. Three bedrooms on the ground floor; the entire second level is a spacious primary suite with private rooftop, pool, and spa-style bathroom.</p>
-          <div class="villa-card-tags">
-            <span class="villa-tag">2025 Build</span>
-            <span class="villa-tag">Private Pool</span>
-            <span class="villa-tag">Rooftop Suite</span>
-            <span class="villa-tag">French Design</span>
-            <span class="villa-tag">Aldea Zama</span>
-          </div>
-          <div class="villa-card-ctas">
-            <a href="https://wa.me/529988654691?text=Hi%2C+I'm+interested+in+Villa+Coco+Dar+Lalla+in+Aldea+Zama%2C+Tulum.+Could+we+schedule+a+visit%3F" class="villa-cta-btn whatsapp" target="_blank"><span>💬</span> WhatsApp Us</a>
-            <a href="https://www.properstar.co.uk/listing/115257671" class="villa-cta-btn listing" target="_blank"><span>↗</span> View Listing</a>
-          </div>
         </div>
       </div>
 
-      <!-- Villa Kahaal — Tulum -->
-      <div class="villa-card" data-city="tulum">
+      <div class="villa-card" data-city="tulum" onclick="openVilla('kahaal')">
         <div class="villa-card-img" style="background-image:url('kahaal-1.jpg')"></div>
         <div class="villa-card-body">
           <div class="villa-card-eyebrow">Consciente · Tulum</div>
@@ -145,23 +187,10 @@
             <span>4 Bed</span><span class="villa-spec-sep"> · </span><span>5 Bath</span><span class="villa-spec-sep"> · </span><span>460 m² Living</span><span class="villa-spec-sep"> · </span><span>900 m² Land</span>
           </div>
           <div class="villa-card-price">$1,050,000 USD</div>
-          <p class="villa-card-desc">A statement contemporary jungle estate set within Consciente — one of Tulum's most private and low-density communities. Positioned on an exceptional 900 m² parcel, this 4-bedroom residence is defined by clean architectural lines, warm natural materials, and a sense of quiet sophistication. Features a private pool with sunken lounge, an elevated plunge pool, and a rooftop retreat with its own pool overlooking uninterrupted jungle views.</p>
-          <div class="villa-card-tags">
-            <span class="villa-tag">2025 Build</span>
-            <span class="villa-tag">3 Pools</span>
-            <span class="villa-tag">Jungle Estate</span>
-            <span class="villa-tag">Rooftop Retreat</span>
-            <span class="villa-tag">Consciente</span>
-          </div>
-          <div class="villa-card-ctas">
-            <a href="https://wa.me/529988654691?text=Hi%2C+I'm+interested+in+Villa+Kahaal+in+Consciente%2C+Tulum.+Could+we+schedule+a+visit%3F" class="villa-cta-btn whatsapp" target="_blank"><span>💬</span> WhatsApp Us</a>
-            <a href="https://www.properstar.co.uk/listing/115258130" class="villa-cta-btn listing" target="_blank"><span>↗</span> View Listing</a>
-          </div>
         </div>
       </div>
 
-      <!-- 9-Bedroom Tulum Estate — Tulum -->
-      <div class="villa-card" data-city="tulum">
+      <div class="villa-card" data-city="tulum" onclick="openVilla('tulum9')">
         <div class="villa-card-img" style="background-image:url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=90&fit=crop')"></div>
         <div class="villa-card-body">
           <div class="villa-card-eyebrow">Region 15 · Tulum</div>
@@ -170,24 +199,10 @@
             <span>9 Bed</span><span class="villa-spec-sep"> · </span><span>9.5 Bath</span><span class="villa-spec-sep"> · </span><span>940 m² Living</span><span class="villa-spec-sep"> · </span><span>1,640 m² Land</span>
           </div>
           <div class="villa-card-price">$2,795,432 USD</div>
-          <p class="villa-card-desc">An extraordinary 9-bedroom estate designed for luxury hospitality — each bedroom with its own private pool. A large central pool anchors the social areas, which include a CrossFit gym, temazcal, yoga room, campfire terrace, and game room with pool table. 56 solar panels provide sustainable energy. Located in Region 15, one of Tulum's fastest-appreciating corridors, with projected 14.5% net ROI and capacity for up to 20 guests.</p>
-          <div class="villa-card-tags">
-            <span class="villa-tag">9 Private Pools</span>
-            <span class="villa-tag">CrossFit Gym</span>
-            <span class="villa-tag">Temazcal</span>
-            <span class="villa-tag">Solar Panels</span>
-            <span class="villa-tag">14.5% Net ROI</span>
-            <span class="villa-tag">Region 15</span>
-          </div>
-          <div class="villa-card-ctas">
-            <a href="https://wa.me/529988654691?text=Hi%2C+I'm+interested+in+the+9-bedroom+estate+in+Region+15%2C+Tulum.+Could+we+schedule+a+visit%3F" class="villa-cta-btn whatsapp" target="_blank"><span>💬</span> WhatsApp Us</a>
-            <a href="https://www.properstar.co.uk/listing/119451086" class="villa-cta-btn listing" target="_blank"><span>↗</span> View Listing</a>
-          </div>
         </div>
       </div>
 
-      <!-- The Artist's Mansion — Tulum -->
-      <div class="villa-card" data-city="tulum">
+      <div class="villa-card" data-city="tulum" onclick="openVilla('artist')">
         <div class="villa-card-img" style="background-image:url('artist-10.jpg')"></div>
         <div class="villa-card-body">
           <div class="villa-card-eyebrow">Near Gran Cenote · Tulum</div>
@@ -196,24 +211,10 @@
             <span>3 Bed</span><span class="villa-spec-sep"> · </span><span>4 Bath</span><span class="villa-spec-sep"> · </span><span>1,000 m² Living</span><span class="villa-spec-sep"> · </span><span>5,291 m² Land</span>
           </div>
           <div class="villa-card-price">Price on Request</div>
-          <p class="villa-card-desc">New York minimalism meets the Mayan jungle. Designed by architect Carlos Larios, this rare private mansion sits on over 5,291 m² of manicured jungle land near Gran Cenote. Sculptural lines, 5-meter ceilings, and extraordinary volumes define the space. Two enormous art studios — one fully equipped — give the property genuine identity. For investors, one studio converts into additional bedrooms, creating a private retreat concept with exceptional upside.</p>
-          <div class="villa-card-tags">
-            <span class="villa-tag">2020 Build</span>
-            <span class="villa-tag">Carlos Larios Architect</span>
-            <span class="villa-tag">2 Art Studios</span>
-            <span class="villa-tag">5m Ceilings</span>
-            <span class="villa-tag">Gran Cenote</span>
-            <span class="villa-tag">1.3 Acres</span>
-          </div>
-          <div class="villa-card-ctas">
-            <a href="https://wa.me/529988654691?text=Hi%2C+I'm+interested+in+The+Artist's+Mansion+near+Gran+Cenote%2C+Tulum.+Could+we+schedule+a+visit%3F" class="villa-cta-btn whatsapp" target="_blank"><span>💬</span> WhatsApp Us</a>
-            <a href="https://www.properstar.co.uk/listing/110744719" class="villa-cta-btn listing" target="_blank"><span>↗</span> View Listing</a>
-          </div>
         </div>
       </div>
 
-      <!-- Senderos Mayakoba — Playa del Carmen -->
-      <div class="villa-card" data-city="playa">
+      <div class="villa-card" data-city="playa" onclick="openVilla('mayakoba')">
         <div class="villa-card-img" style="background-image:url('mayakoba-4.jpg')"></div>
         <div class="villa-card-body">
           <div class="villa-card-eyebrow">Senderos de Mayakoba · Playa del Carmen</div>
@@ -222,23 +223,10 @@
             <span>5 Bed</span><span class="villa-spec-sep"> · </span><span>5 Bath</span><span class="villa-spec-sep"> · </span><span>350 m² Living</span><span class="villa-spec-sep"> · </span><span>373 m² Land</span>
           </div>
           <div class="villa-card-price">$750,524 USD</div>
-          <p class="villa-card-desc">A contemporary clean-line residence within one of the Riviera Maya's most established master-planned communities. Two levels of refined living with open-concept kitchen, dining, and living areas flowing to a private pool — bordered by park-like green areas on two sides, ensuring unobstructed natural views. Residents access a private cenote, padel and tennis courts, two pools, gym, and kids club. Gated 24/7 security. 10–15 minutes from Playa del Carmen.</p>
-          <div class="villa-card-tags">
-            <span class="villa-tag">2025 Build</span>
-            <span class="villa-tag">Private Pool</span>
-            <span class="villa-tag">Private Cenote</span>
-            <span class="villa-tag">Padel & Tennis</span>
-            <span class="villa-tag">Gated Community</span>
-          </div>
-          <div class="villa-card-ctas">
-            <a href="https://wa.me/529988654691?text=Hi%2C+I'm+interested+in+the+Senderos+de+Mayakoba+residence+in+Playa+del+Carmen.+Could+we+schedule+a+visit%3F" class="villa-cta-btn whatsapp" target="_blank"><span>💬</span> WhatsApp Us</a>
-            <a href="https://www.sothebysrealty.com/eng/sales/detail/180-l-922-zbb2kw/senderos-de-mayakoba-parque-madrid-rio-up-40-lote-013-manzana-001-lote-001-1-playa-del-carmen-qu" class="villa-cta-btn listing" target="_blank"><span>↗</span> View Listing</a>
-          </div>
         </div>
       </div>
 
-      <!-- Casa Girasol — Playa del Carmen -->
-      <div class="villa-card" data-city="playa">
+      <div class="villa-card" data-city="playa" onclick="openVilla('girasol')">
         <div class="villa-card-img" style="background-image:url('girasol-9.jpg')"></div>
         <div class="villa-card-body">
           <div class="villa-card-eyebrow">Residencial El Cielo · Playa del Carmen</div>
@@ -247,29 +235,246 @@
             <span>3 Bed</span><span class="villa-spec-sep"> · </span><span>2.5 Bath</span><span class="villa-spec-sep"> · </span><span>251 m² Built</span><span class="villa-spec-sep"> · </span><span>266 m² Lot</span>
           </div>
           <div class="villa-card-price">$398,349 USD</div>
-          <p class="villa-card-desc">An exclusive residence in the prestigious north side of Playa del Carmen, within the peaceful, green surroundings of Residencial El Cielo. Just 15 minutes from downtown and 3 minutes from Xcalacoco Beach. Modern open-plan design, private pool, rooftop terrace, and no HOA fees. Delivered unfurnished — a rare opportunity to personalise a turnkey home in the Riviera Maya.</p>
-          <div class="villa-card-tags">
-            <span class="villa-tag">Private Pool</span>
-            <span class="villa-tag">Rooftop Terrace</span>
-            <span class="villa-tag">No HOA</span>
-            <span class="villa-tag">Xcalacoco Beach Nearby</span>
-          </div>
-          <div class="villa-card-ctas">
-            <a href="https://wa.me/529988654691?text=Hi%2C+I'm+interested+in+Casa+Girasol+in+Residencial+El+Cielo%2C+Playa+del+Carmen.+Could+we+arrange+a+visit%3F" class="villa-cta-btn whatsapp" target="_blank"><span>💬</span> WhatsApp Us</a>
-            <a href="https://www.properstar.co.uk/listing/118780234" class="villa-cta-btn listing" target="_blank"><span>↗</span> View Listing</a>
-          </div>
         </div>
       </div>
 
     </div>
-
     <div class="empty-state" id="empty-state">
       No villas listed in this area at this time.
       <span>Contact us for off-market options</span>
     </div>
   </div>
 
+  <!-- FULL-SCREEN MODAL -->
+  <div class="modal-overlay" id="modal">
+    <button class="modal-close" onclick="closeVilla()">✕</button>
+
+    <div class="modal-gallery" id="modal-gallery">
+      <!-- images injected by JS -->
+      <button class="gallery-btn prev" onclick="galleryPrev()">&#8592;</button>
+      <button class="gallery-btn next" onclick="galleryNext()">&#8594;</button>
+      <div class="gallery-dots" id="gallery-dots"></div>
+      <div class="gallery-counter" id="gallery-counter"></div>
+    </div>
+
+    <div class="modal-content">
+      <div class="modal-left">
+        <div class="modal-eyebrow" id="modal-eyebrow"></div>
+        <div class="modal-title" id="modal-title"></div>
+        <div class="modal-price" id="modal-price"></div>
+        <div class="modal-specs" id="modal-specs"></div>
+        <div class="modal-section-label">About this property</div>
+        <p class="modal-desc" id="modal-desc"></p>
+      </div>
+
+      <div class="modal-right">
+        <div class="modal-agent-card">
+          <img src="benjamin.jpg" alt="Benjamin Brasher" class="modal-agent-photo">
+          <div>
+            <div class="modal-agent-name">Benjamin Brasher</div>
+            <div class="modal-agent-role">B &amp; D Realty · Riviera Maya</div>
+          </div>
+        </div>
+
+        <div class="modal-ctas">
+          <a id="modal-whatsapp" href="#" class="modal-cta-btn whatsapp" target="_blank">
+            <span>💬</span> WhatsApp Benjamin
+          </a>
+          <a href="https://calendar.app.google/P7L3HxF1bsaGcLbD7" class="modal-cta-btn calendar" target="_blank">
+            <span>📅</span> Book a Viewing
+          </a>
+        </div>
+
+        <div class="modal-form">
+          <div class="modal-form-title">Request Full Information</div>
+          <div id="form-fields">
+            <div class="form-field">
+              <label>Full Name</label>
+              <input type="text" id="form-name" placeholder="Your name">
+            </div>
+            <div class="form-field">
+              <label>Email Address</label>
+              <input type="email" id="form-email" placeholder="your@email.com">
+            </div>
+            <div class="form-field">
+              <label>Phone / WhatsApp</label>
+              <input type="tel" id="form-phone" placeholder="+1 000 000 0000">
+            </div>
+            <div class="form-field">
+              <label>Additional Information</label>
+              <textarea id="form-message" placeholder="Any questions, preferred visit dates, financing needs…"></textarea>
+            </div>
+            <button class="form-submit" onclick="submitForm()">Send Request</button>
+          </div>
+          <div class="form-success" id="form-success">
+            Thank you — we'll be in touch shortly.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
+    const villas = {
+      coco: {
+        eyebrow: 'Aldea Zama · Tulum',
+        title: 'Villa Coco Dar Lalla',
+        price: '$1,050,000 USD',
+        specs: '4 Bed · 3 Bath · 360 m² Living · 460 m² Land',
+        desc: 'A 4-bedroom architectural masterpiece by a renowned French designer. A dramatic entrance with a striking iron door opens into a bright, open-concept kitchen, living, and dining area with 6-meter ceilings and floor-to-ceiling windows leading to the pool. Three bedrooms on the ground floor; the entire second level is a spacious primary suite with private rooftop, pool, and spa-style bathroom. Completed in 2025, the property features premium materials throughout — polished concrete floors, custom ironwork, and bespoke cabinetry. Aldea Zama is Tulum\'s most established residential neighbourhood, walking distance to the best restaurants, wellness studios, and the Mayan archaeological zone.',
+        photos: ['coco-1.jpg','coco-2.jpg','coco-3.jpg','coco-4.jpg','coco-5.jpg','coco-6.jpg','coco-7.jpg','coco-8.jpg','coco-9.jpg','coco-10.jpg','coco-11.jpg','coco-12.jpg'],
+        wa: 'Hi%2C+I\'m+interested+in+Villa+Coco+Dar+Lalla+in+Aldea+Zama%2C+Tulum.+Could+we+schedule+a+visit%3F'
+      },
+      kahaal: {
+        eyebrow: 'Consciente · Tulum',
+        title: 'Villa Kahaal',
+        price: '$1,050,000 USD',
+        specs: '4 Bed · 5 Bath · 460 m² Living · 900 m² Land',
+        desc: 'A statement contemporary jungle estate set within Consciente — one of Tulum\'s most private and low-density communities. Positioned on an exceptional 900 m² parcel, this 4-bedroom residence is defined by clean architectural lines, warm natural materials, and a sense of quiet sophistication. The ground level features a generous open-plan living and dining space that flows seamlessly to the terrace and private pool with sunken lounge. An elevated plunge pool and rooftop retreat with its own pool offer uninterrupted jungle canopy views. Each bedroom has a distinct character while maintaining the home\'s cohesive design language. A true sanctuary that balances privacy, nature, and luxury.',
+        photos: ['kahaal-1.jpg','kahaal-2.jpg','kahaal-3.jpg','kahaal-4.jpg','kahaal-5.jpg','kahaal-6.jpg','kahaal-7.jpg','kahaal-8.jpg','kahaal-9.jpg','kahaal-10.jpg'],
+        wa: 'Hi%2C+I\'m+interested+in+Villa+Kahaal+in+Consciente%2C+Tulum.+Could+we+schedule+a+visit%3F'
+      },
+      tulum9: {
+        eyebrow: 'Region 15 · Tulum',
+        title: '9-Bedroom Tulum Estate',
+        price: '$2,795,432 USD',
+        specs: '9 Bed · 9.5 Bath · 940 m² Living · 1,640 m² Land',
+        desc: 'An extraordinary 9-bedroom estate designed for luxury hospitality — each bedroom with its own private plunge pool. A large central pool anchors the social areas, which include a CrossFit gym, temazcal, yoga room, campfire terrace, and game room with pool table. 56 solar panels provide fully sustainable energy. Capacity for up to 20 guests makes this an exceptional short-term rental investment. Located in Region 15, one of Tulum\'s fastest-appreciating corridors, with projected 14.5% net ROI based on current market occupancy rates. An unmatched combination of scale, amenities, and returns in the Riviera Maya market.',
+        photos: ['https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=90&fit=crop'],
+        wa: 'Hi%2C+I\'m+interested+in+the+9-bedroom+estate+in+Region+15%2C+Tulum.+Could+we+schedule+a+visit%3F'
+      },
+      artist: {
+        eyebrow: 'Near Gran Cenote · Tulum',
+        title: 'The Artist\'s Mansion',
+        price: 'Price on Request',
+        specs: '3 Bed · 4 Bath · 1,000 m² Living · 5,291 m² Land (1.3 Acres)',
+        desc: 'New York minimalism meets the Mayan jungle. Designed by architect Carlos Larios, this rare private mansion sits on over 5,291 m² of manicured jungle land near Gran Cenote — one of Tulum\'s most celebrated natural landmarks. Sculptural concrete lines, 5-meter ceilings, and extraordinary volumes define every space. Two enormous art studios — one fully equipped with gallery lighting and professional infrastructure — give the property a genuine and irreplaceable identity. For investors, one studio converts readily into additional guest bedrooms, creating a private retreat concept with exceptional income upside. Built in 2020 to a standard that simply cannot be replicated at today\'s land prices.',
+        photos: ['artist-1.jpg','artist-2.jpg','artist-3.jpg','artist-4.jpg','artist-5.jpg','artist-6.jpg','artist-7.jpg','artist-8.jpg','artist-9.jpg','artist-10.jpg','artist-11.jpg','artist-12.jpg','artist-13.jpg','artist-14.jpg'],
+        wa: 'Hi%2C+I\'m+interested+in+The+Artist\'s+Mansion+near+Gran+Cenote%2C+Tulum.+Could+we+schedule+a+visit%3F'
+      },
+      mayakoba: {
+        eyebrow: 'Senderos de Mayakoba · Playa del Carmen',
+        title: 'Senderos Mayakoba Residence',
+        price: '$750,524 USD',
+        specs: '5 Bed · 5 Bath · 350 m² Living · 373 m² Land',
+        desc: 'A contemporary clean-line residence within one of the Riviera Maya\'s most established master-planned communities. Two levels of refined living with open-concept kitchen, dining, and living areas flowing to a private pool — bordered by park-like green areas on two sides, ensuring unobstructed natural views and exceptional privacy for this footprint. Residents enjoy access to a private cenote, padel and tennis courts, two community pools, a fully equipped gym, and a dedicated kids club. Gated with 24/7 security. Located 10–15 minutes from Playa del Carmen\'s 5th Avenue and within 45 minutes of Cancún International Airport. Completed in 2025.',
+        photos: ['mayakoba-1.jpg','mayakoba-2.jpg','mayakoba-3.jpg','mayakoba-4.jpg','mayakoba-5.jpg'],
+        wa: 'Hi%2C+I\'m+interested+in+the+Senderos+de+Mayakoba+residence+in+Playa+del+Carmen.+Could+we+schedule+a+visit%3F'
+      },
+      girasol: {
+        eyebrow: 'Residencial El Cielo · Playa del Carmen',
+        title: 'Casa Girasol',
+        price: '$398,349 USD',
+        specs: '3 Bed · 2.5 Bath · 251 m² Built · 266 m² Lot',
+        desc: 'An exclusive residence in the prestigious north side of Playa del Carmen, within the peaceful, green surroundings of Residencial El Cielo. The home features a modern open-plan ground floor with a chef\'s kitchen, island seating, and direct access to the private pool and garden. The upper floor houses the bedrooms — each with its own outdoor access — and a generous rooftop terrace perfect for entertaining under the Riviera Maya sky. No HOA fees. Just 15 minutes from downtown Playa del Carmen and only 3 minutes by car from Xcalacoco Beach, one of the most beautiful and tranquil stretches of coastline in the Riviera Maya. Delivered unfurnished, giving you full creative freedom.',
+        photos: ['girasol-1.jpg','girasol-2.jpg','girasol-3.jpg','girasol-4.jpg','girasol-5.jpg','girasol-6.jpg','girasol-7.jpg','girasol-8.jpg','girasol-9.jpg'],
+        wa: 'Hi%2C+I\'m+interested+in+Casa+Girasol+in+Residencial+El+Cielo%2C+Playa+del+Carmen.+Could+we+arrange+a+visit%3F'
+      }
+    };
+
+    let currentPhotos = [];
+    let currentIdx = 0;
+
+    function openVilla(id) {
+      const v = villas[id];
+      if (!v) return;
+
+      document.getElementById('modal-eyebrow').textContent = v.eyebrow;
+      document.getElementById('modal-title').textContent = v.title;
+      document.getElementById('modal-price').textContent = v.price;
+      document.getElementById('modal-desc').textContent = v.desc;
+      document.getElementById('modal-whatsapp').href = 'https://wa.me/529988654691?text=' + v.wa;
+
+      // specs
+      const specsEl = document.getElementById('modal-specs');
+      specsEl.innerHTML = v.specs.split(' · ').map((s,i,a) =>
+        `<span>${s}</span>${i < a.length-1 ? '<span class="sep"> · </span>' : ''}`
+      ).join('');
+
+      // gallery
+      currentPhotos = v.photos;
+      currentIdx = 0;
+      buildGallery();
+
+      // reset form
+      document.getElementById('form-fields').style.display = '';
+      document.getElementById('form-success').style.display = 'none';
+      ['form-name','form-email','form-phone','form-message'].forEach(id => {
+        document.getElementById(id).value = '';
+      });
+
+      const modal = document.getElementById('modal');
+      modal.classList.add('open');
+      modal.scrollTop = 0;
+      document.body.style.overflow = 'hidden';
+    }
+
+    function buildGallery() {
+      const gallery = document.getElementById('modal-gallery');
+      // remove old images
+      gallery.querySelectorAll('.modal-gallery-img').forEach(el => el.remove());
+
+      currentPhotos.forEach((src, i) => {
+        const div = document.createElement('div');
+        div.className = 'modal-gallery-img' + (i === 0 ? ' active' : '');
+        div.style.backgroundImage = `url('${src}')`;
+        gallery.insertBefore(div, gallery.querySelector('.gallery-btn'));
+      });
+
+      // dots
+      const dots = document.getElementById('gallery-dots');
+      dots.innerHTML = currentPhotos.map((_, i) =>
+        `<button class="gallery-dot${i===0?' active':''}" onclick="goToPhoto(${i})"></button>`
+      ).join('');
+
+      updateCounter();
+    }
+
+    function updateCounter() {
+      document.getElementById('gallery-counter').textContent =
+        (currentIdx + 1) + ' / ' + currentPhotos.length;
+      document.querySelectorAll('.gallery-dot').forEach((d,i) =>
+        d.classList.toggle('active', i === currentIdx));
+      document.querySelectorAll('.modal-gallery-img').forEach((img,i) =>
+        img.classList.toggle('active', i === currentIdx));
+    }
+
+    function galleryPrev() {
+      currentIdx = (currentIdx - 1 + currentPhotos.length) % currentPhotos.length;
+      updateCounter();
+    }
+
+    function galleryNext() {
+      currentIdx = (currentIdx + 1) % currentPhotos.length;
+      updateCounter();
+    }
+
+    function goToPhoto(i) {
+      currentIdx = i;
+      updateCounter();
+    }
+
+    function closeVilla() {
+      document.getElementById('modal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function submitForm() {
+      const name = document.getElementById('form-name').value.trim();
+      const email = document.getElementById('form-email').value.trim();
+      if (!name || !email) { alert('Please enter your name and email.'); return; }
+      // Build WhatsApp message with form data
+      const villa = document.getElementById('modal-title').textContent;
+      const phone = document.getElementById('form-phone').value.trim();
+      const msg = document.getElementById('form-message').value.trim();
+      const waText = encodeURIComponent(
+        `New enquiry for ${villa}\nName: ${name}\nEmail: ${email}${phone ? '\nPhone: '+phone : ''}${msg ? '\nMessage: '+msg : ''}`
+      );
+      window.open('https://wa.me/529988654691?text=' + waText, '_blank');
+      document.getElementById('form-fields').style.display = 'none';
+      document.getElementById('form-success').style.display = 'block';
+    }
+
     function filterVillas(city, btn) {
       document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
       btn.classList.add('active');
@@ -285,6 +490,9 @@
       });
       document.getElementById('empty-state').style.display = visible === 0 ? 'block' : 'none';
     }
+
+    // Close on ESC
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeVilla(); });
   </script>
 
 </body>
