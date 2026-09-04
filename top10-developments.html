@@ -108,6 +108,38 @@
       .city-tab { font-size: 14px; padding: 0.9rem 0.5rem; }
       .modal-body { padding: 2rem 1.5rem; }
     }
+
+    /* VILLAS SECTION */
+    .villas-section { padding: 5rem 0; background: #111009; }
+    .villas-header { text-align: center; padding: 0 2.5rem 3.5rem; border-bottom: 0.5px solid rgba(196,184,154,0.1); margin-bottom: 3.5rem; }
+    .villas-eyebrow { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #7A6E60; margin-bottom: 1rem; }
+    .villas-title { font-family: 'EB Garamond', serif; font-size: clamp(32px, 4vw, 54px); font-weight: 400; color: #E8E0D0; line-height: 1.1; margin-bottom: 1rem; }
+    .villas-title em { font-style: italic; color: #C4B89A; }
+    .villas-sub { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: #9A9080; font-weight: 300; max-width: 520px; margin: 0 auto; line-height: 1.8; }
+    .villa-cards { display: flex; flex-direction: column; gap: 2.5rem; max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; }
+    .villa-card { display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; border: 0.5px solid rgba(196,184,154,0.12); border-radius: 2px; }
+    .villa-card-img { min-height: 480px; background-size: cover; background-position: center; }
+    .villa-card-body { padding: 3rem; display: flex; flex-direction: column; gap: 1.25rem; background: #1A1910; }
+    .villa-card-eyebrow { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #7A6E60; }
+    .villa-card-name { font-family: 'EB Garamond', serif; font-size: clamp(24px, 2.5vw, 36px); color: #E8E0D0; font-weight: 400; line-height: 1.1; }
+    .villa-card-specs { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+    .villa-card-specs span { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #9A9080; }
+    .villa-spec-sep { color: rgba(196,184,154,0.3) !important; letter-spacing: 0 !important; }
+    .villa-card-price { font-family: 'EB Garamond', serif; font-size: 22px; color: #C4B89A; letter-spacing: 0.02em; }
+    .villa-card-desc { font-size: 14px; line-height: 1.9; color: #7A7060; font-weight: 300; flex-grow: 1; }
+    .villa-card-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .villa-tag { font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: #C4B89A; background: rgba(196,184,154,0.07); padding: 5px 12px; border-radius: 1px; border: 0.5px solid rgba(196,184,154,0.18); }
+    .villa-card-ctas { display: flex; gap: 0.75rem; margin-top: 0.5rem; padding-top: 1.25rem; border-top: 0.5px solid rgba(196,184,154,0.1); }
+    .villa-cta-btn { display: flex; align-items: center; gap: 10px; padding: 13px 18px; border-radius: 1px; text-decoration: none; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; font-family: 'Raleway', sans-serif; transition: all 0.2s; }
+    .villa-cta-btn.whatsapp { background: #25D366; color: #fff; }
+    .villa-cta-btn.whatsapp:hover { background: #1da851; }
+    .villa-cta-btn.listing { background: transparent; color: #C4B89A; border: 0.5px solid rgba(196,184,154,0.4); }
+    .villa-cta-btn.listing:hover { background: rgba(196,184,154,0.08); }
+    @media (max-width: 900px) {
+      .villa-card { grid-template-columns: 1fr; }
+      .villa-card-img { min-height: 280px; }
+      .villa-cards { padding: 0 1.5rem; gap: 2rem; }
+    }
   </style>
 </head>
 <body>
@@ -316,6 +348,199 @@
     </div>
   </div>
 
+  <!-- VILLAS SECTION -->
+  <div class="villas-section">
+    <div class="villas-header">
+      <div class="villas-eyebrow">B&D Realty · Individual Properties</div>
+      <h2 class="villas-title">Featured <em>Villas</em></h2>
+      <p class="villas-sub">Exclusive individual properties currently available. Each one is available to visit — reach out to book a tour.</p>
+    </div>
+
+    <div class="villa-cards">
+
+      <!-- Villa Coco Dar Lalla -->
+      <div class="villa-card">
+        <div class="villa-card-img" style="background-image:url('coco-11.jpg')"></div>
+        <div class="villa-card-body">
+          <div class="villa-card-eyebrow">Aldea Zama · Tulum</div>
+          <h3 class="villa-card-name">Villa Coco Dar Lalla</h3>
+          <div class="villa-card-specs">
+            <span>4 Bed</span><span class="villa-spec-sep"> · </span><span>3 Bath</span><span class="villa-spec-sep"> · </span><span>360 m² Living</span><span class="villa-spec-sep"> · </span><span>460 m² Land</span>
+          </div>
+          <div class="villa-card-price">$1,050,000 USD</div>
+          <p class="villa-card-desc">A 4-bedroom architectural masterpiece by a renowned French designer. A dramatic entrance with a striking iron door opens into a bright, open-concept kitchen, living, and dining area with 6-meter ceilings and floor-to-ceiling windows leading to the pool. Three bedrooms on the ground floor; the entire second level is a spacious primary suite with private rooftop, pool, and spa-style bathroom.</p>
+          <div class="villa-card-tags">
+            <span class="villa-tag">2025 Build</span>
+            <span class="villa-tag">Private Pool</span>
+            <span class="villa-tag">Rooftop Suite</span>
+            <span class="villa-tag">French Design</span>
+            <span class="villa-tag">Aldea Zama</span>
+          </div>
+          <div class="villa-card-ctas">
+            <a href="https://wa.me/529988654691?text=Hi%2C+I'm+interested+in+Villa+Coco+Dar+Lalla+in+Aldea+Zama%2C+Tulum+%28GBP+960%2C431%29.+Could+we+schedule+a+visit%3F" class="villa-cta-btn whatsapp" target="_blank">
+              <span>💬</span> WhatsApp Us
+            </a>
+            <a href="https://www.properstar.co.uk/listing/115257671" class="villa-cta-btn listing" target="_blank">
+              <span>↗</span> View Listing
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Villa Kahaal -->
+      <div class="villa-card">
+        <div class="villa-card-img" style="background-image:url('kahaal-1.jpg')"></div>
+        <div class="villa-card-body">
+          <div class="villa-card-eyebrow">Consciente · Tulum</div>
+          <h3 class="villa-card-name">Villa Kahaal</h3>
+          <div class="villa-card-specs">
+            <span>4 Bed</span><span class="villa-spec-sep"> · </span><span>5 Bath</span><span class="villa-spec-sep"> · </span><span>460 m² Living</span><span class="villa-spec-sep"> · </span><span>900 m² Land</span>
+          </div>
+          <div class="villa-card-price">$1,050,000 USD</div>
+          <p class="villa-card-desc">A statement contemporary jungle estate set within Consciente — one of Tulum's most private and low-density communities. Positioned on an exceptional 900 m² parcel, this 4-bedroom residence is defined by clean architectural lines, warm natural materials, and a sense of quiet sophistication. Features a private pool with sunken lounge, an elevated plunge pool, and a rooftop retreat with its own pool overlooking uninterrupted jungle views.</p>
+          <div class="villa-card-tags">
+            <span class="villa-tag">2025 Build</span>
+            <span class="villa-tag">3 Pools</span>
+            <span class="villa-tag">Jungle Estate</span>
+            <span class="villa-tag">Rooftop Retreat</span>
+            <span class="villa-tag">Consciente</span>
+          </div>
+          <div class="villa-card-ctas">
+            <a href="https://wa.me/529988654691?text=Hi%2C+I'm+interested+in+Villa+Kahaal+in+Consciente%2C+Tulum+%28GBP+960%2C431%29.+Could+we+schedule+a+visit%3F" class="villa-cta-btn whatsapp" target="_blank">
+              <span>💬</span> WhatsApp Us
+            </a>
+            <a href="https://www.properstar.co.uk/listing/115258130" class="villa-cta-btn listing" target="_blank">
+              <span>↗</span> View Listing
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9-Bedroom Villa Region 15 -->
+      <div class="villa-card">
+        <div class="villa-card-img" style="background-image:url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=90&fit=crop')"></div>
+        <div class="villa-card-body">
+          <div class="villa-card-eyebrow">Region 15 · Tulum</div>
+          <h3 class="villa-card-name">9-Bedroom Tulum Estate</h3>
+          <div class="villa-card-specs">
+            <span>9 Bed</span><span class="villa-spec-sep"> · </span><span>9.5 Bath</span><span class="villa-spec-sep"> · </span><span>940 m² Living</span><span class="villa-spec-sep"> · </span><span>1,640 m² Land</span>
+          </div>
+          <div class="villa-card-price">$2,795,432 USD</div>
+          <p class="villa-card-desc">An extraordinary 9-bedroom estate designed for luxury hospitality — each bedroom with its own private pool. A large central pool anchors the social areas, which include a CrossFit gym, temazcal, yoga room, campfire terrace, and game room with pool table. 56 solar panels provide sustainable energy. Located in Region 15, one of Tulum's fastest-appreciating corridors, with projected 14.5% net ROI and capacity for up to 20 guests.</p>
+          <div class="villa-card-tags">
+            <span class="villa-tag">9 Private Pools</span>
+            <span class="villa-tag">CrossFit Gym</span>
+            <span class="villa-tag">Temazcal</span>
+            <span class="villa-tag">Solar Panels</span>
+            <span class="villa-tag">14.5% Net ROI</span>
+            <span class="villa-tag">Region 15</span>
+          </div>
+          <div class="villa-card-ctas">
+            <a href="https://wa.me/529988654691?text=Hi%2C+I'm+interested+in+the+9-bedroom+estate+in+Region+15%2C+Tulum+%28GBP+2%2C068%2C620%29.+Could+we+schedule+a+visit%3F" class="villa-cta-btn whatsapp" target="_blank">
+              <span>💬</span> WhatsApp Us
+            </a>
+            <a href="https://www.properstar.co.uk/listing/119451086" class="villa-cta-btn listing" target="_blank">
+              <span>↗</span> View Listing
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Senderos de Mayakoba -->
+      <div class="villa-card">
+        <div class="villa-card-img" style="background-image:url('mayakoba-4.jpg')"></div>
+        <div class="villa-card-body">
+          <div class="villa-card-eyebrow">Senderos de Mayakoba · Playa del Carmen</div>
+          <h3 class="villa-card-name">Senderos Mayakoba Residence</h3>
+          <div class="villa-card-specs">
+            <span>5 Bed</span><span class="villa-spec-sep"> · </span><span>5 Bath</span><span class="villa-spec-sep"> · </span><span>350 m² Living</span><span class="villa-spec-sep"> · </span><span>373 m² Land</span>
+          </div>
+          <div class="villa-card-price">USD $750,524</div>
+          <p class="villa-card-desc">A contemporary clean-line residence within one of the Riviera Maya's most established master-planned communities. Two levels of refined living with open-concept kitchen, dining, and living areas flowing to a private pool — bordered by park-like green areas on two sides, ensuring unobstructed natural views. Residents access a private cenote, padel and tennis courts, two pools, gym, and kids club. Gated 24/7 security. 10–15 minutes from Playa del Carmen.</p>
+          <div class="villa-card-tags">
+            <span class="villa-tag">2025 Build</span>
+            <span class="villa-tag">Private Pool</span>
+            <span class="villa-tag">Private Cenote</span>
+            <span class="villa-tag">Padel & Tennis</span>
+            <span class="villa-tag">Gated Community</span>
+            <span class="villa-tag">Playa del Carmen</span>
+          </div>
+          <div class="villa-card-ctas">
+            <a href="https://wa.me/529988654691?text=Hi%2C+I'm+interested+in+the+Senderos+de+Mayakoba+residence+in+Playa+del+Carmen+%28USD+%24750%2C524%29.+Could+we+schedule+a+visit%3F" class="villa-cta-btn whatsapp" target="_blank">
+              <span>💬</span> WhatsApp Us
+            </a>
+            <a href="https://www.sothebysrealty.com/eng/sales/detail/180-l-922-zbb2kw/senderos-de-mayakoba-parque-madrid-rio-up-40-lote-013-manzana-001-lote-001-1-playa-del-carmen-qu" class="villa-cta-btn listing" target="_blank">
+              <span>↗</span> View Listing
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- The Artist's Mansion -->
+      <div class="villa-card">
+        <div class="villa-card-img" style="background-image:url('artist-10.jpg')"></div>
+        <div class="villa-card-body">
+          <div class="villa-card-eyebrow">Near Gran Cenote · Tulum</div>
+          <h3 class="villa-card-name">The Artist's Mansion</h3>
+          <div class="villa-card-specs">
+            <span>3 Bed</span><span class="villa-spec-sep"> · </span><span>4 Bath</span><span class="villa-spec-sep"> · </span><span>1,000 m² Living</span><span class="villa-spec-sep"> · </span><span>5,291 m² Land</span>
+          </div>
+          <div class="villa-card-price">Price on Request</div>
+          <p class="villa-card-desc">New York minimalism meets the Mayan jungle. Designed by architect Carlos Larios, this rare private mansion sits on over 5,291 m² of manicured jungle land near Gran Cenote. Sculptural lines, 5-meter ceilings, and extraordinary volumes define the space. Two enormous art studios — one fully equipped — give the property genuine identity. For investors, one studio converts into additional bedrooms, creating a private retreat concept with exceptional upside.</p>
+          <div class="villa-card-tags">
+            <span class="villa-tag">2020 Build</span>
+            <span class="villa-tag">Carlos Larios Architect</span>
+            <span class="villa-tag">2 Art Studios</span>
+            <span class="villa-tag">5m Ceilings</span>
+            <span class="villa-tag">Gran Cenote</span>
+            <span class="villa-tag">1.3 Acres</span>
+          </div>
+          <div class="villa-card-ctas">
+            <a href="https://wa.me/529988654691?text=Hi%2C+I'm+interested+in+The+Artist's+Mansion+near+Gran+Cenote%2C+Tulum.+Could+we+schedule+a+visit%3F" class="villa-cta-btn whatsapp" target="_blank">
+              <span>💬</span> WhatsApp Us
+            </a>
+            <a href="https://www.properstar.co.uk/listing/110744719" class="villa-cta-btn listing" target="_blank">
+              <span>↗</span> View Listing
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Casa Girasol -->
+      <div class="villa-card">
+        <div class="villa-card-img" style="background-image:url('girasol-9.jpg')"></div>
+        <div class="villa-card-body">
+          <p class="villa-card-eyebrow">Residencial El Cielo · Playa del Carmen</p>
+          <h3 class="villa-card-name">Casa Girasol</h3>
+          <div class="villa-card-specs">
+            <span>3 Bedrooms</span><span class="villa-spec-sep">·</span>
+            <span>2.5 Bathrooms</span><span class="villa-spec-sep">·</span>
+            <span>251m² Built</span><span class="villa-spec-sep">·</span>
+            <span>266m² Lot</span>
+          </div>
+          <p class="villa-card-price">$398,349 USD</p>
+          <p class="villa-card-desc">An exclusive residence in the prestigious north side of Playa del Carmen, within the peaceful, green surroundings of Residencial El Cielo. Just 15 minutes from downtown and 3 minutes from Xcalacoco Beach. Modern open-plan design, private pool, rooftop terrace, and no HOA fees. Delivered unfurnished — a rare opportunity to personalise a turnkey home in the Riviera Maya.</p>
+          <div class="villa-card-tags">
+            <span class="villa-tag">Private Pool</span>
+            <span class="villa-tag">Rooftop Terrace</span>
+            <span class="villa-tag">No HOA</span>
+            <span class="villa-tag">Playa del Carmen</span>
+            <span class="villa-tag">Xcalacoco Beach Nearby</span>
+          </div>
+          <div class="villa-card-ctas">
+            <a href="https://wa.me/529988654691?text=Hi%2C+I'm+interested+in+Casa+Girasol+in+Residencial+El+Cielo%2C+Playa+del+Carmen.+Could+we+arrange+a+visit%3F" class="villa-cta-btn whatsapp" target="_blank">
+              <span>💬</span> WhatsApp Us
+            </a>
+            <a href="https://www.properstar.co.uk/listing/118780234" class="villa-cta-btn listing" target="_blank">
+              <span>↗</span> View Listing
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
   <!-- MODAL -->
   <div class="modal-overlay" id="modal" onclick="closeModalOutside(event)">
     <div class="modal modal-wrap">
@@ -424,10 +649,10 @@
         'xcalacoco-5.png'
       ],
       'mareazul': [
-        'mareazul-1.png',
-        'mareazul-2.png',
+        'mareazul-4.png',
         'mareazul-3.png',
-        'mareazul-4.png'
+        'mareazul-2.png',
+        'mareazul-1.png'
       ],
       'awa': [
         'awa-1.png',
