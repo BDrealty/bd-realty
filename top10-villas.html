@@ -39,27 +39,32 @@
 
     /* VILLA CARDS */
     .villas-section { padding: 2rem 0 5rem; }
-    .villa-cards { display: flex; flex-direction: column; gap: 2.5rem; max-width: 1200px; margin: 0 auto; padding: 2.5rem 2.5rem 0; }
+    .villa-cards { display: flex; flex-direction: column; gap: 0; max-width: 1400px; margin: 0 auto; padding: 3rem 2.5rem 0; }
 
-    .villa-card { display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; border: 0.5px solid rgba(196,184,154,0.12); border-radius: 2px; animation: fadeUp 0.4s ease; }
+    .villa-card { display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; border-bottom: 0.5px solid #DDD8CE; animation: fadeUp 0.4s ease; }
+    .villa-card:first-child { border-top: 0.5px solid #DDD8CE; }
     .villa-card.hidden { display: none; }
-    .villa-card-img { min-height: 480px; background-size: cover; background-position: center; }
-    .villa-card-body { padding: 3rem; display: flex; flex-direction: column; gap: 1.25rem; background: #1A1910; }
-    .villa-card-eyebrow { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #7A6E60; }
-    .villa-card-name { font-family: 'EB Garamond', serif; font-size: clamp(24px, 2.5vw, 36px); color: #E8E0D0; font-weight: 400; line-height: 1.1; }
+    /* Alternate: even cards flip photo to right */
+    .villa-card:nth-child(even) .villa-card-img { order: 2; }
+    .villa-card:nth-child(even) .villa-card-body { order: 1; }
+
+    .villa-card-img { min-height: 500px; background-size: cover; background-position: center; }
+    .villa-card-body { padding: 3.5rem; display: flex; flex-direction: column; gap: 1.25rem; background: #fff; justify-content: center; }
+    .villa-card-eyebrow { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #9A7D5A; }
+    .villa-card-name { font-family: 'EB Garamond', serif; font-size: clamp(26px, 2.8vw, 40px); color: #2A2820; font-weight: 400; line-height: 1.1; }
     .villa-card-specs { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
     .villa-card-specs span { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #9A9080; }
-    .villa-spec-sep { color: rgba(196,184,154,0.3) !important; letter-spacing: 0 !important; }
-    .villa-card-price { font-family: 'EB Garamond', serif; font-size: 22px; color: #C4B89A; letter-spacing: 0.02em; }
-    .villa-card-desc { font-size: 14px; line-height: 1.9; color: #7A7060; font-weight: 300; flex-grow: 1; }
+    .villa-spec-sep { color: #DDD8CE !important; letter-spacing: 0 !important; }
+    .villa-card-price { font-family: 'EB Garamond', serif; font-size: 24px; color: #2A2820; letter-spacing: 0.02em; }
+    .villa-card-desc { font-size: 14px; line-height: 1.9; color: #6A6050; font-weight: 300; flex-grow: 1; }
     .villa-card-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-    .villa-tag { font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: #C4B89A; background: rgba(196,184,154,0.07); padding: 5px 12px; border-radius: 1px; border: 0.5px solid rgba(196,184,154,0.18); }
-    .villa-card-ctas { display: flex; gap: 0.75rem; margin-top: 0.5rem; padding-top: 1.25rem; border-top: 0.5px solid rgba(196,184,154,0.1); }
+    .villa-tag { font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: #9A7D5A; background: #F5F1EA; padding: 5px 12px; border-radius: 1px; border: 0.5px solid #DDD8CE; }
+    .villa-card-ctas { display: flex; gap: 0.75rem; margin-top: 0.5rem; padding-top: 1.5rem; border-top: 0.5px solid #DDD8CE; }
     .villa-cta-btn { display: flex; align-items: center; gap: 10px; padding: 13px 18px; border-radius: 1px; text-decoration: none; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; font-family: 'Raleway', sans-serif; transition: all 0.2s; }
     .villa-cta-btn.whatsapp { background: #25D366; color: #fff; }
     .villa-cta-btn.whatsapp:hover { background: #1da851; }
-    .villa-cta-btn.listing { background: transparent; color: #C4B89A; border: 0.5px solid rgba(196,184,154,0.4); }
-    .villa-cta-btn.listing:hover { background: rgba(196,184,154,0.08); }
+    .villa-cta-btn.listing { background: transparent; color: #2A2820; border: 0.5px solid #C4B89A; }
+    .villa-cta-btn.listing:hover { background: #F5F1EA; }
 
     /* EMPTY STATE */
     .empty-state { display: none; text-align: center; padding: 5rem 2rem; color: #9A9080; font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; }
@@ -67,8 +72,11 @@
 
     @media (max-width: 900px) {
       .villa-card { grid-template-columns: 1fr; }
-      .villa-card-img { min-height: 280px; }
-      .villa-cards { padding: 1.5rem 1.5rem 0; gap: 2rem; }
+      .villa-card:nth-child(even) .villa-card-img { order: 0; }
+      .villa-card:nth-child(even) .villa-card-body { order: 0; }
+      .villa-card-img { min-height: 300px; }
+      .villa-cards { padding: 1.5rem 0 0; }
+      .villa-card-body { padding: 2rem 1.5rem; }
     }
     @media (max-width: 600px) {
       .filter-tab { font-size: 14px; padding: 0.9rem 0.5rem; }
