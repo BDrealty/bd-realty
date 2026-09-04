@@ -109,6 +109,16 @@
       .modal-body { padding: 2rem 1.5rem; }
     }
 
+    /* VILLA CITY TABS */
+    .villa-city-wrap { max-width: 600px; margin: 0 auto 3rem; padding: 0 2.5rem; }
+    .villa-city-tabs { display: flex; gap: 0; border: 0.5px solid rgba(196,184,154,0.2); border-radius: 2px; overflow: hidden; }
+    .villa-city-tab { flex: 1; padding: 1rem; text-align: center; font-family: 'EB Garamond', serif; font-size: 18px; letter-spacing: 0.08em; color: #7A6E60; background: rgba(196,184,154,0.04); border: none; cursor: pointer; border-right: 0.5px solid rgba(196,184,154,0.2); transition: all 0.25s ease; }
+    .villa-city-tab:last-child { border-right: none; }
+    .villa-city-tab:hover { color: #C4B89A; background: rgba(196,184,154,0.08); }
+    .villa-city-tab.active { background: rgba(196,184,154,0.12); color: #E8E0D0; }
+    .villa-city-grid { display: none; }
+    .villa-city-grid.active { display: flex; flex-direction: column; gap: 2.5rem; max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; animation: fadeUp 0.4s ease; }
+
     /* VILLAS SECTION */
     .villas-section { padding: 5rem 0; background: #111009; }
     .villas-header { text-align: center; padding: 0 2.5rem 3.5rem; border-bottom: 0.5px solid rgba(196,184,154,0.1); margin-bottom: 3.5rem; }
@@ -116,7 +126,7 @@
     .villas-title { font-family: 'EB Garamond', serif; font-size: clamp(32px, 4vw, 54px); font-weight: 400; color: #E8E0D0; line-height: 1.1; margin-bottom: 1rem; }
     .villas-title em { font-style: italic; color: #C4B89A; }
     .villas-sub { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: #9A9080; font-weight: 300; max-width: 520px; margin: 0 auto; line-height: 1.8; }
-    .villa-cards { display: flex; flex-direction: column; gap: 2.5rem; max-width: 1200px; margin: 0 auto; padding: 0 2.5rem; }
+    .villa-cards { }
     .villa-card { display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; border: 0.5px solid rgba(196,184,154,0.12); border-radius: 2px; }
     .villa-card-img { min-height: 480px; background-size: cover; background-position: center; }
     .villa-card-body { padding: 3rem; display: flex; flex-direction: column; gap: 1.25rem; background: #1A1910; }
@@ -356,7 +366,16 @@
       <p class="villas-sub">Exclusive individual properties currently available. Each one is available to visit — reach out to book a tour.</p>
     </div>
 
-    <div class="villa-cards">
+    <div class="villa-city-wrap">
+      <div class="villa-city-tabs">
+        <button class="villa-city-tab active" onclick="selectVillaCity('tulum', this)">Tulum</button>
+        <button class="villa-city-tab" onclick="selectVillaCity('playa', this)">Playa del Carmen</button>
+        <button class="villa-city-tab" onclick="selectVillaCity('cancun', this)">Cancún</button>
+      </div>
+    </div>
+
+    <!-- TULUM VILLAS -->
+    <div class="villa-cards villa-city-grid active" id="villa-grid-tulum">
 
       <!-- Villa Coco Dar Lalla -->
       <div class="villa-card">
@@ -445,6 +464,11 @@
           </div>
         </div>
       </div>
+
+    </div>
+
+    <!-- PLAYA DEL CARMEN VILLAS -->
+    <div class="villa-cards villa-city-grid" id="villa-grid-playa">
 
       <!-- Senderos de Mayakoba -->
       <div class="villa-card">
@@ -539,6 +563,12 @@
       </div>
 
     </div>
+
+    <!-- CANCÚN VILLAS -->
+    <div class="villa-cards villa-city-grid" id="villa-grid-cancun">
+      <div style="padding: 4rem 2.5rem; text-align: center; color: #7A6E60; font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; letter-spacing: 0.05em;">No villas listed in Cancún at this time. <br><span style="font-size:14px;font-family:'Raleway',sans-serif;letter-spacing:0.1em;text-transform:uppercase;">Contact us for off-market options.</span></div>
+    </div>
+
   </div>
 
   <!-- MODAL -->
@@ -890,6 +920,13 @@
       document.querySelectorAll('.city-grid').forEach(g => g.classList.remove('active'));
       btn.classList.add('active');
       document.getElementById('grid-' + city).classList.add('active');
+    }
+
+    function selectVillaCity(city, btn) {
+      document.querySelectorAll('.villa-city-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.villa-city-grid').forEach(g => g.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('villa-grid-' + city).classList.add('active');
     }
 
     function openModal(id) {
