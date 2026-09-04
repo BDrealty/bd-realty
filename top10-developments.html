@@ -55,45 +55,67 @@
     .dev-card-cta-line { display: block; width: 30px; height: 0.5px; background: #C4B89A; transition: width 0.3s ease; }
     .dev-card:hover .dev-card-cta-line { width: 50px; }
 
-    /* MODAL */
-    .modal-overlay { position: fixed; inset: 0; background: rgba(17,16,9,0.7); backdrop-filter: blur(6px); z-index: 100; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.35s ease; padding: 2rem; }
+    /* FULL-SCREEN MODAL */
+    .modal-overlay { position: fixed; inset: 0; z-index: 200; background: #F5F1EA; overflow-y: auto; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
     .modal-overlay.open { opacity: 1; pointer-events: all; }
-    .modal { background: #F5F1EA; width: 80%; max-width: 1200px; border-radius: 2px; overflow: hidden; display: grid; grid-template-columns: 1fr 1fr; height: 80vh; transform: translateY(30px); transition: transform 0.35s ease; }
-    .modal-overlay.open .modal { transform: translateY(0); }
-    .modal-img { position: relative; min-height: 400px; background-size: cover; background-position: center; transition: background-image 0.4s ease; overflow: hidden; }
-    .modal-img-vignette { position: absolute; inset: 0; background: linear-gradient(to right, rgba(17,16,9,0.15), rgba(17,16,9,0)); }
-    .gallery-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(17,16,9,0.55); border: 0.5px solid rgba(196,184,154,0.3); color: #C4B89A; font-size: 22px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 5; transition: background 0.2s; line-height: 1; border-radius: 1px; padding: 0; }
-    .gallery-btn:hover { background: rgba(17,16,9,0.85); }
-    .gallery-btn.prev { left: 1rem; }
-    .gallery-btn.next { right: 1rem; }
-    .gallery-dots { position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%); display: flex; gap: 7px; z-index: 5; }
-    .gallery-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(196,184,154,0.35); cursor: pointer; transition: background 0.2s; border: none; padding: 0; }
-    .gallery-dot.active { background: #C4B89A; }
-    .modal-body { padding: 3rem 2.5rem; overflow-y: auto; }
-    .modal-close { position: absolute; top: 1.25rem; right: 1.5rem; background: none; border: none; cursor: pointer; font-size: 20px; color: #9A9080; transition: color 0.2s; z-index: 10; line-height: 1; }
-    .modal-close:hover { color: #2A2820; }
-    .modal-wrap { position: relative; }
-    .modal-eyebrow { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #7A6E60; margin-bottom: 0.75rem; }
-    .modal-title { font-family: 'EB Garamond', serif; font-size: clamp(26px, 3vw, 38px); color: #2A2820; line-height: 1.15; margin-bottom: 1.5rem; }
-    .modal-price { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #9A7D5A; line-height: 1.9; margin-top: 0.25rem; }
+    .modal-close { position: fixed; top: 1.5rem; right: 2rem; z-index: 300; background: rgba(245,241,234,0.9); border: 0.5px solid #DDD8CE; border-radius: 1px; cursor: pointer; font-size: 18px; color: #6B6452; width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; backdrop-filter: blur(4px); }
+    .modal-close:hover { color: #2A2820; background: #fff; }
+
+    /* GALLERY */
+    .modal-gallery { position: relative; width: 100%; height: 80vh; background: #111009; overflow: hidden; }
+    .modal-gallery-img { position: absolute; inset: 0; background-size: contain; background-position: center; background-repeat: no-repeat; opacity: 0; transition: opacity 0.5s ease; }
+    .modal-gallery-img.active { opacity: 1; }
+    .gallery-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(245,241,234,0.85); border: none; color: #2A2820; font-size: 20px; width: 46px; height: 46px; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 5; transition: background 0.2s; border-radius: 1px; }
+    .gallery-btn:hover { background: #fff; }
+    .gallery-btn.prev { left: 1.5rem; }
+    .gallery-btn.next { right: 1.5rem; }
+    .gallery-dots { position: absolute; bottom: 1.25rem; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 5; }
+    .gallery-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.4); cursor: pointer; transition: background 0.2s; border: none; padding: 0; }
+    .gallery-dot.active { background: #fff; }
+    .gallery-counter { position: absolute; bottom: 1.25rem; right: 1.5rem; font-size: 10px; letter-spacing: 0.12em; color: rgba(255,255,255,0.6); font-family: 'Raleway', sans-serif; }
+
+    /* MODAL CONTENT */
+    .modal-content { display: grid; grid-template-columns: 1fr 380px; max-width: 1200px; margin: 0 auto; padding: 3.5rem 2.5rem 5rem; gap: 4rem; }
+    .modal-left .modal-eyebrow { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #9A7D5A; margin-bottom: 0.75rem; }
+    .modal-left .modal-title { font-family: 'EB Garamond', serif; font-size: clamp(30px, 3.5vw, 48px); color: #2A2820; font-weight: 400; line-height: 1.1; margin-bottom: 1.25rem; }
+    .modal-left .modal-price-label { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: #9A7D5A; margin-bottom: 0.3rem; }
+    .modal-left .modal-price { font-family: 'EB Garamond', serif; font-size: 20px; color: #2A2820; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 0.5px solid #DDD8CE; }
     .modal-section { margin-bottom: 1.75rem; }
-    .modal-section-label { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: #7A6E60; margin-bottom: 0.5rem; }
-    .modal-section-text { font-size: 15px; font-weight: 400; color: #3A3530; line-height: 1.9; }
-    .modal-highlights { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem; }
+    .modal-section-label { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: #9A7D5A; margin-bottom: 0.6rem; }
+    .modal-section-text { font-size: 15px; line-height: 1.95; color: #3A3530; font-weight: 300; }
+    .modal-section-text p { margin-bottom: 1em; }
+    .modal-section-text p:last-child { margin-bottom: 0; }
+    .modal-highlights { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.6rem; }
     .modal-tag { display: inline-block; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: #2A2820; background: #DDD8CE; padding: 5px 12px; border-radius: 1px; }
-    .modal-agent { display: flex; align-items: center; gap: 1rem; margin-top: 2rem; padding-top: 1.5rem; border-top: 0.5px solid #DDD8CE; margin-bottom: 1.25rem; }
-    .modal-agent-photo { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; object-position: top; flex-shrink: 0; border: 0.5px solid #DDD8CE; }
-    .modal-agent-name { font-family: 'EB Garamond', serif; font-size: 17px; color: #2A2820; }
-    .modal-agent-role { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #7A6E60; margin-top: 2px; }
-    .modal-ctas { display: flex; flex-direction: column; gap: 0.75rem; }
-    .modal-cta-btn { display: flex; align-items: center; gap: 12px; padding: 14px 20px; border-radius: 1px; text-decoration: none; font-family: 'Raleway', sans-serif; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; transition: all 0.2s; }
+    .modal-position-tag { display: inline-block; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: #9A7D5A; background: transparent; border: 0.5px solid #DDD8CE; padding: 5px 12px; border-radius: 1px; }
+
+    /* RIGHT PANEL */
+    .modal-right { display: flex; flex-direction: column; gap: 0; }
+    .modal-agent-card { background: #fff; border: 0.5px solid #DDD8CE; border-radius: 2px; padding: 2rem; display: flex; align-items: center; gap: 1.25rem; margin-bottom: 1rem; }
+    .modal-agent-photo { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; object-position: top; flex-shrink: 0; border: 0.5px solid #DDD8CE; }
+    .modal-agent-name { font-family: 'EB Garamond', serif; font-size: 18px; color: #2A2820; }
+    .modal-agent-role { font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: #9A7D5A; margin-top: 3px; }
+    .modal-ctas { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.5rem; }
+    .modal-cta-btn { display: flex; align-items: center; gap: 12px; padding: 14px 20px; border-radius: 1px; text-decoration: none; font-family: 'Raleway', sans-serif; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; transition: all 0.2s; border: none; cursor: pointer; width: 100%; }
     .modal-cta-btn.whatsapp { background: #25D366; color: #fff; }
     .modal-cta-btn.whatsapp:hover { background: #1da851; }
     .modal-cta-btn.calendar { background: #2A2820; color: #E8E0D0; }
     .modal-cta-btn.calendar:hover { background: #9A7D5A; }
-    .modal-cta-btn.info { background: transparent; color: #2A2820; border: 0.5px solid #C4B89A; }
-    .modal-cta-btn.info:hover { background: #F5F1EA; }
-    .modal-cta-icon { font-size: 15px; line-height: 1; }
+    .modal-form { background: #fff; border: 0.5px solid #DDD8CE; border-radius: 2px; padding: 1.75rem; }
+    .modal-form-title { font-family: 'EB Garamond', serif; font-size: 18px; color: #2A2820; margin-bottom: 1.25rem; }
+    .form-field { margin-bottom: 0.9rem; }
+    .form-field label { display: block; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: #9A9080; margin-bottom: 0.4rem; }
+    .form-field input, .form-field textarea { width: 100%; padding: 10px 12px; border: 0.5px solid #DDD8CE; border-radius: 1px; font-family: 'Raleway', sans-serif; font-size: 13px; color: #2A2820; background: #F5F1EA; outline: none; transition: border-color 0.2s; }
+    .form-field input:focus, .form-field textarea:focus { border-color: #C4B89A; }
+    .form-field textarea { resize: vertical; min-height: 90px; }
+    .form-submit { width: 100%; padding: 13px; background: #2A2820; color: #E8E0D0; border: none; border-radius: 1px; font-family: 'Raleway', sans-serif; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; transition: background 0.2s; margin-top: 0.5rem; }
+    .form-submit:hover { background: #9A7D5A; }
+    .form-success { display: none; text-align: center; padding: 1.5rem; font-family: 'Cormorant Garamond', serif; font-size: 18px; color: #9A7D5A; }
+
+    @media (max-width: 1024px) {
+      .modal-content { grid-template-columns: 1fr; gap: 2.5rem; }
+      .modal-gallery { height: 55vw; min-height: 320px; }
+    }
 
     @media (max-width: 900px) {
       .city-grid.active { grid-template-columns: 1fr; gap: 0; background: transparent; }
@@ -571,56 +593,84 @@
 
   </div>
 
-  <!-- MODAL -->
-  <div class="modal-overlay" id="modal" onclick="closeModalOutside(event)">
-    <div class="modal modal-wrap">
-      <button class="modal-close" onclick="closeModal()">✕</button>
-      <div class="modal-img" id="modal-img">
-        <div class="modal-img-vignette"></div>
-        <button class="gallery-btn prev" id="gallery-prev" onclick="galleryNav(-1)">‹</button>
-        <button class="gallery-btn next" id="gallery-next" onclick="galleryNav(1)">›</button>
-        <div class="gallery-dots" id="gallery-dots"></div>
-      </div>
-      <div class="modal-body">
+  <!-- FULL-SCREEN MODAL -->
+  <div class="modal-overlay" id="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+
+    <div class="modal-gallery" id="modal-gallery">
+      <button class="gallery-btn prev" onclick="galleryNav(-1)">&#8592;</button>
+      <button class="gallery-btn next" onclick="galleryNav(1)">&#8594;</button>
+      <div class="gallery-dots" id="gallery-dots"></div>
+      <div class="gallery-counter" id="gallery-counter"></div>
+    </div>
+
+    <div class="modal-content">
+      <div class="modal-left">
         <div class="modal-eyebrow" id="modal-eyebrow"></div>
-        <h2 class="modal-title" id="modal-title"></h2>
+        <div class="modal-title" id="modal-title"></div>
+        <div class="modal-price-label">Pricing</div>
+        <div class="modal-price" id="modal-price"></div>
+
         <div class="modal-section">
-          <div class="modal-section-label">About</div>
-          <p class="modal-section-text" id="modal-bio"></p>
+          <div class="modal-section-label">About this development</div>
+          <div class="modal-section-text" id="modal-bio"></div>
         </div>
         <div class="modal-section">
           <div class="modal-section-label">Key highlights</div>
           <div class="modal-highlights" id="modal-highlights"></div>
         </div>
         <div class="modal-section">
-          <div class="modal-section-label">Why we love it</div>
+          <div class="modal-section-label">Why we recommend it</div>
           <p class="modal-section-text" id="modal-why"></p>
         </div>
         <div class="modal-section">
           <div class="modal-section-label">Positioning</div>
-          <span class="modal-tag" id="modal-position"></span>
+          <span class="modal-position-tag" id="modal-position"></span>
         </div>
-        <div class="modal-section">
-          <div class="modal-section-label">Pricing</div>
-          <div class="modal-price" id="modal-price"></div>
-        </div>
-        <div class="modal-agent">
+      </div>
+
+      <div class="modal-right">
+        <div class="modal-agent-card">
           <img id="modal-agent-photo" src="benjamin.jpg" alt="Agent" class="modal-agent-photo">
           <div>
             <div class="modal-agent-name" id="modal-agent-name">Benjamin Brasher</div>
-            <div class="modal-agent-role">B & D Realty · Riviera Maya</div>
+            <div class="modal-agent-role">B &amp; D Realty · Riviera Maya</div>
           </div>
         </div>
+
         <div class="modal-ctas">
           <a id="modal-whatsapp" href="#" class="modal-cta-btn whatsapp" target="_blank">
-            <span class="modal-cta-icon">💬</span> WhatsApp us about this
+            <span>💬</span> WhatsApp Benjamin
           </a>
           <a href="https://calendar.app.google/P7L3HxF1bsaGcLbD7" class="modal-cta-btn calendar" target="_blank">
-            <span class="modal-cta-icon">📅</span> Book a call
+            <span>📅</span> Book a Viewing
           </a>
-          <a id="modal-info" href="#" class="modal-cta-btn info">
-            <span class="modal-cta-icon">✉</span> Receive the full dossier
-          </a>
+        </div>
+
+        <div class="modal-form">
+          <div class="modal-form-title">Request Full Information</div>
+          <div id="form-fields">
+            <div class="form-field">
+              <label>Full Name</label>
+              <input type="text" id="form-name" placeholder="Your name">
+            </div>
+            <div class="form-field">
+              <label>Email Address</label>
+              <input type="email" id="form-email" placeholder="your@email.com">
+            </div>
+            <div class="form-field">
+              <label>Phone / WhatsApp</label>
+              <input type="tel" id="form-phone" placeholder="+1 000 000 0000">
+            </div>
+            <div class="form-field">
+              <label>Additional Information</label>
+              <textarea id="form-message" placeholder="Budget, timeline, unit type preference…"></textarea>
+            </div>
+            <button class="form-submit" onclick="submitForm()">Send Request</button>
+          </div>
+          <div class="form-success" id="form-success">
+            Thank you — we'll be in touch shortly.
+          </div>
         </div>
       </div>
     </div>
@@ -735,6 +785,8 @@
 
     let galleryPhotos = [];
     let galleryIndex = 0;
+    let currentDevWa = '';
+
     const developments = {
       'la-reserva': {
         wa: BEN,
@@ -932,73 +984,106 @@
     function openModal(id) {
       const d = developments[id];
       if (!d) return;
+
       document.getElementById('modal-eyebrow').textContent = d.eyebrow;
       document.getElementById('modal-title').textContent = d.title;
       document.getElementById('modal-price').textContent = d.price;
-      // Gallery setup
-      galleryPhotos = devPhotos[id] || (d.image ? [d.image] : []);
-      galleryIndex = 0;
-      updateGallery();
-      document.getElementById('modal-bio').innerHTML = d.bio.split('\n\n').map(p => `<p style="margin-bottom:1.1em">${p}</p>`).join('');
+      document.getElementById('modal-bio').innerHTML = d.bio.split('\n\n').map(p => `<p>${p}</p>`).join('');
       document.getElementById('modal-why').textContent = d.why;
       document.getElementById('modal-position').textContent = d.position;
+
       // Highlights
       const hl = document.getElementById('modal-highlights');
-      hl.innerHTML = '';
-      (d.highlights || []).forEach(h => {
-        const span = document.createElement('span');
-        span.className = 'modal-tag';
-        span.textContent = h;
-        hl.appendChild(span);
-      });
-      // Agent photo + name
+      hl.innerHTML = (d.highlights || []).map(h => `<span class="modal-tag">${h}</span>`).join('');
+
+      // Agent
       const isBen = d.wa.includes('529988654691');
       document.getElementById('modal-agent-photo').src = isBen ? 'benjamin.jpg' : 'jennifer.jpg';
       document.getElementById('modal-agent-name').textContent = isBen ? 'Benjamin Brasher' : 'Jennifer Duzant';
+      currentDevWa = d.wa;
+
       // WhatsApp CTA
       const msg = encodeURIComponent(`Hi — I'd like more information about ${d.title}.`);
       document.getElementById('modal-whatsapp').href = d.wa + msg;
-      // Info email
-      document.getElementById('modal-info').href = `mailto:brasher.benjamin@gmail.com?subject=Dossier Request: ${encodeURIComponent(d.title)}&body=Hi Ben, I'd like to receive the full dossier for ${encodeURIComponent(d.title)}.`;
-      document.getElementById('modal').classList.add('open');
+
+      // Gallery
+      galleryPhotos = devPhotos[id] || (d.image ? [d.image] : []);
+      galleryIndex = 0;
+      buildGallery();
+
+      // Reset form
+      document.getElementById('form-fields').style.display = '';
+      document.getElementById('form-success').style.display = 'none';
+      ['form-name','form-email','form-phone','form-message'].forEach(fid => {
+        document.getElementById(fid).value = '';
+      });
+
+      const modal = document.getElementById('modal');
+      modal.classList.add('open');
+      modal.scrollTop = 0;
       document.body.style.overflow = 'hidden';
     }
 
-    function updateGallery() {
-      const img = document.getElementById('modal-img');
-      if (galleryPhotos.length > 0) {
-        img.style.backgroundImage = `url('${galleryPhotos[galleryIndex]}')`;
-      }
-      // Show/hide nav buttons
-      const show = galleryPhotos.length > 1;
-      document.getElementById('gallery-prev').style.display = show ? 'flex' : 'none';
-      document.getElementById('gallery-next').style.display = show ? 'flex' : 'none';
-      // Dots
+    function buildGallery() {
+      const gallery = document.getElementById('modal-gallery');
+      gallery.querySelectorAll('.modal-gallery-img').forEach(el => el.remove());
+
+      currentPhotos = galleryPhotos;
+      currentPhotos.forEach((src, i) => {
+        const div = document.createElement('div');
+        div.className = 'modal-gallery-img' + (i === 0 ? ' active' : '');
+        div.style.backgroundImage = `url('${src}')`;
+        gallery.insertBefore(div, gallery.querySelector('.gallery-btn'));
+      });
+
       const dots = document.getElementById('gallery-dots');
-      dots.innerHTML = '';
-      if (show) {
-        galleryPhotos.forEach((_, i) => {
-          const d = document.createElement('button');
-          d.className = 'gallery-dot' + (i === galleryIndex ? ' active' : '');
-          d.onclick = () => { galleryIndex = i; updateGallery(); };
-          dots.appendChild(d);
-        });
-      }
+      dots.innerHTML = currentPhotos.map((_, i) =>
+        `<button class="gallery-dot${i===0?' active':''}" onclick="goToPhoto(${i})"></button>`
+      ).join('');
+
+      updateCounter();
+    }
+
+    let currentPhotos = [];
+
+    function updateCounter() {
+      document.getElementById('gallery-counter').textContent =
+        (galleryIndex + 1) + ' / ' + currentPhotos.length;
+      document.querySelectorAll('.gallery-dot').forEach((d, i) =>
+        d.classList.toggle('active', i === galleryIndex));
+      document.querySelectorAll('.modal-gallery-img').forEach((img, i) =>
+        img.classList.toggle('active', i === galleryIndex));
     }
 
     function galleryNav(dir) {
-      if (!galleryPhotos.length) return;
-      galleryIndex = (galleryIndex + dir + galleryPhotos.length) % galleryPhotos.length;
-      updateGallery();
+      if (!currentPhotos.length) return;
+      galleryIndex = (galleryIndex + dir + currentPhotos.length) % currentPhotos.length;
+      updateCounter();
+    }
+
+    function goToPhoto(i) {
+      galleryIndex = i;
+      updateCounter();
+    }
+
+    function submitForm() {
+      const name = document.getElementById('form-name').value.trim();
+      const email = document.getElementById('form-email').value.trim();
+      if (!name || !email) { alert('Please enter your name and email.'); return; }
+      const dev = document.getElementById('modal-title').textContent;
+      const phone = document.getElementById('form-phone').value.trim();
+      const msg = document.getElementById('form-message').value.trim();
+      const waText = encodeURIComponent(
+        `New enquiry for ${dev}\nName: ${name}\nEmail: ${email}${phone ? '\nPhone: '+phone : ''}${msg ? '\nMessage: '+msg : ''}`
+      );
+      window.open('https://wa.me/529988654691?text=' + waText, '_blank');
+      document.getElementById('form-fields').style.display = 'none';
+      document.getElementById('form-success').style.display = 'block';
     }
 
     function closeModal() {
       document.getElementById('modal').classList.remove('open');
       document.body.style.overflow = '';
-    }
-
-    function closeModalOutside(e) {
-      if (e.target === document.getElementById('modal')) closeModal();
     }
 
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
