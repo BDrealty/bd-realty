@@ -37,23 +37,30 @@
     .city-tab.active { background: #2A2820; color: #C4B89A; }
 
     /* DEVELOPMENTS STACK */
-    .devs-section { padding: 2rem 0 5rem; }
-    .city-grid { display: none; }
-    .city-grid.active { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(196,184,154,0.08); animation: fadeUp 0.4s ease; }
     @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+    .devs-section { padding: 2rem 0 5rem; }
+    .dev-cards { display: flex; flex-direction: column; max-width: 1400px; margin: 0 auto; padding: 3rem 2.5rem 0; }
 
-    .dev-card { cursor: pointer; position: relative; overflow: hidden; height: 42vh; min-height: 280px; background: #2A2820; }
-    .dev-card:hover .dev-card-img { transform: scale(1.04); }
-    .dev-card-img { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform 0.7s ease; }
-    .dev-card-vignette { position: absolute; inset: 0; background: linear-gradient(to top, rgba(17,16,9,0.85) 0%, rgba(17,16,9,0.3) 55%, rgba(17,16,9,0.05) 100%); }
-    .dev-card-content { position: absolute; bottom: 0; left: 0; right: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 2rem 2.5rem; }
-    .dev-card-num { font-family: 'EB Garamond', serif; font-size: 11px; color: #C4B89A; letter-spacing: 0.2em; margin-bottom: 0.75rem; opacity: 0.8; }
-    .dev-card-name { font-family: 'EB Garamond', serif; font-size: clamp(22px, 2.2vw, 36px); color: #E8E0D0; line-height: 1.1; }
-    .dev-card-price { font-size: 10px; letter-spacing: 0.12em; color: #C4B89A; margin-top: 0.4rem; text-transform: uppercase; }
-    .dev-card-cta { display: flex; align-items: center; gap: 10px; margin-top: 0.75rem; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(196,184,154,0.9); transition: gap 0.3s ease; }
-    .dev-card:hover .dev-card-cta { gap: 16px; }
-    .dev-card-cta-line { display: block; width: 30px; height: 0.5px; background: #C4B89A; transition: width 0.3s ease; }
-    .dev-card:hover .dev-card-cta-line { width: 50px; }
+    .dev-card { display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; border-bottom: 0.5px solid #DDD8CE; cursor: pointer; animation: fadeUp 0.4s ease; transition: opacity 0.2s; }
+    .dev-card:first-child { border-top: 0.5px solid #DDD8CE; }
+    .dev-card:hover { opacity: 0.92; }
+    .dev-card.hidden { display: none; }
+    .dev-card:nth-child(even) .dev-card-img { order: 2; }
+    .dev-card:nth-child(even) .dev-card-body { order: 1; }
+
+    .dev-card-img { min-height: 500px; background-size: cover; background-position: center; position: relative; }
+    .dev-card-img::after { content: 'View Development →'; position: absolute; bottom: 1.5rem; right: 1.5rem; background: rgba(255,255,255,0.92); font-family: 'Raleway', sans-serif; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: #2A2820; padding: 8px 14px; border-radius: 1px; opacity: 0; transition: opacity 0.3s; }
+    .dev-card:hover .dev-card-img::after { opacity: 1; }
+    .dev-card-body { padding: 3.5rem; display: flex; flex-direction: column; gap: 1rem; background: #fff; justify-content: center; }
+    .dev-card-eyebrow { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #9A7D5A; }
+    .dev-card-name { font-family: 'EB Garamond', serif; font-size: clamp(26px, 2.8vw, 42px); color: #2A2820; font-weight: 400; line-height: 1.1; }
+    .dev-card-specs { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+    .dev-card-specs span { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #9A9080; }
+    .dev-spec-sep { color: #DDD8CE !important; letter-spacing: 0 !important; }
+    .dev-card-price { font-family: 'EB Garamond', serif; font-size: 26px; color: #2A2820; letter-spacing: 0.01em; margin-top: 0.5rem; }
+
+    .empty-state-dev { display: none; text-align: center; padding: 5rem 2rem; color: #9A9080; font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; }
+    .empty-state-dev span { display: block; margin-top: 0.75rem; font-family: 'Raleway', sans-serif; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: #7A6E60; }
 
     /* FULL-SCREEN MODAL */
     .modal-overlay { position: fixed; inset: 0; z-index: 200; background: #F5F1EA; overflow-y: auto; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
@@ -118,17 +125,15 @@
     }
 
     @media (max-width: 900px) {
-      .city-grid.active { grid-template-columns: 1fr; gap: 0; background: transparent; }
-      .dev-card { height: 30vh; min-height: 220px; border-bottom: 0.5px solid rgba(196,184,154,0.1); }
-      .dev-card-content { padding: 2rem 2rem; }
-      .dev-card-name { font-size: clamp(22px, 5vw, 32px); }
-      .modal { grid-template-columns: 1fr; }
-      .modal-img { min-height: 260px; }
+      .dev-card { grid-template-columns: 1fr; }
+      .dev-card:nth-child(even) .dev-card-img { order: 0; }
+      .dev-card:nth-child(even) .dev-card-body { order: 0; }
+      .dev-card-img { min-height: 300px; }
+      .dev-cards { padding: 1.5rem 0 0; }
+      .dev-card-body { padding: 2rem 1.5rem; }
     }
     @media (max-width: 600px) {
-      .dev-card { height: 28vh; min-height: 180px; }
       .city-tab { font-size: 14px; padding: 0.9rem 0.5rem; }
-      .modal-body { padding: 2rem 1.5rem; }
     }
 
     /* VILLA CITY TABS */
@@ -191,192 +196,200 @@
   <div class="city-wrap">
     <div class="city-label">Choose a destination</div>
     <div class="city-tabs">
-      <button class="city-tab active" onclick="selectCity('tulum', this)">Tulum</button>
+      <button class="city-tab active" onclick="selectCity('all', this)">All</button>
+      <button class="city-tab" onclick="selectCity('tulum', this)">Tulum</button>
       <button class="city-tab" onclick="selectCity('playa', this)">Playa del Carmen</button>
       <button class="city-tab" onclick="selectCity('cancun', this)">Cancún</button>
     </div>
   </div>
 
   <div class="devs-section">
+    <div class="dev-cards" id="dev-cards">
 
-    <!-- TULUM -->
-    <div class="city-grid active" id="grid-tulum">
-
-      <div class="dev-card" onclick="openModal('la-reserva')">
-        <div class="dev-card-img" style="background-image:url('https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=85&fit=crop')"></div>
-        <div class="dev-card-vignette"></div>
-        <div class="dev-card-content">
-          <div class="dev-card-num">01 · Tulum</div>
+      <div class="dev-card" data-city="tulum" onclick="openModal('la-reserva')">
+        <div class="dev-card-img" style="background-image:url('la-reserva-1.jpg')"></div>
+        <div class="dev-card-body">
+          <div class="dev-card-eyebrow">Region 15 · Tulum</div>
           <div class="dev-card-name">La Reserva</div>
-          <div class="dev-card-price">From $380,000</div>
-          <div class="dev-card-cta"><span class="dev-card-cta-line"></span> View</div>
+          <div class="dev-card-specs">
+            <span>Studios · 1–3 Bed</span><span class="dev-spec-sep"> · </span><span>Delivered & Operating</span>
+          </div>
+          <div class="dev-card-price">From $260,000</div>
         </div>
       </div>
 
-      <div class="dev-card" onclick="openModal('aflora')">
-        <div class="dev-card-img" style="background-image:url('https://images.unsplash.com/photo-1540541338287-41700207dee6?w=800&q=85&fit=crop')"></div>
-        <div class="dev-card-vignette"></div>
-        <div class="dev-card-content">
-          <div class="dev-card-num">02 · Tulum</div>
+      <div class="dev-card" data-city="tulum" onclick="openModal('aflora')">
+        <div class="dev-card-img" style="background-image:url('aflora-1.jpg')"></div>
+        <div class="dev-card-body">
+          <div class="dev-card-eyebrow">Aldea Zama · Tulum</div>
           <div class="dev-card-name">Aflora</div>
+          <div class="dev-card-specs">
+            <span>1–3 Bed</span><span class="dev-spec-sep"> · </span><span>199 Residences</span><span class="dev-spec-sep"> · </span><span>Resort Living</span>
+          </div>
           <div class="dev-card-price">From $280,000</div>
-          <div class="dev-card-cta"><span class="dev-card-cta-line"></span> View</div>
         </div>
       </div>
 
-      <div class="dev-card" onclick="openModal('kaybe')">
-        <div class="dev-card-img" style="background-image:url('https://images.unsplash.com/photo-1445019980597-93fa8acb246c?w=800&q=85&fit=crop')"></div>
-        <div class="dev-card-vignette"></div>
-        <div class="dev-card-content">
-          <div class="dev-card-num">03 · Tulum</div>
+      <div class="dev-card" data-city="tulum" onclick="openModal('kaybe')">
+        <div class="dev-card-img" style="background-image:url('kaybe-1.png')"></div>
+        <div class="dev-card-body">
+          <div class="dev-card-eyebrow">Tulum</div>
           <div class="dev-card-name">KAYBÉ</div>
-          <div class="dev-card-price">From $320,000</div>
-          <div class="dev-card-cta"><span class="dev-card-cta-line"></span> View</div>
+          <div class="dev-card-specs">
+            <span>Lots & Villas</span><span class="dev-spec-sep"> · </span><span>Grupo Emerita</span>
+          </div>
+          <div class="dev-card-price">From $200,000</div>
         </div>
       </div>
 
-      <div class="dev-card" onclick="openModal('candela')">
-        <div class="dev-card-img" style="background-image:url('https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=800&q=85&fit=crop')"></div>
-        <div class="dev-card-vignette"></div>
-        <div class="dev-card-content">
-          <div class="dev-card-num">04 · Tulum</div>
+      <div class="dev-card" data-city="tulum" onclick="openModal('candela')">
+        <div class="dev-card-img" style="background-image:url('candela-1.jpg')"></div>
+        <div class="dev-card-body">
+          <div class="dev-card-eyebrow">Tulum</div>
           <div class="dev-card-name">Candela</div>
+          <div class="dev-card-specs">
+            <span>Boutique Studios</span><span class="dev-spec-sep"> · </span><span>Rooftop Jacuzzi</span><span class="dev-spec-sep"> · </span><span>12 Buildings</span>
+          </div>
           <div class="dev-card-price">From $250,000</div>
-          <div class="dev-card-cta"><span class="dev-card-cta-line"></span> View</div>
         </div>
       </div>
 
-      <div class="dev-card" onclick="openModal('azulik')">
-        <div class="dev-card-img" style="background-image:url('https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?w=800&q=85&fit=crop')"></div>
-        <div class="dev-card-vignette"></div>
-        <div class="dev-card-content">
-          <div class="dev-card-num">05 · Tulum</div>
-          <div class="dev-card-name">Azulik</div>
+      <div class="dev-card" data-city="tulum" onclick="openModal('azulik')">
+        <div class="dev-card-img" style="background-image:url('https://azulik.com/wp-content/uploads/2026/03/residences-1024x576.webp')"></div>
+        <div class="dev-card-body">
+          <div class="dev-card-eyebrow">Aldea Zama · Tulum</div>
+          <div class="dev-card-name">Azulik Residences</div>
+          <div class="dev-card-specs">
+            <span>1–2 Bed</span><span class="dev-spec-sep"> · </span><span>84 Units</span><span class="dev-spec-sep"> · </span><span>Delivery Dec 2027</span>
+          </div>
           <div class="dev-card-price">From $650,000</div>
-          <div class="dev-card-cta"><span class="dev-card-cta-line"></span> View</div>
         </div>
       </div>
 
-    </div>
-
-    <!-- PLAYA DEL CARMEN -->
-    <div class="city-grid" id="grid-playa">
-
-      <div class="dev-card" onclick="openModal('rosewood')">
-        <div class="dev-card-img" style="background-image:url('https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&q=85&fit=crop')"></div>
-        <div class="dev-card-vignette"></div>
-        <div class="dev-card-content">
-          <div class="dev-card-num">01 · Playa</div>
+      <div class="dev-card" data-city="playa" onclick="openModal('rosewood')">
+        <div class="dev-card-img" style="background-image:url('rosewood-1.png')"></div>
+        <div class="dev-card-body">
+          <div class="dev-card-eyebrow">Mayakoba · Playa del Carmen</div>
           <div class="dev-card-name">Rosewood Mayakoba</div>
-          <div class="dev-card-price">From $1,200,000</div>
-          <div class="dev-card-cta"><span class="dev-card-cta-line"></span> View</div>
+          <div class="dev-card-specs">
+            <span>2–4 Bed</span><span class="dev-spec-sep"> · </span><span>Lagoon Villas</span><span class="dev-spec-sep"> · </span><span>Fully Delivered</span>
+          </div>
+          <div class="dev-card-price">Price on Request</div>
         </div>
       </div>
 
-      <div class="dev-card" onclick="openModal('xcalacoco')">
-        <div class="dev-card-img" style="background-image:url('https://images.unsplash.com/photo-1592595896551-12b371d546d5?w=800&q=85&fit=crop')"></div>
-        <div class="dev-card-vignette"></div>
-        <div class="dev-card-content">
-          <div class="dev-card-num">02 · Playa</div>
+      <div class="dev-card" data-city="playa" onclick="openModal('xcalacoco')">
+        <div class="dev-card-img" style="background-image:url('xcalacoco-1.png')"></div>
+        <div class="dev-card-body">
+          <div class="dev-card-eyebrow">North Playa · Playa del Carmen</div>
           <div class="dev-card-name">Distrito Xcalacoco</div>
-          <div class="dev-card-price">From $220,000</div>
-          <div class="dev-card-cta"><span class="dev-card-cta-line"></span> View</div>
+          <div class="dev-card-specs">
+            <span>1–3 Bed + Penthouses</span><span class="dev-spec-sep"> · </span><span>Beach Club</span><span class="dev-spec-sep"> · </span><span>Nov 2026</span>
+          </div>
+          <div class="dev-card-price">From $243,000</div>
         </div>
       </div>
 
-      <div class="dev-card" onclick="openModal('mareazul')">
-        <div class="dev-card-img" style="background-image:url('https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=800&q=85&fit=crop')"></div>
-        <div class="dev-card-vignette"></div>
-        <div class="dev-card-content">
-          <div class="dev-card-num">03 · Playa</div>
+      <div class="dev-card" data-city="playa" onclick="openModal('mareazul')">
+        <div class="dev-card-img" style="background-image:url('mareazul-4.png')"></div>
+        <div class="dev-card-body">
+          <div class="dev-card-eyebrow">Playa del Carmen</div>
           <div class="dev-card-name">Mareazul</div>
+          <div class="dev-card-specs">
+            <span>1–3 Bed</span><span class="dev-spec-sep"> · </span><span>3.5km Beachfront</span><span class="dev-spec-sep"> · </span><span>Golf · Beach Club</span>
+          </div>
           <div class="dev-card-price">From $350,000</div>
-          <div class="dev-card-cta"><span class="dev-card-cta-line"></span> View</div>
         </div>
       </div>
 
-      <div class="dev-card" onclick="openModal('awa')">
-        <div class="dev-card-img" style="background-image:url('https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800&q=85&fit=crop')"></div>
-        <div class="dev-card-vignette"></div>
-        <div class="dev-card-content">
-          <div class="dev-card-num">04 · Playa</div>
+      <div class="dev-card" data-city="playa" onclick="openModal('awa')">
+        <div class="dev-card-img" style="background-image:url('awa-1.png')"></div>
+        <div class="dev-card-body">
+          <div class="dev-card-eyebrow">Playacar · Playa del Carmen</div>
           <div class="dev-card-name">AWA Playacar</div>
+          <div class="dev-card-specs">
+            <span>1–2 Bed</span><span class="dev-spec-sep"> · </span><span>163m Pool</span><span class="dev-spec-sep"> · </span><span>Caribbean Beach</span>
+          </div>
           <div class="dev-card-price">From $290,000</div>
-          <div class="dev-card-cta"><span class="dev-card-cta-line"></span> View</div>
         </div>
       </div>
 
-      <div class="dev-card" onclick="openModal('viceroy')">
-        <div class="dev-card-img" style="background-image:url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=85&fit=crop')"></div>
-        <div class="dev-card-vignette"></div>
-        <div class="dev-card-content">
-          <div class="dev-card-num">05 · Playa</div>
+      <div class="dev-card" data-city="playa" onclick="openModal('viceroy')">
+        <div class="dev-card-img" style="background-image:url('viceroy-1.png')"></div>
+        <div class="dev-card-body">
+          <div class="dev-card-eyebrow">Downtown · Playa del Carmen</div>
           <div class="dev-card-name">Viceroy Residences</div>
-          <div class="dev-card-price">From $480,000</div>
-          <div class="dev-card-cta"><span class="dev-card-cta-line"></span> View</div>
+          <div class="dev-card-specs">
+            <span>1–4 Bed</span><span class="dev-spec-sep"> · </span><span>Beachfront</span><span class="dev-spec-sep"> · </span><span>Branded Hotel Service</span>
+          </div>
+          <div class="dev-card-price">From $400,000</div>
+        </div>
+      </div>
+
+      <div class="dev-card" data-city="cancun" onclick="openModal('sls')">
+        <div class="dev-card-img" style="background-image:url('sls-1.png')"></div>
+        <div class="dev-card-body">
+          <div class="dev-card-eyebrow">Puerto Cancún · Cancún</div>
+          <div class="dev-card-name">SLS Cancún</div>
+          <div class="dev-card-specs">
+            <span>1–4 Bed</span><span class="dev-spec-sep"> · </span><span>Marina · Golf · Beach</span>
+          </div>
+          <div class="dev-card-price">From $1,097,000</div>
+        </div>
+      </div>
+
+      <div class="dev-card" data-city="cancun" onclick="openModal('shark')">
+        <div class="dev-card-img" style="background-image:url('shark-2.png')"></div>
+        <div class="dev-card-body">
+          <div class="dev-card-eyebrow">Puerto Cancún · Cancún</div>
+          <div class="dev-card-name">Shark Tower</div>
+          <div class="dev-card-specs">
+            <span>134 Residences</span><span class="dev-spec-sep"> · </span><span>6 Mansions</span><span class="dev-spec-sep"> · </span><span>Sold Out · Resales</span>
+          </div>
+          <div class="dev-card-price">From $892,000</div>
+        </div>
+      </div>
+
+      <div class="dev-card" data-city="cancun" onclick="openModal('aria')">
+        <div class="dev-card-img" style="background-image:url('aria-2.png')"></div>
+        <div class="dev-card-body">
+          <div class="dev-card-eyebrow">Puerto Cancún · Cancún</div>
+          <div class="dev-card-name">Aria Puerto Cancún</div>
+          <div class="dev-card-specs">
+            <span>1–3 Bed · 190–600 m²</span><span class="dev-spec-sep"> · </span><span>Private Pier</span>
+          </div>
+          <div class="dev-card-price">From $420,000</div>
+        </div>
+      </div>
+
+      <div class="dev-card" data-city="cancun" onclick="openModal('la-amada')">
+        <div class="dev-card-img" style="background-image:url('la-amada-1.png')"></div>
+        <div class="dev-card-body">
+          <div class="dev-card-eyebrow">Playa Mujeres · Cancún</div>
+          <div class="dev-card-name">La Amada</div>
+          <div class="dev-card-specs">
+            <span>1–3 Bed</span><span class="dev-spec-sep"> · </span><span>3km Beach</span><span class="dev-spec-sep"> · </span><span>Greg Norman Golf</span>
+          </div>
+          <div class="dev-card-price">From $380,000</div>
+        </div>
+      </div>
+
+      <div class="dev-card" data-city="cancun" onclick="openModal('st-regis')">
+        <div class="dev-card-img" style="background-image:url('https://srrcostamujeres.com/images/residences/banner.jpg')"></div>
+        <div class="dev-card-body">
+          <div class="dev-card-eyebrow">Costa Mujeres · Cancún</div>
+          <div class="dev-card-name">St. Regis Costa Mujeres</div>
+          <div class="dev-card-specs">
+            <span>2–4 Bed · 235–900 m²</span><span class="dev-spec-sep"> · </span><span>SHA Wellness · 24/7 Butler</span>
+          </div>
+          <div class="dev-card-price">From $2,064,000</div>
         </div>
       </div>
 
     </div>
-
-    <!-- CANCÚN -->
-    <div class="city-grid" id="grid-cancun">
-
-      <div class="dev-card" onclick="openModal('sls')">
-        <div class="dev-card-img" style="background-image:url('https://images.unsplash.com/photo-1586375300773-8384e3e4916f?w=800&q=85&fit=crop')"></div>
-        <div class="dev-card-vignette"></div>
-        <div class="dev-card-content">
-          <div class="dev-card-num">01 · Cancún</div>
-          <div class="dev-card-name">SLS Bahia Beach</div>
-          <div class="dev-card-price">From $550,000</div>
-          <div class="dev-card-cta"><span class="dev-card-cta-line"></span> View</div>
-        </div>
-      </div>
-
-      <div class="dev-card" onclick="openModal('shark')">
-        <div class="dev-card-img" style="background-image:url('https://cdn.mycasa.mx/public/uploads/posts/ec321fc3-d57d-475a-9362-f0ed1cbc2ca0.png')"></div>
-        <div class="dev-card-vignette"></div>
-        <div class="dev-card-content">
-          <div class="dev-card-num">02 · Cancún</div>
-          <div class="dev-card-name">Shark Tower</div>
-          <div class="dev-card-price">From $892,000</div>
-          <div class="dev-card-cta"><span class="dev-card-cta-line"></span> View</div>
-        </div>
-      </div>
-
-      <div class="dev-card" onclick="openModal('aria')">
-        <div class="dev-card-img" style="background-image:url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=85&fit=crop')"></div>
-        <div class="dev-card-vignette"></div>
-        <div class="dev-card-content">
-          <div class="dev-card-num">03 · Cancún</div>
-          <div class="dev-card-name">Aria</div>
-          <div class="dev-card-price">From $420,000</div>
-          <div class="dev-card-cta"><span class="dev-card-cta-line"></span> View</div>
-        </div>
-      </div>
-
-      <div class="dev-card" onclick="openModal('la-amada')">
-        <div class="dev-card-img" style="background-image:url('https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=85&fit=crop')"></div>
-        <div class="dev-card-vignette"></div>
-        <div class="dev-card-content">
-          <div class="dev-card-num">04 · Cancún</div>
-          <div class="dev-card-name">La Amada</div>
-          <div class="dev-card-price">From $380,000</div>
-          <div class="dev-card-cta"><span class="dev-card-cta-line"></span> View</div>
-        </div>
-      </div>
-
-      <div class="dev-card" onclick="openModal('st-regis')">
-        <div class="dev-card-img" style="background-image:url('https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800&q=85&fit=crop')"></div>
-        <div class="dev-card-vignette"></div>
-        <div class="dev-card-content">
-          <div class="dev-card-num">05 · Cancún</div>
-          <div class="dev-card-name">St. Regis Costa Mujeres</div>
-          <div class="dev-card-price">From $1,500,000</div>
-          <div class="dev-card-cta"><span class="dev-card-cta-line"></span> View</div>
-        </div>
-      </div>
-
+    <div class="empty-state-dev" id="empty-state-dev">
+      No developments listed in this area at this time.
+      <span>Contact us for off-market options</span>
     </div>
   </div>
 
@@ -955,23 +968,20 @@
       }
     };
 
-    // Update card backgrounds with real development photos
-    document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('.dev-card').forEach(card => {
-        const match = card.getAttribute('onclick') && card.getAttribute('onclick').match(/'([^']+)'/);
-        const id = match && match[1];
-        if (id && devPhotos[id] && devPhotos[id][0]) {
-          const img = card.querySelector('.dev-card-img');
-          if (img) img.style.backgroundImage = `url('${devPhotos[id][0]}')`;
-        }
-      });
-    });
-
     function selectCity(city, btn) {
       document.querySelectorAll('.city-tab').forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('.city-grid').forEach(g => g.classList.remove('active'));
       btn.classList.add('active');
-      document.getElementById('grid-' + city).classList.add('active');
+      const cards = document.querySelectorAll('.dev-card');
+      let visible = 0;
+      cards.forEach(card => {
+        if (city === 'all' || card.dataset.city === city) {
+          card.classList.remove('hidden');
+          visible++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+      document.getElementById('empty-state-dev').style.display = visible === 0 ? 'block' : 'none';
     }
 
     function selectVillaCity(city, btn) {
@@ -1091,5 +1101,6 @@
 
   <script src="lang.js"></script>
   <script>if (typeof bdInitLang === 'function') bdInitLang();</script>
+  <script src="guide-cta.js"></script>
 </body>
 </html>

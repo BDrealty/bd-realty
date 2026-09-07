@@ -68,6 +68,12 @@
     .success-title { font-family: 'EB Garamond', serif; font-size: 26px; color: #2A2820; margin-bottom: 0.5rem; }
     .success-sub { font-size: 15px; font-weight: 400; color: #3A3530; line-height: 1.8; margin-bottom: 1.5rem; }
     .success-btn { display: inline-block; background: #2A2820; color: #F5F1EA; font-family: 'Raleway', sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; padding: 14px 28px; text-decoration: none; border-radius: 1px; }
+    .success-btn:hover { background: #9A7D5A; }
+    .success-alt { margin-top: 1.75rem; font-size: 13px; color: #7A6E60; line-height: 1.7; }
+    .success-alt a { color: #9A7D5A; text-decoration: none; border-bottom: 0.5px solid rgba(154,125,90,0.4); }
+    .success-alt a:hover { color: #2A2820; border-bottom-color: #2A2820; }
+    .form-submit:disabled { opacity: 0.55; cursor: default; }
+    .form-error { font-size: 12px; color: #B3382C; text-align: center; letter-spacing: 0.04em; }
 
     @media (max-width: 768px) {
       body { font-size: 15px; }
@@ -117,15 +123,15 @@
 
         <form class="form" id="guideForm" onsubmit="submitGuide(event)">
           <div class="form-row">
-            <input type="text" placeholder="First name" required>
-            <input type="text" placeholder="Last name">
+            <input type="text" id="gFirst" name="firstName" placeholder="First name" required>
+            <input type="text" id="gLast" name="lastName" placeholder="Last name">
           </div>
-          <input type="email" placeholder="Email address" required>
-          <input type="tel" placeholder="Phone / WhatsApp">
+          <input type="email" id="gEmail" name="email" placeholder="Email address" required>
+          <input type="tel" id="gPhone" name="phone" placeholder="Phone / WhatsApp">
 
           <div>
             <span class="form-label">Where are you in the process?</span>
-            <select id="stage" onchange="this.classList.add('filled')" required>
+            <select id="gStage" name="stage" onchange="this.classList.add('filled')" required>
               <option value="" disabled selected>Select one</option>
               <option>Just researching</option>
               <option>Actively looking</option>
@@ -136,7 +142,7 @@
 
           <div>
             <span class="form-label">Preferred location</span>
-            <select onchange="this.classList.add('filled')">
+            <select id="gLocation" name="location" onchange="this.classList.add('filled')">
               <option value="" disabled selected>Select one</option>
               <option>Cancun</option>
               <option>Playa del Carmen</option>
@@ -147,7 +153,7 @@
 
           <div>
             <span class="form-label">Budget range</span>
-            <select onchange="this.classList.add('filled')">
+            <select id="gBudget" name="budget" onchange="this.classList.add('filled')">
               <option value="" disabled selected>Select one</option>
               <option>Under $300,000 USD</option>
               <option>$300,000 – $600,000 USD</option>
@@ -156,16 +162,17 @@
             </select>
           </div>
 
-          <button type="submit" class="form-submit" data-i18n="guide.btn">Download the guide →</button>
-          <p class="form-note">No spam. No pressure. Just the guide.</p>
+          <button type="submit" class="form-submit" id="gSubmit" data-i18n="guide.btn">Download the guide →</button>
+          <p class="form-note" id="gNote">No spam. No pressure. Just the guide.</p>
         </form>
       </div>
 
       <div class="success" id="successMsg">
         <div class="success-icon">✦</div>
         <div class="success-title" data-i18n="guide.success.title">Your guide is ready.</div>
-        <p class="success-sub">Click below to download. We'll be in touch if you'd like to talk through any of it.</p>
-        <a href="Buyers%20Guide%20Ben%20new%20B%26D%20REalty" download="BD_Buyers_Guide_Mexico.pdf" class="success-btn">Download now →</a>
+        <p class="success-sub">Your download should have started automatically. If it didn't, use the button below.</p>
+        <a href="buyers-guide.pdf" download="BD_Buyers_Guide_Mexico.pdf" class="success-btn">Download now →</a>
+        <p class="success-alt">Questions as you read it? <a href="https://wa.me/529988654691?text=Hi+Benjamin%2C+I+just+downloaded+the+Buyer%27s+Guide+and+have+a+question." target="_blank">Message Benjamin directly →</a></p>
       </div>
     </div>
   </div>
@@ -211,10 +218,87 @@
   </div>
 
   <script>
-    function submitGuide(e) {
-      e.preventDefault();
+    /* ------------------------------------------------------------------
+       LEAD DELIVERY — paste your Formspree endpoint between the quotes.
+       Get it free at formspree.io (create a form, copy the URL it gives
+       you). Until it's filled in, the download still works perfectly —
+       you just won't receive the lead.
+
+       To switch to a CRM later, replace this one URL. Nothing else changes.
+    ------------------------------------------------------------------ */
+    var FORM_ENDPOINT = '';
+
+    var PDF_FILE = 'buyers-guide.pdf';
+    var PDF_NAME = 'BD_Buyers_Guide_Mexico.pdf';
+
+    function triggerDownload() {
+      var a = document.createElement('a');
+      a.href = PDF_FILE;
+      a.download = PDF_NAME;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+
+    function showSuccess() {
       document.getElementById('formWrap').style.display = 'none';
       document.getElementById('successMsg').style.display = 'block';
+    }
+
+    function submitGuide(e) {
+      e.preventDefault();
+
+      var val = function (id) {
+        var el = document.getElementById(id);
+        return el && el.value ? el.value.trim() : '';
+      };
+
+      var lead = {
+        firstName: val('gFirst'),
+        lastName: val('gLast'),
+        email: val('gEmail'),
+        phone: val('gPhone'),
+        stage: val('gStage'),
+        location: val('gLocation'),
+        budget: val('gBudget'),
+        source: 'Buyer’s Guide download',
+        page: window.location.href,
+        submittedAt: new Date().toLocaleString('en-GB', { timeZone: 'America/Cancun' }) + ' (Cancun)'
+      };
+
+      lead._subject = 'New guide download — ' + lead.firstName + ' ' + lead.lastName
+        + (lead.stage ? ' (' + lead.stage + ')' : '');
+
+      var btn = document.getElementById('gSubmit');
+      btn.disabled = true;
+      btn.textContent = 'Preparing your guide…';
+
+      /* The download is never blocked by the lead-capture request. */
+      var finish = function () {
+        triggerDownload();
+        showSuccess();
+      };
+
+      if (!FORM_ENDPOINT) {
+        finish();
+        return;
+      }
+
+      var done = false;
+      var settle = function () {
+        if (done) return;
+        done = true;
+        finish();
+      };
+
+      /* Don't let a slow or failed request hold up the download. */
+      setTimeout(settle, 3500);
+
+      fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(lead)
+      }).then(settle).catch(settle);
     }
   </script>
 
