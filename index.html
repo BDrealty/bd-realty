@@ -103,7 +103,11 @@
     @media (max-width: 768px) {
       body { font-size: 15px; }
       .nav { padding: 1.25rem 1.5rem; } .nav-logo { font-size: 18px; } .nav-inquiry { display: none; }
-      .hero-content { padding: 2rem 1.5rem; }
+      .hero { height: 56vw; min-height: 240px; }
+      .hero-slide { background-size: contain; background-repeat: no-repeat; background-position: center center; }
+      .hero-dots { display: none; }
+      .hero-content { padding: 1rem 1.5rem; }
+      .hero-box { padding: 13px 20px; font-size: 10px; } .hero-box.featured { padding: 16px 28px; font-size: 11px; }
       .locations { grid-template-columns: 1fr; }
       .location-panel { height: 70vw; }
       .location-panel:not(:last-child)::after { display: none; }
