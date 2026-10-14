@@ -1,0 +1,19 @@
+UPLOAD THESE TO GITHUB
+======================
+Session: 14 October 2026 — Rentals pages
+
+Everything in this folder changed in this session.
+Select all (Cmd+A), drag into the GitHub repo, overwrite when asked.
+
+  rentals-long-term.html   NEW — 10 long-term rentals
+  rentals-vacation.html    NEW — vacation rentals (The Leaf)
+  index.html               hero buttons now Sell / Buy / Rent
+                           ("Buy" previously pointed at buy.html, a 404)
+  sitemap.xml              + both rental pages
+  og-rentals*.jpg          social preview cards
+  rent-*.jpg               117 rental photos
+
+Do NOT upload: _UPLOAD/ itself, _tools/, or the .md note files.
+
+After uploading you can delete this whole _UPLOAD folder —
+it is only a staging copy. The originals stay in the Website folder.
