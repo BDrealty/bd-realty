@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Long Term Rentals in Playa del Carmen | B &amp; D Realty</title>
-  <meta name="description" content="Long-term rental houses and apartments in Playa del Carmen — furnished and unfurnished, from $13,500 MXN per month. Beachfront, Playacar, Privanza del Mar and more.">
+  <title>Long Term Rentals in Playa del Carmen &amp; Tulum | B &amp; D Realty</title>
+  <meta name="description" content="Long-term rental houses, villas and apartments in Playa del Carmen and Tulum — furnished and unfurnished, from $13,500 MXN per month. Beachfront, Playacar, Privanza del Mar and more.">
 
   <link rel="canonical" href="https://www.bdrealty.mx/rentals-long-term.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="B &amp; D Realty">
-  <meta property="og:title" content="Long Term Rentals in Playa del Carmen | B &amp; D Realty">
-  <meta property="og:description" content="Long-term rental houses and apartments in Playa del Carmen — furnished and unfurnished, from $13,500 MXN per month. Beachfront, Playacar, Privanza del Mar and more.">
+  <meta property="og:title" content="Long Term Rentals in Playa del Carmen &amp; Tulum | B &amp; D Realty">
+  <meta property="og:description" content="Long-term rental houses, villas and apartments in Playa del Carmen and Tulum — furnished and unfurnished, from $13,500 MXN per month. Beachfront, Playacar, Privanza del Mar and more.">
   <meta property="og:url" content="https://www.bdrealty.mx/rentals-long-term.html">
   <meta property="og:image" content="https://www.bdrealty.mx/og-rentals.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Long Term Rentals in Playa del Carmen | B &amp; D Realty">
-  <meta name="twitter:description" content="Long-term rental houses and apartments in Playa del Carmen — furnished and unfurnished, from $13,500 MXN per month. Beachfront, Playacar, Privanza del Mar and more.">
+  <meta name="twitter:description" content="Long-term rental houses, villas and apartments in Playa del Carmen and Tulum — furnished and unfurnished, from $13,500 MXN per month. Beachfront, Playacar, Privanza del Mar and more.">
   <meta name="twitter:image" content="https://www.bdrealty.mx/og-rentals.jpg">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
   <meta name="geo.region" content="MX-ROO">
@@ -34,7 +34,7 @@
   "@context": "https://schema.org",
   "@type": "CollectionPage",
   "name": "Long Term Rentals in Playa del Carmen",
-  "description": "Long-term rental houses and apartments in Playa del Carmen — furnished and unfurnished, from $13,500 MXN per month. Beachfront, Playacar, Privanza del Mar and more.",
+  "description": "Long-term rental houses, villas and apartments in Playa del Carmen and Tulum — furnished and unfurnished, from $13,500 MXN per month. Beachfront, Playacar, Privanza del Mar and more.",
   "url": "https://www.bdrealty.mx/rentals-long-term.html",
   "publisher": {
     "@id": "https://www.bdrealty.mx/#organization"
@@ -172,7 +172,15 @@
       .nav-cta{display:none}
       .foot{flex-direction:column;align-items:stretch;gap:.8rem}
       .wa{justify-content:center}
-    }</style>
+    }
+    .cities{display:flex;justify-content:center;gap:.6rem;flex-wrap:wrap;padding:1.6rem 1.25rem 0}
+    .city{font-family:'Raleway',sans-serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#6B6250;background:transparent;border:.5px solid #CFC7B6;border-radius:999px;padding:10px 20px;cursor:pointer;transition:all .2s}
+    .city:hover{border-color:#9A7D5A;color:#2A2820}
+    .cities-label{width:100%;text-align:center;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:#9A9080;margin-bottom:.2rem}
+    .city.active{background:#2A2820;border-color:#2A2820;color:#F0E9DA}
+    .card.hidden{display:none}
+    .empty{display:none;text-align:center;font-family:'EB Garamond',serif;font-size:20px;color:#6B6452;padding:3rem 1rem}
+  </style>
 </head>
 <body>
 
@@ -193,7 +201,7 @@
   <div class="hero">
     <div class="hero-eyebrow">Rentals</div>
     <h1 class="hero-title">Long Term <em>Rentals</em></h1>
-    <p class="hero-sub">Houses and apartments available now in Playa del Carmen, on 12-month leases.</p>
+    <p class="hero-sub">Houses, villas and apartments available now in Playa del Carmen and Tulum, on 12-month leases.</p>
   </div>
 
   <div class="tabs">
@@ -201,10 +209,47 @@
     <a class="tab" href="rentals-vacation.html">Vacation</a>
   </div>
 
+  <div class="cities" role="tablist" aria-label="Choose a city">
+    <div class="cities-label">Choose a destination</div>
+    <button class="city active" data-city="all" onclick="setCity('all')">All</button>
+    <button class="city" data-city="tulum" onclick="setCity('tulum')">Tulum</button>
+    <button class="city" data-city="playa" onclick="setCity('playa')">Playa del Carmen</button>
+  </div>
   <div class="wrap">
-    <div class="count">12 properties available</div>
+    <div class="count" id="count">13 properties available</div>
     <div class="grid">
-      <article class="card">
+      <article class="card" data-city="tulum">
+      <div class="gal">
+        <div class="gal-track" id="t-kahaallt">
+          <img src="rent-kahaallt-1.jpg" alt="Villa Kahaal — photo 1" loading="lazy">
+          <img src="rent-kahaallt-2.jpg" alt="Villa Kahaal — photo 2" loading="lazy">
+          <img src="rent-kahaallt-3.jpg" alt="Villa Kahaal — photo 3" loading="lazy">
+          <img src="rent-kahaallt-4.jpg" alt="Villa Kahaal — photo 4" loading="lazy">
+          <img src="rent-kahaallt-5.jpg" alt="Villa Kahaal — photo 5" loading="lazy">
+          <img src="rent-kahaallt-6.jpg" alt="Villa Kahaal — photo 6" loading="lazy">
+          <img src="rent-kahaallt-7.jpg" alt="Villa Kahaal — photo 7" loading="lazy">
+          <img src="rent-kahaallt-8.jpg" alt="Villa Kahaal — photo 8" loading="lazy">
+          <img src="rent-kahaallt-9.jpg" alt="Villa Kahaal — photo 9" loading="lazy">
+          <img src="rent-kahaallt-10.jpg" alt="Villa Kahaal — photo 10" loading="lazy">
+        </div>
+        <button class="gal-btn prev" onclick="slide('kahaallt',-1)" aria-label="Previous photo">‹</button>
+        <button class="gal-btn next" onclick="slide('kahaallt',1)" aria-label="Next photo">›</button>
+        <div class="gal-count" id="c-kahaallt">1 / 10</div>
+      </div>
+      <div class="body">
+        <div class="area">Consciente · Tulum</div>
+        <h2 class="name">Villa Kahaal</h2>
+        <div class="specs">4 Bed<span class="sep">·</span>5 Bath<span class="sep">·</span>900 m² Land</div>
+        <p class="desc">A contemporary jungle estate on a 900 m² parcel in Consciente, one of Tulum's most private, low-density gated communities. Open-plan living and dining flows to the terrace and private pool with sunken lounge, with an elevated plunge pool and a rooftop retreat over the jungle canopy.</p>
+        <div class="tags"><span class="tag">Private pool</span><span class="tag">Rooftop</span><span class="tag">Gated community</span></div>
+        <div class="foot">
+          <div class="price">$6,500 <small>USD / month</small></div>
+          <a class="wa" href="https://wa.me/529982918258?text=Hi%20Jennifer%2C%20I'm%20interested%20in%20Villa%20Kahaal%20(Consciente%20%C2%B7%20Tulum)%20as%20a%20long-term%20rental.%20Is%20it%20still%20available%3F" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41-.08-.13-.27-.2-.57-.35M12.05 21.8h-.01a9.87 9.87 0 01-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 01-1.51-5.26c0-5.45 4.44-9.89 9.89-9.89 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 012.89 6.99c0 5.45-4.44 9.89-9.88 9.89m8.41-18.3A11.82 11.82 0 0012.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 005.69 1.45c6.55 0 11.89-5.34 11.89-11.89 0-3.18-1.24-6.17-3.48-8.41z"/></svg> Enquire</a>
+        </div>
+      </div>
+    </article>
+
+      <article class="card" data-city="playa">
       <div class="gal">
         <div class="gal-track" id="t-elfaro">
           <img src="rent-elfaro-1.jpg" alt="El Faro — photo 1" loading="lazy">
@@ -235,7 +280,7 @@
       </div>
     </article>
 
-      <article class="card">
+      <article class="card" data-city="playa">
       <div class="gal">
         <div class="gal-track" id="t-playacar">
           <img src="rent-playacar-1.jpg" alt="Playacar Villa — photo 1" loading="lazy">
@@ -268,7 +313,7 @@
       </div>
     </article>
 
-      <article class="card">
+      <article class="card" data-city="playa">
       <div class="gal">
         <div class="gal-track" id="t-elcielo">
           <img src="rent-elcielo-1.jpg" alt="El Cielo — Hacienda — photo 1" loading="lazy">
@@ -301,7 +346,7 @@
       </div>
     </article>
 
-      <article class="card">
+      <article class="card" data-city="playa">
       <div class="gal">
         <div class="gal-track" id="t-selvanova9">
           <img src="rent-selvanova9-1.jpg" alt="Casa Selvanova — photo 1" loading="lazy">
@@ -334,7 +379,7 @@
       </div>
     </article>
 
-      <article class="card">
+      <article class="card" data-city="playa">
       <div class="gal">
         <div class="gal-track" id="t-privanza26">
           <img src="rent-privanza26-1.jpg" alt="Privanza del Mar 26 — photo 1" loading="lazy">
@@ -367,7 +412,7 @@
       </div>
     </article>
 
-      <article class="card">
+      <article class="card" data-city="playa">
       <div class="gal">
         <div class="gal-track" id="t-bali2">
           <img src="rent-bali2-1.jpg" alt="Bali 2 — photo 1" loading="lazy">
@@ -400,7 +445,7 @@
       </div>
     </article>
 
-      <article class="card">
+      <article class="card" data-city="playa">
       <div class="gal">
         <div class="gal-empty">Photography<br>coming soon</div>
       </div>
@@ -417,7 +462,7 @@
       </div>
     </article>
 
-      <article class="card">
+      <article class="card" data-city="playa">
       <div class="gal">
         <div class="gal-track" id="t-lajoya">
           <img src="rent-lajoya-1.jpg" alt="La Joya — photo 1" loading="lazy">
@@ -450,7 +495,7 @@
       </div>
     </article>
 
-      <article class="card">
+      <article class="card" data-city="playa">
       <div class="gal">
         <div class="gal-track" id="t-privanza19">
           <img src="rent-privanza19-1.jpg" alt="Privanza 19 — photo 1" loading="lazy">
@@ -483,7 +528,7 @@
       </div>
     </article>
 
-      <article class="card">
+      <article class="card" data-city="playa">
       <div class="gal">
         <div class="gal-track" id="t-privanza126">
           <img src="rent-privanza126-1.jpg" alt="Privanza 126 — photo 1" loading="lazy">
@@ -516,7 +561,7 @@
       </div>
     </article>
 
-      <article class="card">
+      <article class="card" data-city="playa">
       <div class="gal">
         <div class="gal-track" id="t-caracoral">
           <img src="rent-caracoral-1.jpg" alt="Caracoral — photo 1" loading="lazy">
@@ -549,7 +594,7 @@
       </div>
     </article>
 
-      <article class="card">
+      <article class="card" data-city="playa">
       <div class="gal">
         <div class="gal-track" id="t-centro40">
           <img src="rent-centro40-1.jpg" alt="Avenida 40 Bis — photo 1" loading="lazy">
@@ -582,6 +627,8 @@
     </article>
     </div>
 
+    <div class="empty" id="empty">No long-term rentals in this city right now. Message Jennifer and we'll find one.</div>
+
     <div class="closing">
       <div class="closing-t">Looking for something specific?</div>
       <p class="closing-s">New properties come through every week, and not all of them reach the site. Tell Jennifer what you need.</p>
@@ -590,6 +637,15 @@
   </div>
 
   <script>
+
+    function setCity(c){
+      document.querySelectorAll('.city').forEach(b=>b.classList.toggle('active', b.dataset.city===c));
+      let n=0; document.querySelectorAll('article.card').forEach(a=>{const on = c==='all' || a.dataset.city===c; a.classList.toggle('hidden', !on); if(on) n++;});
+      document.getElementById('count').textContent = n + (n===1 ? ' property available' : ' properties available');
+      document.getElementById('empty').style.display = n ? 'none' : 'block';
+      if (history.replaceState) history.replaceState(null,'', c==='all' ? location.pathname : '#'+c);
+    }
+    (function(){ const h=location.hash.slice(1); if(h==='tulum'||h==='playa') setCity(h); })();
     function slide(id, dir){
       const t = document.getElementById('t-'+id);
       const w = t.clientWidth;

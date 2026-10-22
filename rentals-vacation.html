@@ -129,9 +129,11 @@
       .wa{justify-content:center}
     }
     .subtabs{display:flex;justify-content:center;gap:.6rem;flex-wrap:wrap;padding:1.6rem 1.25rem 0}
-    .subtab{font-family:'Raleway',sans-serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#6B6250;background:transparent;border:.5px solid #CFC7B6;border-radius:999px;padding:10px 20px;cursor:pointer;transition:all .2s}
-    .subtab:hover{border-color:#9A7D5A;color:#2A2820}
-    .subtab.active{background:#2A2820;border-color:#2A2820;color:#F0E9DA}
+    .subtab{font-family:'Raleway',sans-serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#9A9080;background:transparent;border:none;border-bottom:1px solid transparent;border-radius:0;padding:8px 4px;margin:0 .6rem;cursor:pointer;transition:all .2s}
+    .subtab:hover{color:#2A2820}
+    .subtab.active{color:#2A2820;border-bottom-color:#9A7D5A}
+    .subtabs{padding-top:.9rem!important}
+    .cities-label{width:100%;text-align:center;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:#9A9080;margin-bottom:.2rem}
     .group{margin-bottom:4.5rem}
     .group.hidden{display:none}
     .group-head{max-width:760px;margin:0 0 2rem}
@@ -143,6 +145,13 @@
     .group-map{display:inline-flex;align-items:center;gap:6px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;padding-bottom:2px}
     .group-map svg{width:14px;height:14px}
     .group-map:hover,.map:hover{color:#2A2820;border-bottom-color:#2A2820}
+
+    .cities{display:flex;justify-content:center;gap:.6rem;flex-wrap:wrap;padding:1.6rem 1.25rem 0}
+    .city{font-family:'Raleway',sans-serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#6B6250;background:transparent;border:.5px solid #CFC7B6;border-radius:999px;padding:10px 20px;cursor:pointer;transition:all .2s}
+    .city:hover{border-color:#9A7D5A;color:#2A2820}
+    .city.active{background:#2A2820;border-color:#2A2820;color:#F0E9DA}
+    .card.hidden{display:none}
+    .empty{display:none;text-align:center;font-family:'EB Garamond',serif;font-size:20px;color:#6B6452;padding:3rem 1rem}
   </style>
 </head>
 <body>
@@ -164,7 +173,7 @@
   <div class="hero">
     <div class="hero-eyebrow">Rentals</div>
     <h1 class="hero-title">Vacation <em>Rentals</em></h1>
-    <p class="hero-sub">Fully equipped homes for short stays in Playa del Carmen and the Riviera Maya.</p>
+    <p class="hero-sub">Private villas and design residences for short stays in Tulum and Playa del Carmen.</p>
   </div>
 
   <div class="tabs">
@@ -172,14 +181,20 @@
     <a class="tab active" href="rentals-vacation.html">Vacation</a>
   </div>
 
+  <div class="cities" role="tablist" aria-label="Choose a city">
+    <div class="cities-label">Choose a destination</div>
+    <button class="city active" data-city="all" onclick="setCity('all')">All</button>
+    <button class="city" data-city="tulum" onclick="setCity('tulum')">Tulum</button>
+    <button class="city" data-city="playa" onclick="setCity('playa')">Playa del Carmen</button>
+  </div>
   <div class="subtabs" role="tablist">
-    <button class="subtab active" data-show="all" onclick="showGroup('all',this)">All</button>
-    <button class="subtab" data-show="reserva" onclick="showGroup('reserva',this)">La Reserva Tulum</button>
-    <button class="subtab" data-show="villas" onclick="showGroup('villas',this)">Luxury Villas</button>
+    <button class="subtab active" data-show="all" onclick="showGroup('all')">All</button>
+    <button class="subtab" data-show="reserva" onclick="showGroup('reserva')">La Reserva Tulum</button>
+    <button class="subtab" data-show="villas" onclick="showGroup('villas')">Luxury Villas</button>
   </div>
 
   <div class="wrap">
-    <section class="group" id="reserva" data-group="reserva">
+    <section class="group" id="reserva" data-group="reserva" data-city="tulum">
       <div class="group-head">
         <div class="group-eyebrow">Tulum · Region 15</div>
         <h2 class="group-title">La Reserva <em>Tulum</em></h2>
@@ -355,7 +370,7 @@
       </div>
     </section>
 
-    <section class="group" id="villas" data-group="villas">
+    <section class="group" id="villas" data-group="villas" data-city="tulum">
       <div class="group-head">
         <div class="group-eyebrow">Tulum · Private estates</div>
         <h2 class="group-title">Luxury <em>Villas</em></h2>
@@ -458,10 +473,10 @@
       </div>
     </section>
 
-    <section class="group" id="playa" data-group="playa">
+    <section class="group" id="playa" data-group="playa" data-city="playa">
       <div class="group-head">
         <div class="group-eyebrow">Playa del Carmen</div>
-        <h2 class="group-title">Also <em>available</em></h2>
+        <h2 class="group-title">Playa del <em>Carmen</em></h2>
       </div>
       <div class="grid">
       <article class="card" data-group="playa">
@@ -512,13 +527,24 @@
       const w = t.clientWidth;
       t.scrollBy({left: dir*w, behavior:'smooth'});
     }
-    function showGroup(g, btn){
-      document.querySelectorAll('.subtab').forEach(b=>b.classList.toggle('active', b===btn));
-      document.querySelectorAll('.group').forEach(s=>s.classList.toggle('hidden', g!=='all' && s.dataset.group!==g));
-      if (history.replaceState) history.replaceState(null,'', g==='all' ? location.pathname : '#'+g);
-      window.scrollTo({top: document.querySelector('.subtabs').offsetTop - 120, behavior:'smooth'});
+    let curCity='all', curGroup='all';
+    function apply(){
+      document.querySelectorAll('.city').forEach(b=>b.classList.toggle('active', b.dataset.city===curCity));
+      document.querySelectorAll('.subtab').forEach(b=>b.classList.toggle('active', b.dataset.show===curGroup));
+      document.querySelector('.subtabs').style.display = curCity==='playa' ? 'none' : '';
+      document.querySelectorAll('.group').forEach(sec=>{
+        const okCity = curCity==='all' || sec.dataset.city===curCity;
+        const okGroup = curGroup==='all' || sec.dataset.group===curGroup || curCity==='playa';
+        sec.classList.toggle('hidden', !(okCity && okGroup));
+      });
+      const h = curGroup!=='all' && curCity!=='playa' ? curGroup : (curCity!=='all' ? curCity : '');
+      if (history.replaceState) history.replaceState(null,'', h ? '#'+h : location.pathname);
     }
-    (function(){ const h=location.hash.slice(1); const b=document.querySelector('.subtab[data-show="'+h+'"]'); if(b) showGroup(h,b); })();
+    function setCity(c){ curCity=c; if(c==='playa') curGroup='all'; apply(); }
+    function showGroup(g){ curGroup=g; if(g!=='all' && curCity==='playa') curCity='all'; apply();
+      window.scrollTo({top: document.querySelector('.cities').offsetTop - 120, behavior:'smooth'}); }
+    (function(){ const h=location.hash.slice(1);
+      if(h==='tulum'||h==='playa'){ curCity=h; apply(); } else if(h==='reserva'||h==='villas'){ curGroup=h; apply(); } })();
     document.querySelectorAll('.gal-track').forEach(t=>{
       const id = t.id.slice(2);
       const c  = document.getElementById('c-'+id);
