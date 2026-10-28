@@ -11,7 +11,8 @@
   }
 
   try {
-    if (window.sessionStorage && sessionStorage.getItem('bdGuideDismissed') === '1') return;
+    if ((window.localStorage && localStorage.getItem('bdGuideDismissed') === '1') ||
+        (window.sessionStorage && sessionStorage.getItem('bdGuideDismissed') === '1')) return;
   } catch (e) {}
 
   var css = ''
@@ -30,13 +31,13 @@
     + 'border-left:0.5px solid rgba(23,21,14,.14);cursor:pointer;font-size:10px;line-height:1;'
     + 'padding:0 12px;transition:color .25s,background .25s;font-family:"Raleway",sans-serif;}'
     + '.bdg-x:hover{color:#17150E;background:#E8E0D0;}'
-    + 'body{padding-bottom:100px;}'
+    + 'body.bdg-on{padding-bottom:100px;}'
     + '@media(max-width:600px){'
     + '.bdg-cta{bottom:1rem;left:1.25rem;right:1.25rem;transform:none;}'
     + '.bdg-btn{flex:1;justify-content:center;font-size:9.5px;letter-spacing:.18em;padding:16px 10px;gap:9px;}'
     + '.bdg-btn svg{width:13px;height:13px;}'
     + '.bdg-x{padding:0 14px;}'
-    + 'body{padding-bottom:88px;}}';
+    + 'body.bdg-on{padding-bottom:88px;}}';
 
   var style = document.createElement('style');
   style.appendChild(document.createTextNode(css));
@@ -54,11 +55,22 @@
 
   function mount() {
     document.body.appendChild(wrap);
-    setTimeout(function () { wrap.classList.add('bdg-in'); }, 600);
+    wrap.style.display = 'none';
+    /* show only once the visitor has scrolled a third of the page, so it never covers the first screen */
+    var shown = false;
+    function check() {
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      if (!shown && max > 0 && window.scrollY / max > 0.33) {
+        shown = true; wrap.style.display = ''; document.body.classList.add('bdg-on');
+        setTimeout(function () { wrap.classList.add('bdg-in'); }, 30);
+        window.removeEventListener('scroll', check);
+      }
+    }
+    window.addEventListener('scroll', check, { passive: true });
     wrap.querySelector('.bdg-x').addEventListener('click', function () {
       wrap.style.display = 'none';
-      document.body.style.paddingBottom = '';
-      try { sessionStorage.setItem('bdGuideDismissed', '1'); } catch (e) {}
+      document.body.classList.remove('bdg-on');
+      try { localStorage.setItem('bdGuideDismissed', '1'); } catch (e) {}
     });
   }
 

@@ -1,0 +1,98 @@
+/* B&D Realty — shared overrides loaded on every page after the page's own <style>.
+   Compact top of page, shared footer, Deal of the Month, small fixes. */
+
+/* ---- compact header: language bar + nav ---- */
+.lang-bar{background:#0D0C0A;display:flex;justify-content:flex-end;align-items:center}
+.lang-btn{font-family:'Raleway',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#6B6452;background:none;border:none;border-bottom:.5px solid transparent;cursor:pointer;padding:2px 0}
+.lang-btn:hover,.lang-btn.active{color:#C4B89A;border-bottom-color:#C4B89A}
+/* Top 10 tiles: readable descriptions */
+.card .card-desc{color:rgba(240,233,218,.88) !important}
+.card .card-num{color:rgba(240,233,218,.12) !important}
+.lang-bar{padding:.3rem 2.5rem !important;gap:1rem !important}
+.lang-btn{font-size:10px !important}
+.nav{padding:.95rem 2.5rem !important}
+.tabs{top:58px !important}
+
+/* ---- shorter page tops (everything except the home slider) ---- */
+.hero:not(#heroSection){padding-top:2.6rem !important;padding-bottom:2.4rem !important;min-height:0 !important}
+.hero:not(#heroSection) .hero-title,.header .header-title{font-size:clamp(32px,4.2vw,54px) !important;margin-bottom:.7rem !important;line-height:1.06 !important}
+.hero:not(#heroSection) .hero-eyebrow,.header .header-eyebrow{margin-bottom:.7rem !important}
+.hero:not(#heroSection) .hero-sub{font-size:clamp(16px,1.5vw,19px) !important;line-height:1.6 !important}
+.header{padding-top:2.75rem !important;padding-bottom:2.25rem !important}
+.header .header-body{font-size:18px !important;line-height:1.7 !important}
+.header .header-line{margin:1rem auto 1.1rem !important}
+.consult-strip{padding:3.5rem 2.5rem !important}
+.investors{padding:4.5rem 2.5rem !important}
+.founders-wrap{padding:4.5rem 2.5rem !important}
+
+/* ---- home hero: headline over a lighter photo ---- */
+#heroSection{height:78vh !important;min-height:520px !important}
+#heroSection .hero-overlay{background:linear-gradient(to bottom,rgba(8,7,6,.18) 0%,rgba(8,7,6,0) 32%,rgba(8,7,6,.62) 100%) !important}
+#heroSection .hero-content{flex-direction:column;align-items:center;gap:1.6rem;padding-bottom:3.25rem !important}
+.hero-headline{text-align:center;max-width:860px}
+.hero-headline .eyebrow{font-family:'Raleway',sans-serif;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:rgba(232,224,208,.85);margin-bottom:.9rem}
+.hero-headline h1{font-family:'EB Garamond',serif;font-weight:400;font-size:clamp(30px,4.4vw,58px);line-height:1.06;color:#F7F3EA;text-shadow:0 2px 24px rgba(0,0,0,.35)}
+.hero-headline h1 em{font-style:italic;color:#E2D4B4}
+.hero-headline p{font-family:'Cormorant Garamond',serif;font-size:clamp(17px,1.7vw,21px);color:rgba(240,233,218,.92);margin-top:.7rem;text-shadow:0 1px 14px rgba(0,0,0,.4)}
+@media(max-width:768px){
+  #heroSection{height:74vh !important;min-height:460px !important}
+  #heroSection .hero-slide{background-size:cover !important}
+  #heroSection .hero-content{padding:1.5rem 1.25rem 2.75rem !important}
+  .nav{padding:.75rem 1.25rem !important}
+  .lang-bar{padding:.2rem 1.25rem !important}
+  .tabs{top:52px !important}
+  .hero:not(#heroSection){padding-top:2rem !important;padding-bottom:1.9rem !important}
+}
+
+/* ---- Deal of the Month (home) ---- */
+.deal{background:#F5F1EA;padding:4rem 2.5rem}
+.deal-inner{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1.25fr 1fr;background:#fff;border:.5px solid #E2DCD0}
+.deal-img{position:relative;min-height:440px;background-size:cover;background-position:center;display:block}
+.deal-badge{position:absolute;top:1.25rem;left:1.25rem;background:#2A2820;color:#E8DCC2;font-family:'Raleway',sans-serif;font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;padding:9px 14px}
+.deal-off{position:absolute;top:1.25rem;right:1.25rem;background:#9A7D5A;color:#fff;font-family:'Raleway',sans-serif;font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:9px 12px}
+.deal-body{padding:2.6rem 2.6rem 2.4rem;display:flex;flex-direction:column;justify-content:center}
+.deal-eyebrow{font-family:'Raleway',sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#9A7D5A;margin-bottom:.8rem}
+.deal-title{font-family:'EB Garamond',serif;font-weight:400;font-size:clamp(28px,3vw,40px);color:#2A2820;line-height:1.08;margin-bottom:.5rem}
+.deal-area{font-family:'Raleway',sans-serif;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#9A9080;margin-bottom:1.1rem}
+.deal-specs{font-family:'Raleway',sans-serif;font-size:12.5px;color:#5A5348;margin-bottom:1.2rem}
+.deal-price{font-family:'EB Garamond',serif;font-size:34px;color:#2A2820;line-height:1}
+.deal-was{font-family:'EB Garamond',serif;font-size:19px;color:#9A9080;text-decoration:line-through;margin-left:.6rem}
+.deal-save{font-family:'Raleway',sans-serif;font-size:11px;letter-spacing:.08em;color:#4E7A4A;margin:.55rem 0 1.2rem}
+.deal-desc{font-family:'Raleway',sans-serif;font-size:14px;line-height:1.75;color:#4A443A;margin-bottom:1.6rem}
+.deal-ctas{display:flex;gap:.7rem;flex-wrap:wrap}
+.deal-btn{font-family:'Raleway',sans-serif;font-size:10px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;padding:14px 22px;border-radius:1px;background:#2A2820;color:#F5F1EA}
+.deal-btn.wa{background:#25D366;color:#fff}
+.deal-btn:hover{opacity:.88}
+@media(max-width:860px){.deal{padding:2.5rem 1.25rem}.deal-inner{grid-template-columns:1fr}.deal-img{min-height:280px}.deal-body{padding:1.8rem 1.5rem}}
+
+/* ---- Where we work (home) ---- */
+.locations-head{text-align:center;padding:3.5rem 1.5rem 1.6rem;background:#F5F1EA}
+.locations-head .eyebrow{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#9A7D5A;margin-bottom:.6rem}
+.locations-head h2{font-family:'EB Garamond',serif;font-weight:400;font-size:clamp(26px,3vw,38px);color:#2A2820}
+@media(max-width:768px){.locations{grid-template-columns:1fr !important}}
+
+/* ---- FAQ blocks ---- */
+.faq{max-width:860px;margin:0 auto;padding:3.5rem 2.5rem}
+.faq h2{font-family:'EB Garamond',serif;font-weight:400;font-size:clamp(26px,3vw,36px);color:#2A2820;margin-bottom:1.4rem}
+.faq details{border-top:.5px solid #DDD8CE;padding:1.05rem 0}
+.faq details:last-of-type{border-bottom:.5px solid #DDD8CE}
+.faq summary{cursor:pointer;font-family:'EB Garamond',serif;font-size:20px;color:#2A2820;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:'+';float:right;color:#9A7D5A}
+.faq details[open] summary::after{content:'–'}
+.faq p{font-family:'Raleway',sans-serif;font-size:14.5px;line-height:1.8;color:#4A443A;margin-top:.7rem}
+
+/* ---- shared footer ---- */
+.site-footer{background:#111009;color:#A69C88;font-family:'Raleway',sans-serif;padding:3.5rem 2.5rem 1.6rem;margin-top:0}
+.sf-grid{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:2.5rem}
+.sf-logo{font-family:'EB Garamond',serif;font-size:24px;letter-spacing:.3em;color:#C4B89A;text-decoration:none}
+.sf-tag{font-family:'Cormorant Garamond',serif;font-size:17px;line-height:1.6;color:#8A8070;margin-top:.8rem;max-width:300px}
+.sf-h{font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:#6B6452;margin-bottom:.9rem}
+.site-footer ul{list-style:none;padding:0;margin:0}
+.site-footer li{margin:.45rem 0}
+.site-footer a{color:#C8C0B0;text-decoration:none;font-size:13px}
+.site-footer a:hover{color:#E8DCC2}
+.sf-contact li{font-size:13px;color:#8A8070}
+.sf-bottom{max-width:1180px;margin:2.5rem auto 0;padding-top:1.2rem;border-top:.5px solid rgba(196,184,154,.12);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:10.5px;letter-spacing:.08em;color:#6B6452}
+@media(max-width:860px){.sf-grid{grid-template-columns:1fr 1fr;gap:2rem}.site-footer{padding:2.75rem 1.5rem 1.4rem}}
+@media(max-width:520px){.sf-grid{grid-template-columns:1fr}}

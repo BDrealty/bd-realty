@@ -3,8 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sell With Us · B & D Realty</title>
-  <meta name="description" content="The honest way to sell in the Riviera Maya. Real pricing. Real visibility. Content that sells.">
+  <title>Sell Your Property in Tulum, Playa or Cancún | B&amp;D Realty</title>
+  <!-- bd-seo:start -->
+  <link rel="canonical" href="https://www.bdrealty.mx/sell.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Sell Your Property in Tulum, Playa or Cancún | B&amp;D Realty">
+  <meta property="og:description" content="Selling in Tulum, Playa del Carmen or Cancún? Honest pricing, professional photography and film, and 48 international portals. Talk to B&amp;D Realty.">
+  <meta property="og:url" content="https://www.bdrealty.mx/sell.html">
+  <meta property="og:site_name" content="B&amp;D Realty">
+  <meta property="og:image" content="https://www.bdrealty.mx/og-sell.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta name="theme-color" content="#111009">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.bdrealty.mx/"}, {"@type": "ListItem", "position": 2, "name": "Sell", "item": "https://www.bdrealty.mx/sell.html"}]}</script>
+  <!-- bd-seo:end -->
+  <meta name="description" content="Selling in Tulum, Playa del Carmen or Cancún? Honest pricing, professional photography and film, and 48 international portals. Talk to B&amp;D Realty.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Raleway:wght@200;300;400&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
@@ -160,6 +174,7 @@
       .rtl-modal { width: 100%; max-width: 100%; padding: 2rem 1.5rem; border-left: none; border-right: none; border-bottom: none; }
     }
   </style>
+  <link rel="stylesheet" href="site.css">
 </head>
 <body>
 
@@ -395,6 +410,46 @@
       </div>
     </div>
   </div>
+  <footer class="site-footer" id="contact">
+    <div class="sf-grid">
+      <div>
+        <a href="index.html" class="sf-logo">B &amp; D</a>
+        <p class="sf-tag">Luxury real estate in Tulum, Playa del Carmen and Cancún. Founded by buyers, for buyers.</p>
+      </div>
+      <div>
+        <div class="sf-h">Buy</div>
+        <ul>
+          <li><a href="index.html#deal-of-the-month">Deal of the Month</a></li>
+          <li><a href="top10-villas.html">Luxury Villas</a></li>
+          <li><a href="top10-beachfront.html">Beachfront</a></li>
+          <li><a href="top10-developments.html">New Developments</a></li>
+          <li><a href="investors.html">Investors Circle</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="sf-h">Rent · Sell · Learn</div>
+        <ul>
+          <li><a href="rentals-long-term.html">Long-term Rentals</a></li>
+          <li><a href="rentals-vacation.html">Vacation Rentals</a></li>
+          <li><a href="sell.html">Sell With Us</a></li>
+          <li><a href="the-process.html">How Buying Works</a></li>
+          <li><a href="buyers-guide.html">Free Buyer's Guide</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="sf-h">Contact</div>
+        <ul class="sf-contact">
+          <li><a href="https://wa.me/529988654691" target="_blank" rel="noopener">Benjamin Brasher · +52 998 865 4691</a></li>
+          <li><a href="https://wa.me/529982918258" target="_blank" rel="noopener">Jennifer Duzant · +52 998 291 8258</a></li>
+          <li><a href="mailto:benjamin@bdrealty.mx">benjamin@bdrealty.mx</a></li>
+          <li><a href="https://instagram.com/ben.brasher.realtor" target="_blank" rel="noopener">Instagram · Benjamin</a> · <a href="https://instagram.com/Jen_bdrealty" target="_blank" rel="noopener">Jennifer</a></li>
+          <li>Tulum · Playa del Carmen · Cancún, Quintana Roo, Mexico</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sf-bottom"><span>© 2026 Brasher &amp; Duzant · B&amp;D Realty</span><span>Prices and availability change; confirm with us before you travel.</span></div>
+  </footer>
+
 
   <script>
     function openRTL() {
@@ -420,6 +475,7 @@
         (email ? '\nEmail: ' + email : '') +
         (note ? '\nProperty: ' + note : '')
       );
+      if (window.bdLead) bdLead({source:'Sell page', _subject:'New seller enquiry', name:name, phone:phone, email:email, property:note});
       window.open('https://wa.me/529988654691?text=' + msg, '_blank');
       document.getElementById('rtlContent').style.display = 'none';
       document.getElementById('rtlSuccess').style.display = 'block';
@@ -430,5 +486,6 @@
     });
   </script>
 
+  <script src="site.js" defer></script>
 </body>
 </html>
