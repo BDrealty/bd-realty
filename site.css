@@ -31,7 +31,7 @@
 #heroSection .hero-content{flex-direction:column;align-items:center;gap:1.6rem;padding-bottom:3.25rem !important}
 .hero-headline{text-align:center;max-width:860px}
 .hero-headline .eyebrow{font-family:'Raleway',sans-serif;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:rgba(232,224,208,.85);margin-bottom:.9rem}
-.hero-headline h1{font-family:'EB Garamond',serif;font-weight:400;font-size:clamp(30px,4.4vw,58px);line-height:1.06;color:#F7F3EA;text-shadow:0 2px 24px rgba(0,0,0,.35)}
+.hero-headline h1{font-family:'EB Garamond',serif;font-weight:400;font-size:clamp(24px,2.9vw,40px);line-height:1.1;color:#F7F3EA;text-shadow:0 2px 24px rgba(0,0,0,.35)}
 .hero-headline h1 em{font-style:italic;color:#E2D4B4}
 .hero-headline p{font-family:'Cormorant Garamond',serif;font-size:clamp(17px,1.7vw,21px);color:rgba(240,233,218,.92);margin-top:.7rem;text-shadow:0 1px 14px rgba(0,0,0,.4)}
 @media(max-width:768px){
@@ -96,3 +96,25 @@
 .sf-bottom{max-width:1180px;margin:2.5rem auto 0;padding-top:1.2rem;border-top:.5px solid rgba(196,184,154,.12);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:10.5px;letter-spacing:.08em;color:#6B6452}
 @media(max-width:860px){.sf-grid{grid-template-columns:1fr 1fr;gap:2rem}.site-footer{padding:2.75rem 1.5rem 1.4rem}}
 @media(max-width:520px){.sf-grid{grid-template-columns:1fr}}
+
+/* ---- Where we work (home): clear city cards ---- */
+.where{background:#F5F1EA;padding:3.5rem 2.5rem 4rem}
+.where-head{text-align:center;max-width:680px;margin:0 auto 2.2rem}
+.where-head .eyebrow{font-family:'Raleway',sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#9A7D5A;margin-bottom:.6rem}
+.where-head h2{font-family:'EB Garamond',serif;font-weight:400;font-size:clamp(28px,3.2vw,40px);color:#2A2820;margin-bottom:.6rem}
+.where-head p{font-family:'Cormorant Garamond',serif;font-size:19px;color:#5A5348;line-height:1.6}
+.where-grid{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.wc-card{background:#fff;border:.5px solid #E2DCD0;display:flex;flex-direction:column}
+.wc-img{position:relative;display:block;aspect-ratio:4/3;overflow:hidden}
+.wc-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s ease}
+.wc-card:hover .wc-img img{transform:scale(1.04)}
+.wc-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(8,7,6,.55) 0%,rgba(8,7,6,0) 45%)}
+.wc-city{position:absolute;left:1.2rem;bottom:1rem;z-index:1;font-family:'EB Garamond',serif;font-size:clamp(24px,2.3vw,32px);color:#F7F3EA;letter-spacing:.04em}
+.wc-body{padding:1.25rem 1.3rem 1.4rem;display:flex;flex-direction:column;flex:1}
+.wc-line{font-family:'Raleway',sans-serif;font-size:14px;line-height:1.7;color:#3A3530;margin-bottom:.8rem}
+.wc-tags{font-family:'Raleway',sans-serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#9A7D5A;margin-bottom:1.1rem;flex:1}
+.wc-links{display:flex;gap:.5rem;flex-wrap:wrap}
+.wc-btn{font-family:'Raleway',sans-serif;font-size:10px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;padding:11px 16px;border:.5px solid #2A2820;color:#2A2820;border-radius:1px}
+.wc-btn.primary{background:#2A2820;color:#F5F1EA}
+.wc-btn:hover{opacity:.85}
+@media(max-width:860px){.where{padding:2.5rem 1.25rem 3rem}.where-grid{grid-template-columns:1fr}}
