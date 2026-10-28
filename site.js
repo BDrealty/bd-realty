@@ -33,6 +33,17 @@ window.bdLead = function (data) {
     els.forEach(function (el) { io.observe(el); });
   } else { els.forEach(show); }
 
+  /* 1b. ES button: pages with a real Spanish version go to /es/ */
+  var ES_PAGES = ['index.html', 'sell.html', 'the-process.html', 'buyers-guide.html', 'about.html'];
+  if (document.documentElement.lang !== 'es') {
+    Array.prototype.slice.call(document.querySelectorAll('.lang-btn[data-lang="es"]')).forEach(function (b) {
+      b.addEventListener('click', function (e) {
+        var f = location.pathname.split('/').pop() || 'index.html';
+        if (ES_PAGES.indexOf(f) !== -1) { e.stopImmediatePropagation(); e.preventDefault(); location.href = 'es/' + (f === 'index.html' ? '' : f); }
+      }, true);
+    });
+  }
+
   /* 2. deep links */
   function route() {
     var h = (location.hash || '').slice(1).toLowerCase();
