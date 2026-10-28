@@ -106,7 +106,7 @@
       .radio-group { flex-direction: column; }
     }
   </style>
-  <link rel="stylesheet" href="site.css?v=90051bd9">
+  <link rel="stylesheet" href="site.css?v=e6bfc066">
 </head>
 <body>
 
@@ -119,9 +119,9 @@
   </div>
 
   <nav class="nav">
-    <a href="index.html" class="nav-back">← B & D</a>
-    <a href="index.html" class="nav-logo">B & D</a>
-    <div class="nav-right"><a href="#apply" class="nav-cta">Request access</a></div>
+    <a href="index.html" class="nav-back">&larr; Home</a>
+    <a href="index.html" class="nav-logo">B &amp; D</a>
+    <div class="nav-right"><a href="https://wa.me/529988654691?text=Hi%20Benjamin%2C%20I%27d%20like%20to%20talk%20about%20property%20in%20the%20Riviera%20Maya." class="nav-cta" target="_blank" rel="noopener">Talk to us</a></div>
   </nav>
 
   <section class="hero">
@@ -212,8 +212,13 @@
       <div class="form-title" data-i18n="inv.join.title">Get notified first.</div>
       <p class="form-sub" data-i18n="inv.join.sub">Leave your details and we'll be in touch the moment the right deal appears.</p>
       <form class="form" id="form1" onsubmit="goStep2(event)">
-        <input type="email" id="f-email" placeholder="Email address" required>
-        <input type="tel" id="f-phone" placeholder="Phone / WhatsApp">
+        <input type="text" id="f-name" name="name" placeholder="Full name" required>
+        <input type="email" id="f-email" name="email" placeholder="Email address" required>
+        <input type="tel" id="f-phone" name="phone" placeholder="Phone / WhatsApp">
+        <select id="f-budget" name="budget" required>
+          <option value="" disabled selected>Investment budget (USD)</option>
+          <option>Under $300k</option><option>$300k – $750k</option><option>$750k – $1.5M</option><option>$1.5M – $3M</option><option>$3M+</option>
+        </select>
         <button type="submit" class="form-submit"data-i18n="inv.btn.access">Request access</button>
         <p class="form-note">Strictly confidential. We don't share your information.</p>
       </form>
