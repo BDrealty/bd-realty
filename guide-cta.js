@@ -50,8 +50,8 @@
     + '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">'
     + '<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>'
     + '<path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>'
-    + '<span>' + (document.documentElement.lang === 'es' ? 'Gu&iacute;a gratuita para comprar en M&eacute;xico' : 'Free Buyer&rsquo;s Guide to Mexico') + '</span></a>'
-    + '<button class="bdg-x" aria-label="' + (document.documentElement.lang === 'es' ? 'Cerrar' : 'Dismiss') + '">&#10005;</button>';
+    + '<span>' + ({ es: 'Gu&iacute;a gratuita para comprar en M&eacute;xico', fr: 'Guide gratuit pour acheter au Mexique' }[document.documentElement.lang] || 'Free Buyer&rsquo;s Guide to Mexico') + '</span></a>'
+    + '<button class="bdg-x" aria-label="' + ({ es: 'Cerrar', fr: 'Fermer' }[document.documentElement.lang] || 'Dismiss') + '">&#10005;</button>';
 
   function mount() {
     document.body.appendChild(wrap);

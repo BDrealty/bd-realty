@@ -33,14 +33,21 @@ window.bdLead = function (data) {
     els.forEach(function (el) { io.observe(el); });
   } else { els.forEach(show); }
 
-  /* 1b. ES button: pages with a real Spanish version go to /es/ */
-  var ES_PAGES = ['index.html', 'sell.html', 'the-process.html', 'buyers-guide.html', 'about.html'];
-  if (document.documentElement.lang !== 'es') {
-    Array.prototype.slice.call(document.querySelectorAll('.lang-btn[data-lang="es"]')).forEach(function (b) {
-      b.addEventListener('click', function (e) {
-        var f = location.pathname.split('/').pop() || 'index.html';
-        if (ES_PAGES.indexOf(f) !== -1) { e.stopImmediatePropagation(); e.preventDefault(); location.href = 'es/' + (f === 'index.html' ? '' : f); }
-      }, true);
+  /* 1b. ES / FR buttons: pages with a real translated version go to /es/ or /fr/ */
+  var LANG_PAGES = {
+    es: ['index.html', 'sell.html', 'the-process.html', 'buyers-guide.html', 'about.html'],
+    fr: ['index.html', 'about.html', 'sell.html', 'the-process.html', 'buyers-guide.html', 'investors.html',
+         'top10.html', 'top10-villas.html', 'top10-beachfront.html', 'top10-developments.html',
+         'rentals-long-term.html', 'rentals-vacation.html']
+  };
+  if (document.documentElement.lang === 'en') {
+    Object.keys(LANG_PAGES).forEach(function (lang) {
+      Array.prototype.slice.call(document.querySelectorAll('.lang-btn[data-lang="' + lang + '"]')).forEach(function (b) {
+        b.addEventListener('click', function (e) {
+          var f = location.pathname.split('/').pop() || 'index.html';
+          if (LANG_PAGES[lang].indexOf(f) !== -1) { e.stopImmediatePropagation(); e.preventDefault(); location.href = lang + '/' + (f === 'index.html' ? '' : f) + location.hash; }
+        }, true);
+      });
     });
   }
 
