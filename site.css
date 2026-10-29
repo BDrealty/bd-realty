@@ -126,36 +126,22 @@
 /* investors form select */
 #f-budget{width:100%;padding:12px 14px;border:.5px solid #DDD8CE;background:#fff;font-family:'Raleway',sans-serif;font-size:13px;color:#4A443A;border-radius:1px}
 
-/* ---- Investors Circle (home) ---- */
-.ic{position:relative;overflow:hidden;background:#0F0D09;color:#E8E0D0}
-.ic-bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.28;filter:saturate(.8)}
-.ic::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(15,13,9,.96) 0%,rgba(15,13,9,.86) 48%,rgba(15,13,9,.72) 100%);z-index:1}
-.ic-inner{position:relative;z-index:2;max-width:1180px;margin:0 auto;padding:5rem 2.5rem;display:grid;grid-template-columns:1.05fr 1fr;gap:4rem;align-items:center}
-.ic-seal{width:92px;height:92px;border-radius:50%;border:1px solid rgba(196,184,154,.7);display:flex;flex-direction:column;align-items:center;justify-content:center;text-decoration:none;margin-bottom:1.6rem;box-shadow:0 0 0 7px rgba(196,184,154,.08);transition:transform .3s}
-.ic-seal:hover{transform:scale(1.05)}
-.ic-seal span{font-family:'EB Garamond',serif;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#C4B89A;line-height:1.5}
-.ic-seal em{font-style:normal;font-family:'EB Garamond',serif;font-size:11px;letter-spacing:.3em;color:#F0E9DA;margin-top:3px}
-.ic-eyebrow{font-family:'Raleway',sans-serif;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#C4B89A;margin-bottom:.9rem}
-.ic-title{font-family:'EB Garamond',serif;font-weight:400;font-size:clamp(34px,4vw,54px);line-height:1.05;color:#F7F3EA;margin-bottom:1.1rem}
-.ic-title em{color:#D9C79F}
-.ic-body{font-family:'Raleway',sans-serif;font-size:15.5px;line-height:1.8;color:rgba(232,224,208,.86);max-width:500px;margin-bottom:1.3rem}
-.ic-points{list-style:none;padding:0;margin:0 0 2rem}
-.ic-points li{font-family:'Raleway',sans-serif;font-size:13.5px;color:#E8E0D0;padding:.45rem 0 .45rem 1.6rem;position:relative}
-.ic-points li::before{content:'';position:absolute;left:0;top:50%;width:.9rem;height:1px;background:#C4B89A}
-.ic-ctas{display:flex;align-items:center;gap:1.6rem;flex-wrap:wrap}
-.ic-btn{display:inline-block;background:#C4B89A;color:#111009;font-family:'Raleway',sans-serif;font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;padding:18px 30px;border-radius:1px;box-shadow:0 10px 30px rgba(196,184,154,.18);transition:background .2s,transform .2s}
-.ic-btn:hover{background:#E2D4B4;transform:translateY(-2px)}
-.ic-link{font-family:'Raleway',sans-serif;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:#E8E0D0;text-decoration:none;border-bottom:1px solid rgba(196,184,154,.6);padding-bottom:4px}
-.ic-link:hover{color:#C4B89A}
-.ic-note{font-family:'Raleway',sans-serif;font-size:11px;letter-spacing:.06em;color:rgba(232,224,208,.55);margin-top:1rem}
-.ic-label{font-family:'Raleway',sans-serif;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:rgba(232,224,208,.6);margin-bottom:1rem}
-.ic-deal{display:block;text-decoration:none;background:rgba(245,241,234,.045);border:.5px solid rgba(196,184,154,.28);border-left:2px solid #C4B89A;padding:1.25rem 1.4rem;margin-bottom:.9rem;transition:background .25s,transform .25s,border-color .25s;backdrop-filter:blur(3px)}
-.ic-deal:hover{background:rgba(245,241,234,.09);transform:translateX(4px);border-color:rgba(196,184,154,.55)}
-.ic-tag{font-family:'Raleway',sans-serif;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:#C4B89A;margin-bottom:.35rem}
-.ic-name{font-family:'EB Garamond',serif;font-size:21px;color:#F7F3EA;margin-bottom:.8rem}
-.ic-nums{display:flex;gap:2rem;flex-wrap:wrap}
-.ic-nums b{display:block;font-family:'EB Garamond',serif;font-weight:400;font-size:26px;color:#E2D4B4;line-height:1}
-.ic-nums span{display:block;font-family:'Raleway',sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(232,224,208,.6);margin-top:.35rem}
-@media(max-width:900px){.ic-inner{grid-template-columns:1fr;gap:2.5rem;padding:3.5rem 1.25rem}.ic::before{background:rgba(15,13,9,.9)}.ic-btn{width:100%;text-align:center}.ic-ctas{gap:1.1rem}.ic-nums{gap:1.4rem}}
-.ic{border-bottom:1px solid rgba(196,184,154,.35)}
-.ic + .site-footer,.ic ~ .site-footer{border-top:0}
+/* ---- Investors Circle (home): minimal ---- */
+.ic2{position:relative;overflow:hidden;background:radial-gradient(ellipse at center,#1F1B13 0%,#0F0D09 70%);padding:5.5rem 1.5rem;text-align:center;border-bottom:1px solid rgba(196,184,154,.25)}
+.ic2-teaser{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;gap:1.5rem;filter:blur(9px);opacity:.38;pointer-events:none;user-select:none}
+.ic2-ghost{width:210px;padding:1.4rem 1.2rem;border:1px solid rgba(196,184,154,.5);border-left:3px solid #C4B89A;background:rgba(245,241,234,.06);text-align:left}
+.ic2-ghost i{display:block;font-style:normal;font-family:'Raleway',sans-serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#C4B89A;margin-bottom:.6rem}
+.ic2-ghost b{display:inline-block;font-family:'EB Garamond',serif;font-weight:400;font-size:30px;color:#E2D4B4;margin-right:1rem}
+.ic2-center{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center}
+.ic2-seal{width:150px;height:150px;border-radius:50%;background:#14110C;border:1px solid rgba(196,184,154,.75);display:flex;flex-direction:column;align-items:center;justify-content:center;text-decoration:none;position:relative;margin-bottom:2rem;transition:transform .4s ease;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.ic2-seal::before{content:'';position:absolute;inset:-14px;border-radius:50%;border:.5px dashed rgba(196,184,154,.45);animation:ic2spin 24s linear infinite}
+.ic2-seal:hover{transform:scale(1.05)}
+@keyframes ic2spin{to{transform:rotate(360deg)}}
+.ic2-seal span{font-family:'EB Garamond',serif;font-size:15px;letter-spacing:.22em;text-transform:uppercase;color:#C4B89A;line-height:1.5}
+.ic2-seal em{font-style:normal;font-family:'EB Garamond',serif;font-size:13px;letter-spacing:.32em;color:#F0E9DA;margin-top:6px}
+.ic2-title{font-family:'EB Garamond',serif;font-weight:400;font-size:clamp(28px,3.4vw,44px);color:#F7F3EA;line-height:1.1;margin-bottom:1.8rem}
+.ic2-title em{color:#D9C79F}
+.ic2-btn{display:inline-block;background:#C4B89A;color:#111009;font-family:'Raleway',sans-serif;font-size:11px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;text-decoration:none;padding:17px 38px;border-radius:1px;transition:background .2s,transform .2s}
+.ic2-btn:hover{background:#E2D4B4;transform:translateY(-2px)}
+.ic2-note{font-family:'Raleway',sans-serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(232,224,208,.5);margin-top:1.1rem}
+@media(max-width:700px){.ic2{padding:4rem 1.25rem}.ic2-seal{width:124px;height:124px}.ic2-seal span{font-size:13px}.ic2-teaser{gap:1rem}.ic2-ghost{width:160px}}
