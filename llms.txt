@@ -5,6 +5,7 @@
 Contact: Benjamin Brasher, WhatsApp +52 998 865 4691 · Jennifer Duzant, WhatsApp +52 998 291 8258 · benjamin@bdrealty.mx
 
 ## Buy
+- [All property for sale](https://www.bdrealty.mx/properties.html): every villa, beachfront home and development in one list, filterable by location, type and price
 - [Deal of the Month](https://www.bdrealty.mx/#deal-of-the-month): one hand-picked price-reduced property, updated monthly
 - [Luxury villas for sale](https://www.bdrealty.mx/top10-villas.html): villas in Tulum, Playa del Carmen and Cancún with prices
 - [Beachfront property](https://www.bdrealty.mx/top10-beachfront.html): oceanfront homes and beach-access residences
@@ -26,6 +27,7 @@ Contact: Benjamin Brasher, WhatsApp +52 998 865 4691 · Jennifer Duzant, WhatsAp
 ## Français
 Version française complète du site (tous les biens, locations et guides) :
 - [Accueil](https://www.bdrealty.mx/fr/): agence immobilière de luxe à Tulum, Playa del Carmen et Cancún
+- [Tous les biens à vendre](https://www.bdrealty.mx/fr/properties.html): villas, bord de mer et programmes neufs, filtrables par destination, type et prix
 - [Villas de luxe à vendre](https://www.bdrealty.mx/fr/top10-villas.html)
 - [Biens en bord de mer](https://www.bdrealty.mx/fr/top10-beachfront.html)
 - [Programmes neufs](https://www.bdrealty.mx/fr/top10-developments.html)

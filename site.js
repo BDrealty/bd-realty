@@ -38,7 +38,7 @@ window.bdLead = function (data) {
     es: ['index.html', 'sell.html', 'the-process.html', 'buyers-guide.html', 'about.html'],
     fr: ['index.html', 'about.html', 'sell.html', 'the-process.html', 'buyers-guide.html', 'investors.html',
          'top10.html', 'top10-villas.html', 'top10-beachfront.html', 'top10-developments.html',
-         'rentals-long-term.html', 'rentals-vacation.html']
+         'rentals-long-term.html', 'rentals-vacation.html', 'properties.html']
   };
   if (document.documentElement.lang === 'en') {
     Object.keys(LANG_PAGES).forEach(function (lang) {

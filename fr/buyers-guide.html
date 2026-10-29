@@ -202,7 +202,7 @@
         <div class="success-icon">✦</div>
         <div class="success-title" data-i18n="guide.success.title">Votre guide est prêt.</div>
         <p class="success-sub">Le téléchargement devrait avoir commencé automatiquement. Sinon, utilisez le bouton ci-dessous.</p>
-        <a href="../buyers-guide.pdf" download="../BD-Realty_Buying-in-Mexico_Buyers-Guide.pdf" class="success-btn">Télécharger maintenant →</a>
+        <a href="../buyers-guide-fr.pdf" download="BD-Realty_Guide-acheter-au-Mexique.pdf" class="success-btn">Télécharger maintenant →</a>
         <p class="success-alt">Des questions en le lisant ? <a href="https://wa.me/529988654691?text=Bonjour+Benjamin%2C+je+viens+de+t%C3%A9l%C3%A9charger+le+guide+de+l%E2%80%99acheteur+et+j%E2%80%99ai+une+question." target="_blank">Écrire directement à Benjamin →</a></p>
       </div>
     </div>
@@ -256,6 +256,7 @@
       <div>
         <div class="sf-h">Acheter</div>
         <ul>
+          <li><a href="properties.html">Tous les biens</a></li>
           <li><a href="index.html#deal-of-the-month">L’affaire du mois</a></li>
           <li><a href="top10-villas.html">Villas de luxe</a></li>
           <li><a href="top10-beachfront.html">Bord de mer</a></li>
@@ -300,8 +301,8 @@
     ------------------------------------------------------------------ */
     var FORM_ENDPOINT = window.BD_FORM_ENDPOINT || '';  /* set once in site.js */
 
-    var PDF_FILE = '../buyers-guide.pdf';
-    var PDF_NAME = '../BD-Realty_Buying-in-Mexico_Buyers-Guide.pdf';
+    var PDF_FILE = '../buyers-guide-fr.pdf';
+    var PDF_NAME = 'BD-Realty_Guide-acheter-au-Mexique.pdf';
 
     function triggerDownload() {
       var a = document.createElement('a');
@@ -373,6 +374,6 @@
       }).then(settle).catch(settle);
     }
   </script>
-  <script src="../site.js?v=3c4240bb" defer></script>
+  <script src="../site.js?v=fbf64689" defer></script>
 </body>
 </html>
