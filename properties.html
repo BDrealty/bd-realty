@@ -46,6 +46,10 @@
     .hero-title em { font-style: italic; color: #C4B89A; }
     .hero-sub { font-family: 'Cormorant Garamond', serif; font-size: 19px; color: #9A9080; font-weight: 300; max-width: 560px; margin: 0 auto; line-height: 1.8; }
 
+    .hero-areas { margin-top: 1.4rem; display: flex; flex-wrap: wrap; justify-content: center; gap: .4rem 1.1rem; }
+    .hero-areas span { width: 100%; font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: #6B6452; }
+    .hero-areas a { font-family: 'EB Garamond', serif; font-size: 17px; color: #C4B89A; text-decoration: none; border-bottom: 0.5px solid rgba(196,184,154,.35); }
+    .hero-areas a:hover { color: #E8E0D0; }
     /* CONTROLS */
     .pf { position: sticky; top: 0; z-index: 50; background: rgba(245,241,234,.97); backdrop-filter: blur(8px); border-bottom: 0.5px solid #DDD8CE; }
     .pf-in { max-width: 1280px; margin: 0 auto; padding: 1.1rem 2.5rem; display: flex; align-items: center; gap: 1.5rem 2.5rem; flex-wrap: wrap; }
@@ -111,6 +115,7 @@
     <div class="hero-eyebrow">Tulum · Playa del Carmen · Cancún</div>
     <h1 class="hero-title">Property <em>for sale</em></h1>
     <p class="hero-sub">Every villa, beachfront home and development we stand behind, in one place.</p>
+    <div class="hero-areas"><span>Area guides</span><a href="tulum-real-estate.html">Tulum</a><a href="playa-del-carmen-real-estate.html">Playa del Carmen</a><a href="cancun-real-estate.html">Cancún</a><a href="aldea-zama-tulum-real-estate.html">Aldea Zama</a><a href="playacar-real-estate.html">Playacar</a><a href="puerto-cancun-real-estate.html">Puerto Cancún</a></div>
   </div>
 
   <div class="pf" role="region" aria-label="Filter and sort">
@@ -147,7 +152,7 @@
 
   <div class="pg" id="pg">
       <a class="pc" href="villa-coco-dar-lalla-tulum.html" data-city="tulum" data-types="villa" data-price="1050000" data-order="0">
-        <div class="pc-img" data-bg="coco-1.jpg"><span class="pc-tag">Villa</span></div>
+        <div class="pc-img" data-bg="coco-1.webp"><span class="pc-tag">Villa</span></div>
         <div class="pc-body">
           <div class="pc-eyebrow">Aldea Zama · Tulum</div>
           <h2 class="pc-name">Villa Coco Dar Lalla</h2>
@@ -156,7 +161,7 @@
         </div>
       </a>
       <a class="pc" href="villa-kahaal-tulum.html" data-city="tulum" data-types="villa" data-price="1300000" data-order="1">
-        <div class="pc-img" data-bg="kahaal-10.jpg"><span class="pc-tag">Villa</span></div>
+        <div class="pc-img" data-bg="kahaal-10.webp"><span class="pc-tag">Villa</span></div>
         <div class="pc-body">
           <div class="pc-eyebrow">Consciente · Tulum</div>
           <h2 class="pc-name">Villa Kahaal</h2>
@@ -165,7 +170,7 @@
         </div>
       </a>
       <a class="pc" href="the-artists-mansion-tulum.html" data-city="tulum" data-types="villa" data-price="" data-order="2">
-        <div class="pc-img" data-bg="artist-5.jpg"><span class="pc-tag">Villa</span></div>
+        <div class="pc-img" data-bg="artist-5.webp"><span class="pc-tag">Villa</span></div>
         <div class="pc-body">
           <div class="pc-eyebrow">Near Gran Cenote · Tulum</div>
           <h2 class="pc-name">The Artist's Mansion</h2>
@@ -174,7 +179,7 @@
         </div>
       </a>
       <a class="pc" href="senderos-mayakoba-residence-playa-del-carmen.html" data-city="playa" data-types="villa" data-price="750524" data-order="3">
-        <div class="pc-img" data-bg="mayakoba-2.jpg"><span class="pc-tag">Villa</span></div>
+        <div class="pc-img" data-bg="mayakoba-2.webp"><span class="pc-tag">Villa</span></div>
         <div class="pc-body">
           <div class="pc-eyebrow">Senderos de Mayakoba · Playa del Carmen</div>
           <h2 class="pc-name">Senderos Mayakoba Residence</h2>
@@ -183,7 +188,7 @@
         </div>
       </a>
       <a class="pc" href="casa-girasol-playa-del-carmen.html" data-city="playa" data-types="villa" data-price="398349" data-order="4">
-        <div class="pc-img" data-bg="girasol-1.jpg"><span class="pc-tag">Villa</span></div>
+        <div class="pc-img" data-bg="girasol-1.webp"><span class="pc-tag">Villa</span></div>
         <div class="pc-body">
           <div class="pc-eyebrow">Residencial El Cielo · Playa del Carmen</div>
           <h2 class="pc-name">Casa Girasol</h2>
@@ -192,7 +197,7 @@
         </div>
       </a>
       <a class="pc" href="canales-estate-cancun.html" data-city="cancun" data-types="villa beachfront" data-price="8900000" data-order="5">
-        <div class="pc-img" data-bg="canales-estate-1.jpg"><span class="pc-tag">Villa</span><span class="pc-tag">Beachfront</span></div>
+        <div class="pc-img" data-bg="canales-estate-1.webp"><span class="pc-tag">Villa</span><span class="pc-tag">Beachfront</span></div>
         <div class="pc-body">
           <div class="pc-eyebrow">Puerto Cancún · Cancún</div>
           <h2 class="pc-name">Canales Estate</h2>
@@ -201,7 +206,7 @@
         </div>
       </a>
       <a class="pc" href="canal-residence-cancun.html" data-city="cancun" data-types="villa" data-price="4000000" data-order="6">
-        <div class="pc-img" data-bg="canal-residence-1.jpg"><span class="pc-tag">Villa</span></div>
+        <div class="pc-img" data-bg="canal-residence-1.webp"><span class="pc-tag">Villa</span></div>
         <div class="pc-body">
           <div class="pc-eyebrow">Puerto Cancún · Cancún</div>
           <h2 class="pc-name">Canal Residence</h2>
@@ -210,7 +215,7 @@
         </div>
       </a>
       <a class="pc" href="casa-shalva-tulum.html" data-city="tulum" data-types="villa" data-price="3000000" data-order="7">
-        <div class="pc-img" data-bg="shalva-1.jpg"><span class="pc-tag">Villa</span></div>
+        <div class="pc-img" data-bg="shalva-1.webp"><span class="pc-tag">Villa</span></div>
         <div class="pc-body">
           <div class="pc-eyebrow">Tulum</div>
           <h2 class="pc-name">Casa Shalva</h2>
@@ -219,7 +224,7 @@
         </div>
       </a>
       <a class="pc" href="casa-alina-tulum.html" data-city="tulum" data-types="villa beachfront" data-price="2750000" data-order="8">
-        <div class="pc-img" data-bg="alina-1.jpg"><span class="pc-tag">Villa</span><span class="pc-tag">Beachfront</span></div>
+        <div class="pc-img" data-bg="alina-1.webp"><span class="pc-tag">Villa</span><span class="pc-tag">Beachfront</span></div>
         <div class="pc-body">
           <div class="pc-eyebrow">Tankah Bay · Tulum</div>
           <h2 class="pc-name">Casa Alina</h2>
@@ -228,7 +233,7 @@
         </div>
       </a>
       <a class="pc" href="villa-neek-tulum.html" data-city="tulum" data-types="villa" data-price="1500000" data-order="9">
-        <div class="pc-img" data-bg="neek-1.jpg"><span class="pc-tag">Villa</span></div>
+        <div class="pc-img" data-bg="neek-1.webp"><span class="pc-tag">Villa</span></div>
         <div class="pc-body">
           <div class="pc-eyebrow">Near Gran Cenote · Tulum</div>
           <h2 class="pc-name">Villa Neek</h2>
@@ -237,7 +242,7 @@
         </div>
       </a>
       <a class="pc" href="palm-villas-playa-del-carmen.html" data-city="playa" data-types="villa" data-price="1694611" data-order="10">
-        <div class="pc-img" data-bg="palmvillas-corasol-1.jpg"><span class="pc-tag">Villa</span></div>
+        <div class="pc-img" data-bg="palmvillas-corasol-1.webp"><span class="pc-tag">Villa</span></div>
         <div class="pc-body">
           <div class="pc-eyebrow">Corasol · Playa del Carmen</div>
           <h2 class="pc-name">Palm Villas</h2>
@@ -246,7 +251,7 @@
         </div>
       </a>
       <a class="pc" href="lake-house-playa-del-carmen.html" data-city="playa" data-types="villa" data-price="1888000" data-order="11">
-        <div class="pc-img" data-bg="lakehouse-1.jpg"><span class="pc-tag">Villa</span></div>
+        <div class="pc-img" data-bg="lakehouse-1.webp"><span class="pc-tag">Villa</span></div>
         <div class="pc-body">
           <div class="pc-eyebrow">Playacar Phase II · Playa del Carmen</div>
           <h2 class="pc-name">Lake House</h2>
@@ -255,7 +260,7 @@
         </div>
       </a>
       <a class="pc" href="ikebana-villa-playa-del-carmen.html" data-city="playa" data-types="villa" data-price="1250000" data-order="12">
-        <div class="pc-img" data-bg="ikebana-1.jpg"><span class="pc-tag">Villa</span></div>
+        <div class="pc-img" data-bg="ikebana-1.webp"><span class="pc-tag">Villa</span></div>
         <div class="pc-body">
           <div class="pc-eyebrow">Playacar Phase II · Playa del Carmen</div>
           <h2 class="pc-name">Ikebana Villa</h2>
@@ -264,7 +269,7 @@
         </div>
       </a>
       <a class="pc" href="casa-marita-playa-del-carmen.html" data-city="playa" data-types="villa" data-price="1200000" data-order="13">
-        <div class="pc-img" data-bg="marita-1.jpg"><span class="pc-tag">Villa</span></div>
+        <div class="pc-img" data-bg="marita-1.webp"><span class="pc-tag">Villa</span></div>
         <div class="pc-body">
           <div class="pc-eyebrow">Playacar Phase II · Playa del Carmen</div>
           <h2 class="pc-name">Casa Marita</h2>
@@ -273,7 +278,7 @@
         </div>
       </a>
       <a class="pc" href="villa-sha-cancun.html" data-city="cancun" data-types="beachfront" data-price="6500000" data-order="14">
-        <div class="pc-img" data-bg="villa-sha-1.jpg"><span class="pc-tag">Beachfront</span></div>
+        <div class="pc-img" data-bg="villa-sha-1.webp"><span class="pc-tag">Beachfront</span></div>
         <div class="pc-body">
           <div class="pc-eyebrow">Punta Sam · Cancún</div>
           <h2 class="pc-name">Villa Sha</h2>
@@ -282,7 +287,7 @@
         </div>
       </a>
       <a class="pc" href="st-regis-costa-mujeres-cancun.html" data-city="cancun" data-types="beachfront development" data-price="2064000" data-order="15">
-        <div class="pc-img" data-bg="st-regis-1.jpg"><span class="pc-tag">Beachfront</span><span class="pc-tag">Development</span></div>
+        <div class="pc-img" data-bg="st-regis-1.webp"><span class="pc-tag">Beachfront</span><span class="pc-tag">Development</span></div>
         <div class="pc-body">
           <div class="pc-eyebrow">Costa Mujeres · Cancún</div>
           <h2 class="pc-name">St. Regis Costa Mujeres</h2>
@@ -291,7 +296,7 @@
         </div>
       </a>
       <a class="pc" href="la-amada-cancun.html" data-city="cancun" data-types="beachfront development" data-price="380000" data-order="16">
-        <div class="pc-img" data-bg="la-amada-1.jpg"><span class="pc-tag">Beachfront</span><span class="pc-tag">Development</span></div>
+        <div class="pc-img" data-bg="la-amada-1.webp"><span class="pc-tag">Beachfront</span><span class="pc-tag">Development</span></div>
         <div class="pc-body">
           <div class="pc-eyebrow">Playa Mujeres · Cancún</div>
           <h2 class="pc-name">La Amada</h2>
@@ -300,7 +305,7 @@
         </div>
       </a>
       <a class="pc" href="rosewood-mayakoba-playa-del-carmen.html" data-city="playa" data-types="beachfront development" data-price="" data-order="17">
-        <div class="pc-img" data-bg="rosewood-1.jpg"><span class="pc-tag">Beachfront</span><span class="pc-tag">Development</span></div>
+        <div class="pc-img" data-bg="rosewood-1.webp"><span class="pc-tag">Beachfront</span><span class="pc-tag">Development</span></div>
         <div class="pc-body">
           <div class="pc-eyebrow">Mayakoba · Playa del Carmen</div>
           <h2 class="pc-name">Rosewood Mayakoba</h2>
@@ -309,7 +314,7 @@
         </div>
       </a>
       <a class="pc" href="mareazul-playa-del-carmen.html" data-city="playa" data-types="beachfront development" data-price="350000" data-order="18">
-        <div class="pc-img" data-bg="mareazul-4.jpg"><span class="pc-tag">Beachfront</span><span class="pc-tag">Development</span></div>
+        <div class="pc-img" data-bg="mareazul-4.webp"><span class="pc-tag">Beachfront</span><span class="pc-tag">Development</span></div>
         <div class="pc-body">
           <div class="pc-eyebrow">Mareazul · Playa del Carmen</div>
           <h2 class="pc-name">Mareazul</h2>
@@ -318,7 +323,7 @@
         </div>
       </a>
       <a class="pc" href="la-reserva-tulum.html" data-city="tulum" data-types="development" data-price="260000" data-order="19">
-        <div class="pc-img" data-bg="la-reserva-1.jpg"><span class="pc-tag">Development</span></div>
+        <div class="pc-img" data-bg="la-reserva-1.webp"><span class="pc-tag">Development</span></div>
         <div class="pc-body">
           <div class="pc-eyebrow">Region 15 · Tulum</div>
           <h2 class="pc-name">La Reserva</h2>
@@ -327,7 +332,7 @@
         </div>
       </a>
       <a class="pc" href="aflora-tulum.html" data-city="tulum" data-types="development" data-price="280000" data-order="20">
-        <div class="pc-img" data-bg="aflora-1.jpg"><span class="pc-tag">Development</span></div>
+        <div class="pc-img" data-bg="aflora-1.webp"><span class="pc-tag">Development</span></div>
         <div class="pc-body">
           <div class="pc-eyebrow">Aldea Zama · Tulum</div>
           <h2 class="pc-name">Aflora</h2>
@@ -336,7 +341,7 @@
         </div>
       </a>
       <a class="pc" href="kaybe-tulum.html" data-city="tulum" data-types="development" data-price="200000" data-order="21">
-        <div class="pc-img" data-bg="kaybe-1.jpg"><span class="pc-tag">Development</span></div>
+        <div class="pc-img" data-bg="kaybe-1.webp"><span class="pc-tag">Development</span></div>
         <div class="pc-body">
           <div class="pc-eyebrow">Tulum</div>
           <h2 class="pc-name">KAYBÉ</h2>
@@ -345,7 +350,7 @@
         </div>
       </a>
       <a class="pc" href="candela-tulum.html" data-city="tulum" data-types="development" data-price="250000" data-order="22">
-        <div class="pc-img" data-bg="candela-1.jpg"><span class="pc-tag">Development</span></div>
+        <div class="pc-img" data-bg="candela-1.webp"><span class="pc-tag">Development</span></div>
         <div class="pc-body">
           <div class="pc-eyebrow">Tulum</div>
           <h2 class="pc-name">Candela</h2>
@@ -354,7 +359,7 @@
         </div>
       </a>
       <a class="pc" href="azulik-residences-tulum.html" data-city="tulum" data-types="development" data-price="650000" data-order="23">
-        <div class="pc-img" data-bg="ext-azulik-residences-1024x576-31a56.jpg"><span class="pc-tag">Development</span></div>
+        <div class="pc-img" data-bg="ext-azulik-residences-1024x576-31a56.webp"><span class="pc-tag">Development</span></div>
         <div class="pc-body">
           <div class="pc-eyebrow">Aldea Zama · Tulum</div>
           <h2 class="pc-name">Azulik Residences</h2>
@@ -363,7 +368,7 @@
         </div>
       </a>
       <a class="pc" href="distrito-xcalacoco-playa-del-carmen.html" data-city="playa" data-types="development" data-price="243000" data-order="24">
-        <div class="pc-img" data-bg="xcalacoco-1.jpg"><span class="pc-tag">Development</span></div>
+        <div class="pc-img" data-bg="xcalacoco-1.webp"><span class="pc-tag">Development</span></div>
         <div class="pc-body">
           <div class="pc-eyebrow">North Playa · Playa del Carmen</div>
           <h2 class="pc-name">Distrito Xcalacoco</h2>
@@ -372,7 +377,7 @@
         </div>
       </a>
       <a class="pc" href="awa-playacar.html" data-city="playa" data-types="development" data-price="290000" data-order="25">
-        <div class="pc-img" data-bg="awa-1.jpg"><span class="pc-tag">Development</span></div>
+        <div class="pc-img" data-bg="awa-1.webp"><span class="pc-tag">Development</span></div>
         <div class="pc-body">
           <div class="pc-eyebrow">Playacar · Playa del Carmen</div>
           <h2 class="pc-name">AWA Playacar</h2>
@@ -381,7 +386,7 @@
         </div>
       </a>
       <a class="pc" href="viceroy-residences-playa-del-carmen.html" data-city="playa" data-types="development" data-price="400000" data-order="26">
-        <div class="pc-img" data-bg="viceroy-1.jpg"><span class="pc-tag">Development</span></div>
+        <div class="pc-img" data-bg="viceroy-1.webp"><span class="pc-tag">Development</span></div>
         <div class="pc-body">
           <div class="pc-eyebrow">Downtown · Playa del Carmen</div>
           <h2 class="pc-name">Viceroy Residences</h2>
@@ -390,7 +395,7 @@
         </div>
       </a>
       <a class="pc" href="sls-cancun.html" data-city="cancun" data-types="development" data-price="1097000" data-order="27">
-        <div class="pc-img" data-bg="sls-1.jpg"><span class="pc-tag">Development</span></div>
+        <div class="pc-img" data-bg="sls-1.webp"><span class="pc-tag">Development</span></div>
         <div class="pc-body">
           <div class="pc-eyebrow">Puerto Cancún · Cancún</div>
           <h2 class="pc-name">SLS Cancún</h2>
@@ -399,7 +404,7 @@
         </div>
       </a>
       <a class="pc" href="shark-tower-cancun.html" data-city="cancun" data-types="development" data-price="892000" data-order="28">
-        <div class="pc-img" data-bg="shark-2.jpg"><span class="pc-tag">Development</span></div>
+        <div class="pc-img" data-bg="shark-2.webp"><span class="pc-tag">Development</span></div>
         <div class="pc-body">
           <div class="pc-eyebrow">Puerto Cancún · Cancún</div>
           <h2 class="pc-name">Shark Tower</h2>
@@ -408,7 +413,7 @@
         </div>
       </a>
       <a class="pc" href="aria-puerto-cancun.html" data-city="cancun" data-types="development" data-price="420000" data-order="29">
-        <div class="pc-img" data-bg="aria-2.jpg"><span class="pc-tag">Development</span></div>
+        <div class="pc-img" data-bg="aria-2.webp"><span class="pc-tag">Development</span></div>
         <div class="pc-body">
           <div class="pc-eyebrow">Puerto Cancún · Cancún</div>
           <h2 class="pc-name">Aria Puerto Cancún</h2>
