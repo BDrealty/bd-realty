@@ -274,25 +274,36 @@
     .pf-count .one, .pf-count.single .many { display: none; }
     .pf-count.single .one { display: inline; }
 
-    /* GRID */
-    .pg { max-width: 1280px; margin: 0 auto; padding: 2.5rem 2.5rem 5rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem 1.75rem; }
-    .pc { display: flex; flex-direction: column; background: #fff; text-decoration: none; color: inherit; border: 0.5px solid #E6E0D4; transition: transform .3s ease, box-shadow .3s ease; }
-    .pc:hover { transform: translateY(-3px); box-shadow: 0 14px 36px rgba(42,40,32,.10); }
-    .pc.hidden { display: none; }
-    .pc-img { aspect-ratio: 4 / 3; background: #E8E2D6 center / cover; position: relative; }
-    .pc-tag { position: relative; top: .9rem; left: .9rem; display: inline-block; margin-right: .35rem; background: rgba(17,16,9,.72); color: #E8E0D0; font-size: 8.5px; letter-spacing: .18em; text-transform: uppercase; padding: 5px 9px; }
-    .pc-body { padding: 1.4rem 1.5rem 1.6rem; display: flex; flex-direction: column; gap: .55rem; flex: 1; }
-    .pc-eyebrow { font-size: 9.5px; letter-spacing: .18em; text-transform: uppercase; color: #9A7D5A; }
-    .pc-name { font-family: 'EB Garamond', serif; font-weight: 400; font-size: 25px; line-height: 1.15; color: #2A2820; }
-    .pc-specs { display: flex; flex-wrap: wrap; gap: .1rem .35rem; }
-    .pc-specs span { font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase; color: #9A9080; }
-    .pc-sep { color: #DDD8CE !important; letter-spacing: 0 !important; }
-    .pc-price { font-family: 'EB Garamond', serif; font-size: 20px; color: #2A2820; margin-top: auto; padding-top: .5rem; }
-    .pc-price span { font-size: 14px !important; }
+    /* LIST: same presentation as the Top 10 pages */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+    .pg { max-width: 1400px; margin: 0 auto; padding: 3rem 2.5rem 5rem; display: flex; flex-direction: column; }
+    .pr { display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; border-bottom: 0.5px solid #DDD8CE; text-decoration: none; color: inherit; animation: fadeUp 0.4s ease; transition: opacity 0.2s; }
+    .pr.first { border-top: 0.5px solid #DDD8CE; }
+    .pr:hover { opacity: 0.92; }
+    .pr.hidden { display: none; }
+    .pr.flip .pr-img { order: 2; }
+    .pr.flip .pr-body { order: 1; }
+    .pr-img { min-height: 500px; background: #E8E2D6 center / cover; position: relative; }
+    .pr-img::after { content: 'View Property →'; position: absolute; bottom: 1.5rem; right: 1.5rem; background: rgba(255,255,255,0.92); font-family: 'Raleway', sans-serif; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: #2A2820; padding: 8px 14px; border-radius: 1px; opacity: 0; transition: opacity 0.3s; }
+    .pr:hover .pr-img::after { opacity: 1; }
+    .pr-tag { position: relative; top: 1.5rem; left: 1.5rem; display: inline-block; margin-right: .35rem; background: rgba(17,16,9,.72); color: #E8E0D0; font-size: 8.5px; letter-spacing: .18em; text-transform: uppercase; padding: 5px 9px; }
+    .pr-body { padding: 3.5rem; display: flex; flex-direction: column; gap: 1rem; background: #fff; justify-content: center; }
+    .pr-eyebrow { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #9A7D5A; }
+    .pr-name { font-family: 'EB Garamond', serif; font-size: clamp(26px, 2.8vw, 42px); color: #2A2820; font-weight: 400; line-height: 1.1; }
+    .pr-specs { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+    .pr-specs span { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #9A9080; }
+    .pr-sep { color: #DDD8CE !important; letter-spacing: 0 !important; }
+    .pr-price { font-family: 'EB Garamond', serif; font-size: 26px; color: #2A2820; letter-spacing: 0.01em; margin-top: 0.5rem; }
     .pg-empty { display: none; grid-column: 1 / -1; text-align: center; font-family: 'Cormorant Garamond', serif; font-size: 20px; color: #9A9080; padding: 3rem 0; }
 
     @media (max-width: 1500px) { .pf-label { display: none; } }
-    @media (max-width: 1080px) { .pg { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 900px) {
+      .pr { grid-template-columns: 1fr; }
+      .pr.flip .pr-img, .pr.flip .pr-body { order: 0; }
+      .pr-img { min-height: 300px; }
+      .pr-body { padding: 2rem 1.5rem; }
+      .pg { padding: 1.5rem 0 4rem; }
+    }
     @media (max-width: 700px) {
       .pf { position: static; }
       .pf-in { padding: .9rem 1rem; gap: .6rem; flex-direction: column; align-items: stretch; }
@@ -302,7 +313,6 @@
       .pf-tab { flex: 1 0 auto; font-size: 14px; padding: .55rem .7rem; }
       .pf-sort { width: 100%; }
       .pf-count { margin: .2rem 0 0; text-align: center; }
-      .pg { grid-template-columns: 1fr; padding: 1.25rem 1rem 4rem; gap: 1.25rem; }
       .hero { padding: 2rem 1rem; }
     }
   </style>
@@ -357,274 +367,274 @@
   </div>
 
   <div class="pg" id="pg">
-      <a class="pc" href="villa-coco-dar-lalla-tulum.html" data-city="tulum" data-types="villa" data-price="1050000" data-order="0">
-        <div class="pc-img" data-bg="../coco-1.webp"><span class="pc-tag">Villa</span></div>
-        <div class="pc-body">
-          <div class="pc-eyebrow">Aldea Zama · Tulum</div>
-          <h2 class="pc-name">Villa Coco Dar Lalla</h2>
-          <div class="pc-specs"><span>4 ch.</span><span class="pc-sep"> · </span><span>3 sdb</span><span class="pc-sep"> · </span><span>360 m² habitables</span><span class="pc-sep"> · </span><span>460 m² de terrain</span></div>
-          <div class="pc-price">1 050 000 USD <span style="font-size:16px;color:#9A9080;text-decoration:line-through;margin-left:6px">1 800 000 USD</span></div>
+      <a class="pr" href="villa-coco-dar-lalla-tulum.html" data-city="tulum" data-types="villa" data-price="1050000" data-order="0">
+        <div class="pr-img" data-bg="../coco-1.webp"><span class="pr-tag">Villa</span></div>
+        <div class="pr-body">
+          <div class="pr-eyebrow">Aldea Zama · Tulum</div>
+          <h2 class="pr-name">Villa Coco Dar Lalla</h2>
+          <div class="pr-specs"><span>4 ch.</span><span class="pr-sep"> · </span><span>3 sdb</span><span class="pr-sep"> · </span><span>360 m² habitables</span><span class="pr-sep"> · </span><span>460 m² de terrain</span></div>
+          <div class="pr-price">1 050 000 USD <span style="font-size:16px;color:#9A9080;text-decoration:line-through;margin-left:6px">1 800 000 USD</span></div>
         </div>
       </a>
-      <a class="pc" href="villa-kahaal-tulum.html" data-city="tulum" data-types="villa" data-price="1300000" data-order="1">
-        <div class="pc-img" data-bg="../kahaal-10.webp"><span class="pc-tag">Villa</span></div>
-        <div class="pc-body">
-          <div class="pc-eyebrow">Consciente · Tulum</div>
-          <h2 class="pc-name">Villa Kahaal</h2>
-          <div class="pc-specs"><span>4 ch.</span><span class="pc-sep"> · </span><span>5 sdb</span><span class="pc-sep"> · </span><span>460 m² habitables</span><span class="pc-sep"> · </span><span>900 m² de terrain</span></div>
-          <div class="pc-price">1 300 000 USD</div>
+      <a class="pr" href="villa-kahaal-tulum.html" data-city="tulum" data-types="villa" data-price="1300000" data-order="1">
+        <div class="pr-img" data-bg="../kahaal-10.webp"><span class="pr-tag">Villa</span></div>
+        <div class="pr-body">
+          <div class="pr-eyebrow">Consciente · Tulum</div>
+          <h2 class="pr-name">Villa Kahaal</h2>
+          <div class="pr-specs"><span>4 ch.</span><span class="pr-sep"> · </span><span>5 sdb</span><span class="pr-sep"> · </span><span>460 m² habitables</span><span class="pr-sep"> · </span><span>900 m² de terrain</span></div>
+          <div class="pr-price">1 300 000 USD</div>
         </div>
       </a>
-      <a class="pc" href="the-artists-mansion-tulum.html" data-city="tulum" data-types="villa" data-price="" data-order="2">
-        <div class="pc-img" data-bg="../artist-5.webp"><span class="pc-tag">Villa</span></div>
-        <div class="pc-body">
-          <div class="pc-eyebrow">Près du Gran Cenote · Tulum</div>
-          <h2 class="pc-name">The Artist's Mansion</h2>
-          <div class="pc-specs"><span>3 ch.</span><span class="pc-sep"> · </span><span>4 sdb</span><span class="pc-sep"> · </span><span>1 000 m² habitables</span><span class="pc-sep"> · </span><span>5 291 m² de terrain</span></div>
-          <div class="pc-price">Prix sur demande</div>
+      <a class="pr" href="the-artists-mansion-tulum.html" data-city="tulum" data-types="villa" data-price="" data-order="2">
+        <div class="pr-img" data-bg="../artist-5.webp"><span class="pr-tag">Villa</span></div>
+        <div class="pr-body">
+          <div class="pr-eyebrow">Près du Gran Cenote · Tulum</div>
+          <h2 class="pr-name">The Artist's Mansion</h2>
+          <div class="pr-specs"><span>3 ch.</span><span class="pr-sep"> · </span><span>4 sdb</span><span class="pr-sep"> · </span><span>1 000 m² habitables</span><span class="pr-sep"> · </span><span>5 291 m² de terrain</span></div>
+          <div class="pr-price">Prix sur demande</div>
         </div>
       </a>
-      <a class="pc" href="senderos-mayakoba-residence-playa-del-carmen.html" data-city="playa" data-types="villa" data-price="750524" data-order="3">
-        <div class="pc-img" data-bg="../mayakoba-2.webp"><span class="pc-tag">Villa</span></div>
-        <div class="pc-body">
-          <div class="pc-eyebrow">Senderos de Mayakoba · Playa del Carmen</div>
-          <h2 class="pc-name">Senderos Mayakoba Residence</h2>
-          <div class="pc-specs"><span>5 ch.</span><span class="pc-sep"> · </span><span>5 sdb</span><span class="pc-sep"> · </span><span>350 m² habitables</span><span class="pc-sep"> · </span><span>373 m² de terrain</span></div>
-          <div class="pc-price">750 524 USD</div>
+      <a class="pr" href="senderos-mayakoba-residence-playa-del-carmen.html" data-city="playa" data-types="villa" data-price="750524" data-order="3">
+        <div class="pr-img" data-bg="../mayakoba-2.webp"><span class="pr-tag">Villa</span></div>
+        <div class="pr-body">
+          <div class="pr-eyebrow">Senderos de Mayakoba · Playa del Carmen</div>
+          <h2 class="pr-name">Senderos Mayakoba Residence</h2>
+          <div class="pr-specs"><span>5 ch.</span><span class="pr-sep"> · </span><span>5 sdb</span><span class="pr-sep"> · </span><span>350 m² habitables</span><span class="pr-sep"> · </span><span>373 m² de terrain</span></div>
+          <div class="pr-price">750 524 USD</div>
         </div>
       </a>
-      <a class="pc" href="casa-girasol-playa-del-carmen.html" data-city="playa" data-types="villa" data-price="398349" data-order="4">
-        <div class="pc-img" data-bg="../girasol-1.webp"><span class="pc-tag">Villa</span></div>
-        <div class="pc-body">
-          <div class="pc-eyebrow">Residencial El Cielo · Playa del Carmen</div>
-          <h2 class="pc-name">Casa Girasol</h2>
-          <div class="pc-specs"><span>3 ch.</span><span class="pc-sep"> · </span><span>2,5 sdb</span><span class="pc-sep"> · </span><span>251 m² construits</span><span class="pc-sep"> · </span><span>266 m² de terrain</span></div>
-          <div class="pc-price">398 349 USD</div>
+      <a class="pr" href="casa-girasol-playa-del-carmen.html" data-city="playa" data-types="villa" data-price="398349" data-order="4">
+        <div class="pr-img" data-bg="../girasol-1.webp"><span class="pr-tag">Villa</span></div>
+        <div class="pr-body">
+          <div class="pr-eyebrow">Residencial El Cielo · Playa del Carmen</div>
+          <h2 class="pr-name">Casa Girasol</h2>
+          <div class="pr-specs"><span>3 ch.</span><span class="pr-sep"> · </span><span>2,5 sdb</span><span class="pr-sep"> · </span><span>251 m² construits</span><span class="pr-sep"> · </span><span>266 m² de terrain</span></div>
+          <div class="pr-price">398 349 USD</div>
         </div>
       </a>
-      <a class="pc" href="canales-estate-cancun.html" data-city="cancun" data-types="villa beachfront" data-price="8900000" data-order="5">
-        <div class="pc-img" data-bg="../canales-estate-1.webp"><span class="pc-tag">Villa</span><span class="pc-tag">Bord de mer</span></div>
-        <div class="pc-body">
-          <div class="pc-eyebrow">Puerto Cancún · Cancún</div>
-          <h2 class="pc-name">Canales Estate</h2>
-          <div class="pc-specs"><span>4 ch.</span><span class="pc-sep"> · </span><span>6,5 sdb</span><span class="pc-sep"> · </span><span>1 056 m² habitables</span><span class="pc-sep"> · </span><span>1 232 m² de terrain</span></div>
-          <div class="pc-price">8 900 000 USD</div>
+      <a class="pr" href="canales-estate-cancun.html" data-city="cancun" data-types="villa beachfront" data-price="8900000" data-order="5">
+        <div class="pr-img" data-bg="../canales-estate-1.webp"><span class="pr-tag">Villa</span><span class="pr-tag">Bord de mer</span></div>
+        <div class="pr-body">
+          <div class="pr-eyebrow">Puerto Cancún · Cancún</div>
+          <h2 class="pr-name">Canales Estate</h2>
+          <div class="pr-specs"><span>4 ch.</span><span class="pr-sep"> · </span><span>6,5 sdb</span><span class="pr-sep"> · </span><span>1 056 m² habitables</span><span class="pr-sep"> · </span><span>1 232 m² de terrain</span></div>
+          <div class="pr-price">8 900 000 USD</div>
         </div>
       </a>
-      <a class="pc" href="canal-residence-cancun.html" data-city="cancun" data-types="villa" data-price="4000000" data-order="6">
-        <div class="pc-img" data-bg="../canal-residence-1.webp"><span class="pc-tag">Villa</span></div>
-        <div class="pc-body">
-          <div class="pc-eyebrow">Puerto Cancún · Cancún</div>
-          <h2 class="pc-name">Canal Residence</h2>
-          <div class="pc-specs"><span>4 ch.</span><span class="pc-sep"> · </span><span>5,5 sdb</span><span class="pc-sep"> · </span><span>705 m² habitables</span><span class="pc-sep"> · </span><span>520,74 m² de terrain</span></div>
-          <div class="pc-price">4 000 000 USD</div>
+      <a class="pr" href="canal-residence-cancun.html" data-city="cancun" data-types="villa" data-price="4000000" data-order="6">
+        <div class="pr-img" data-bg="../canal-residence-1.webp"><span class="pr-tag">Villa</span></div>
+        <div class="pr-body">
+          <div class="pr-eyebrow">Puerto Cancún · Cancún</div>
+          <h2 class="pr-name">Canal Residence</h2>
+          <div class="pr-specs"><span>4 ch.</span><span class="pr-sep"> · </span><span>5,5 sdb</span><span class="pr-sep"> · </span><span>705 m² habitables</span><span class="pr-sep"> · </span><span>520,74 m² de terrain</span></div>
+          <div class="pr-price">4 000 000 USD</div>
         </div>
       </a>
-      <a class="pc" href="casa-shalva-tulum.html" data-city="tulum" data-types="villa" data-price="3000000" data-order="7">
-        <div class="pc-img" data-bg="../shalva-1.webp"><span class="pc-tag">Villa</span></div>
-        <div class="pc-body">
-          <div class="pc-eyebrow">Tulum</div>
-          <h2 class="pc-name">Casa Shalva</h2>
-          <div class="pc-specs"><span>6 ch.</span><span class="pc-sep"> · </span><span>7 sdb</span><span class="pc-sep"> · </span><span>745 m² habitables</span></div>
-          <div class="pc-price">3 000 000 USD <span style="font-size:16px;color:#9A9080;text-decoration:line-through;margin-left:6px">3 800 000 USD</span></div>
+      <a class="pr" href="casa-shalva-tulum.html" data-city="tulum" data-types="villa" data-price="3000000" data-order="7">
+        <div class="pr-img" data-bg="../shalva-1.webp"><span class="pr-tag">Villa</span></div>
+        <div class="pr-body">
+          <div class="pr-eyebrow">Tulum</div>
+          <h2 class="pr-name">Casa Shalva</h2>
+          <div class="pr-specs"><span>6 ch.</span><span class="pr-sep"> · </span><span>7 sdb</span><span class="pr-sep"> · </span><span>745 m² habitables</span></div>
+          <div class="pr-price">3 000 000 USD <span style="font-size:16px;color:#9A9080;text-decoration:line-through;margin-left:6px">3 800 000 USD</span></div>
         </div>
       </a>
-      <a class="pc" href="casa-alina-tulum.html" data-city="tulum" data-types="villa beachfront" data-price="2750000" data-order="8">
-        <div class="pc-img" data-bg="../alina-1.webp"><span class="pc-tag">Villa</span><span class="pc-tag">Bord de mer</span></div>
-        <div class="pc-body">
-          <div class="pc-eyebrow">Tankah Bay · Tulum</div>
-          <h2 class="pc-name">Casa Alina</h2>
-          <div class="pc-specs"><span>4 ch.</span><span class="pc-sep"> · </span><span>4 sdb + 2 WC invités</span><span class="pc-sep"> · </span><span>450 m² habitables</span><span class="pc-sep"> · </span><span>20 m en front de mer</span></div>
-          <div class="pc-price">2 750 000 USD <span style="font-size:16px;color:#9A9080;text-decoration:line-through;margin-left:6px">3 200 000 USD</span></div>
+      <a class="pr" href="casa-alina-tulum.html" data-city="tulum" data-types="villa beachfront" data-price="2750000" data-order="8">
+        <div class="pr-img" data-bg="../alina-1.webp"><span class="pr-tag">Villa</span><span class="pr-tag">Bord de mer</span></div>
+        <div class="pr-body">
+          <div class="pr-eyebrow">Tankah Bay · Tulum</div>
+          <h2 class="pr-name">Casa Alina</h2>
+          <div class="pr-specs"><span>4 ch.</span><span class="pr-sep"> · </span><span>4 sdb + 2 WC invités</span><span class="pr-sep"> · </span><span>450 m² habitables</span><span class="pr-sep"> · </span><span>20 m en front de mer</span></div>
+          <div class="pr-price">2 750 000 USD <span style="font-size:16px;color:#9A9080;text-decoration:line-through;margin-left:6px">3 200 000 USD</span></div>
         </div>
       </a>
-      <a class="pc" href="villa-neek-tulum.html" data-city="tulum" data-types="villa" data-price="1500000" data-order="9">
-        <div class="pc-img" data-bg="../neek-1.webp"><span class="pc-tag">Villa</span></div>
-        <div class="pc-body">
-          <div class="pc-eyebrow">Près du Gran Cenote · Tulum</div>
-          <h2 class="pc-name">Villa Neek</h2>
-          <div class="pc-specs"><span>4 ch.</span><span class="pc-sep"> · </span><span>6 sdb</span><span class="pc-sep"> · </span><span>463 m² habitables</span><span class="pc-sep"> · </span><span>4 307 m² de terrain</span></div>
-          <div class="pc-price">1 500 000 USD</div>
+      <a class="pr" href="villa-neek-tulum.html" data-city="tulum" data-types="villa" data-price="1500000" data-order="9">
+        <div class="pr-img" data-bg="../neek-1.webp"><span class="pr-tag">Villa</span></div>
+        <div class="pr-body">
+          <div class="pr-eyebrow">Près du Gran Cenote · Tulum</div>
+          <h2 class="pr-name">Villa Neek</h2>
+          <div class="pr-specs"><span>4 ch.</span><span class="pr-sep"> · </span><span>6 sdb</span><span class="pr-sep"> · </span><span>463 m² habitables</span><span class="pr-sep"> · </span><span>4 307 m² de terrain</span></div>
+          <div class="pr-price">1 500 000 USD</div>
         </div>
       </a>
-      <a class="pc" href="palm-villas-playa-del-carmen.html" data-city="playa" data-types="villa" data-price="1694611" data-order="10">
-        <div class="pc-img" data-bg="../palmvillas-corasol-1.webp"><span class="pc-tag">Villa</span></div>
-        <div class="pc-body">
-          <div class="pc-eyebrow">Corasol · Playa del Carmen</div>
-          <h2 class="pc-name">Palm Villas</h2>
-          <div class="pc-specs"><span>4 ch.</span><span class="pc-sep"> · </span><span>4,5 sdb</span><span class="pc-sep"> · </span><span>507 m² habitables</span><span class="pc-sep"> · </span><span>591 m² de terrain</span></div>
-          <div class="pc-price">30 503 000 MXN</div>
+      <a class="pr" href="palm-villas-playa-del-carmen.html" data-city="playa" data-types="villa" data-price="1694611" data-order="10">
+        <div class="pr-img" data-bg="../palmvillas-corasol-1.webp"><span class="pr-tag">Villa</span></div>
+        <div class="pr-body">
+          <div class="pr-eyebrow">Corasol · Playa del Carmen</div>
+          <h2 class="pr-name">Palm Villas</h2>
+          <div class="pr-specs"><span>4 ch.</span><span class="pr-sep"> · </span><span>4,5 sdb</span><span class="pr-sep"> · </span><span>507 m² habitables</span><span class="pr-sep"> · </span><span>591 m² de terrain</span></div>
+          <div class="pr-price">30 503 000 MXN</div>
         </div>
       </a>
-      <a class="pc" href="lake-house-playa-del-carmen.html" data-city="playa" data-types="villa" data-price="1888000" data-order="11">
-        <div class="pc-img" data-bg="../lakehouse-1.webp"><span class="pc-tag">Villa</span></div>
-        <div class="pc-body">
-          <div class="pc-eyebrow">Playacar Phase II · Playa del Carmen</div>
-          <h2 class="pc-name">Lake House</h2>
-          <div class="pc-specs"><span>4 ch.</span><span class="pc-sep"> · </span><span>4,5 sdb</span><span class="pc-sep"> · </span><span>603 m² habitables</span><span class="pc-sep"> · </span><span>1 640 m² de terrain</span></div>
-          <div class="pc-price">1 888 000 USD</div>
+      <a class="pr" href="lake-house-playa-del-carmen.html" data-city="playa" data-types="villa" data-price="1888000" data-order="11">
+        <div class="pr-img" data-bg="../lakehouse-1.webp"><span class="pr-tag">Villa</span></div>
+        <div class="pr-body">
+          <div class="pr-eyebrow">Playacar Phase II · Playa del Carmen</div>
+          <h2 class="pr-name">Lake House</h2>
+          <div class="pr-specs"><span>4 ch.</span><span class="pr-sep"> · </span><span>4,5 sdb</span><span class="pr-sep"> · </span><span>603 m² habitables</span><span class="pr-sep"> · </span><span>1 640 m² de terrain</span></div>
+          <div class="pr-price">1 888 000 USD</div>
         </div>
       </a>
-      <a class="pc" href="ikebana-villa-playa-del-carmen.html" data-city="playa" data-types="villa" data-price="1250000" data-order="12">
-        <div class="pc-img" data-bg="../ikebana-1.webp"><span class="pc-tag">Villa</span></div>
-        <div class="pc-body">
-          <div class="pc-eyebrow">Playacar Phase II · Playa del Carmen</div>
-          <h2 class="pc-name">Ikebana Villa</h2>
-          <div class="pc-specs"><span>5 ch.</span><span class="pc-sep"> · </span><span>5 sdb</span><span class="pc-sep"> · </span><span>360 m² habitables</span><span class="pc-sep"> · </span><span>565 m² de terrain</span></div>
-          <div class="pc-price">1 250 000 USD</div>
+      <a class="pr" href="ikebana-villa-playa-del-carmen.html" data-city="playa" data-types="villa" data-price="1250000" data-order="12">
+        <div class="pr-img" data-bg="../ikebana-1.webp"><span class="pr-tag">Villa</span></div>
+        <div class="pr-body">
+          <div class="pr-eyebrow">Playacar Phase II · Playa del Carmen</div>
+          <h2 class="pr-name">Ikebana Villa</h2>
+          <div class="pr-specs"><span>5 ch.</span><span class="pr-sep"> · </span><span>5 sdb</span><span class="pr-sep"> · </span><span>360 m² habitables</span><span class="pr-sep"> · </span><span>565 m² de terrain</span></div>
+          <div class="pr-price">1 250 000 USD</div>
         </div>
       </a>
-      <a class="pc" href="casa-marita-playa-del-carmen.html" data-city="playa" data-types="villa" data-price="1200000" data-order="13">
-        <div class="pc-img" data-bg="../marita-1.webp"><span class="pc-tag">Villa</span></div>
-        <div class="pc-body">
-          <div class="pc-eyebrow">Playacar Phase II · Playa del Carmen</div>
-          <h2 class="pc-name">Casa Marita</h2>
-          <div class="pc-specs"><span>4 ch.</span><span class="pc-sep"> · </span><span>5 sdb</span><span class="pc-sep"> · </span><span>422 m² habitables</span><span class="pc-sep"> · </span><span>765 m² de terrain</span></div>
-          <div class="pc-price">1 200 000 USD</div>
+      <a class="pr" href="casa-marita-playa-del-carmen.html" data-city="playa" data-types="villa" data-price="1200000" data-order="13">
+        <div class="pr-img" data-bg="../marita-1.webp"><span class="pr-tag">Villa</span></div>
+        <div class="pr-body">
+          <div class="pr-eyebrow">Playacar Phase II · Playa del Carmen</div>
+          <h2 class="pr-name">Casa Marita</h2>
+          <div class="pr-specs"><span>4 ch.</span><span class="pr-sep"> · </span><span>5 sdb</span><span class="pr-sep"> · </span><span>422 m² habitables</span><span class="pr-sep"> · </span><span>765 m² de terrain</span></div>
+          <div class="pr-price">1 200 000 USD</div>
         </div>
       </a>
-      <a class="pc" href="villa-sha-cancun.html" data-city="cancun" data-types="beachfront" data-price="6500000" data-order="14">
-        <div class="pc-img" data-bg="../villa-sha-1.webp"><span class="pc-tag">Bord de mer</span></div>
-        <div class="pc-body">
-          <div class="pc-eyebrow">Punta Sam · Cancún</div>
-          <h2 class="pc-name">Villa Sha</h2>
-          <div class="pc-specs"><span>6 suites · Jusqu’à 16 personnes</span><span class="pc-sep"> · </span><span>Ponton privé · Personnel complet</span></div>
-          <div class="pc-price">6 500 000 USD</div>
+      <a class="pr" href="villa-sha-cancun.html" data-city="cancun" data-types="beachfront" data-price="6500000" data-order="14">
+        <div class="pr-img" data-bg="../villa-sha-1.webp"><span class="pr-tag">Bord de mer</span></div>
+        <div class="pr-body">
+          <div class="pr-eyebrow">Punta Sam · Cancún</div>
+          <h2 class="pr-name">Villa Sha</h2>
+          <div class="pr-specs"><span>6 suites · Jusqu’à 16 personnes</span><span class="pr-sep"> · </span><span>Ponton privé · Personnel complet</span></div>
+          <div class="pr-price">6 500 000 USD</div>
         </div>
       </a>
-      <a class="pc" href="st-regis-costa-mujeres-cancun.html" data-city="cancun" data-types="beachfront development" data-price="2064000" data-order="15">
-        <div class="pc-img" data-bg="../st-regis-1.webp"><span class="pc-tag">Bord de mer</span><span class="pc-tag">Programme neuf</span></div>
-        <div class="pc-body">
-          <div class="pc-eyebrow">Costa Mujeres · Cancún</div>
-          <h2 class="pc-name">St. Regis Costa Mujeres</h2>
-          <div class="pc-specs"><span>2–4 ch. · 235–900 m²</span><span class="pc-sep"> · </span><span>SHA Wellness · Majordome 24 h/24</span></div>
-          <div class="pc-price">À partir de 2 064 000 $</div>
+      <a class="pr" href="st-regis-costa-mujeres-cancun.html" data-city="cancun" data-types="beachfront development" data-price="2064000" data-order="15">
+        <div class="pr-img" data-bg="../st-regis-1.webp"><span class="pr-tag">Bord de mer</span><span class="pr-tag">Programme neuf</span></div>
+        <div class="pr-body">
+          <div class="pr-eyebrow">Costa Mujeres · Cancún</div>
+          <h2 class="pr-name">St. Regis Costa Mujeres</h2>
+          <div class="pr-specs"><span>2–4 ch. · 235–900 m²</span><span class="pr-sep"> · </span><span>SHA Wellness · Majordome 24 h/24</span></div>
+          <div class="pr-price">À partir de 2 064 000 $</div>
         </div>
       </a>
-      <a class="pc" href="la-amada-cancun.html" data-city="cancun" data-types="beachfront development" data-price="380000" data-order="16">
-        <div class="pc-img" data-bg="../la-amada-1.webp"><span class="pc-tag">Bord de mer</span><span class="pc-tag">Programme neuf</span></div>
-        <div class="pc-body">
-          <div class="pc-eyebrow">Playa Mujeres · Cancún</div>
-          <h2 class="pc-name">La Amada</h2>
-          <div class="pc-specs"><span>1–3 ch.</span><span class="pc-sep"> · </span><span>3 km de plage · Marina · Golf</span></div>
-          <div class="pc-price">À partir de 380 000 $</div>
+      <a class="pr" href="la-amada-cancun.html" data-city="cancun" data-types="beachfront development" data-price="380000" data-order="16">
+        <div class="pr-img" data-bg="../la-amada-1.webp"><span class="pr-tag">Bord de mer</span><span class="pr-tag">Programme neuf</span></div>
+        <div class="pr-body">
+          <div class="pr-eyebrow">Playa Mujeres · Cancún</div>
+          <h2 class="pr-name">La Amada</h2>
+          <div class="pr-specs"><span>1–3 ch.</span><span class="pr-sep"> · </span><span>3 km de plage · Marina · Golf</span></div>
+          <div class="pr-price">À partir de 380 000 $</div>
         </div>
       </a>
-      <a class="pc" href="rosewood-mayakoba-playa-del-carmen.html" data-city="playa" data-types="beachfront development" data-price="" data-order="17">
-        <div class="pc-img" data-bg="../rosewood-1.webp"><span class="pc-tag">Bord de mer</span><span class="pc-tag">Programme neuf</span></div>
-        <div class="pc-body">
-          <div class="pc-eyebrow">Mayakoba · Playa del Carmen</div>
-          <h2 class="pc-name">Rosewood Mayakoba</h2>
-          <div class="pc-specs"><span>2–4 ch.</span><span class="pc-sep"> · </span><span>Lagune privée · Ponton</span></div>
-          <div class="pc-price">Prix sur demande</div>
+      <a class="pr" href="rosewood-mayakoba-playa-del-carmen.html" data-city="playa" data-types="beachfront development" data-price="" data-order="17">
+        <div class="pr-img" data-bg="../rosewood-1.webp"><span class="pr-tag">Bord de mer</span><span class="pr-tag">Programme neuf</span></div>
+        <div class="pr-body">
+          <div class="pr-eyebrow">Mayakoba · Playa del Carmen</div>
+          <h2 class="pr-name">Rosewood Mayakoba</h2>
+          <div class="pr-specs"><span>2–4 ch.</span><span class="pr-sep"> · </span><span>Lagune privée · Ponton</span></div>
+          <div class="pr-price">Prix sur demande</div>
         </div>
       </a>
-      <a class="pc" href="mareazul-playa-del-carmen.html" data-city="playa" data-types="beachfront development" data-price="350000" data-order="18">
-        <div class="pc-img" data-bg="../mareazul-4.webp"><span class="pc-tag">Bord de mer</span><span class="pc-tag">Programme neuf</span></div>
-        <div class="pc-body">
-          <div class="pc-eyebrow">Mareazul · Playa del Carmen</div>
-          <h2 class="pc-name">Mareazul</h2>
-          <div class="pc-specs"><span>1–3 ch.</span><span class="pc-sep"> · </span><span>3,5 km en front de mer · Beach Club</span></div>
-          <div class="pc-price">À partir de 350 000 $</div>
+      <a class="pr" href="mareazul-playa-del-carmen.html" data-city="playa" data-types="beachfront development" data-price="350000" data-order="18">
+        <div class="pr-img" data-bg="../mareazul-4.webp"><span class="pr-tag">Bord de mer</span><span class="pr-tag">Programme neuf</span></div>
+        <div class="pr-body">
+          <div class="pr-eyebrow">Mareazul · Playa del Carmen</div>
+          <h2 class="pr-name">Mareazul</h2>
+          <div class="pr-specs"><span>1–3 ch.</span><span class="pr-sep"> · </span><span>3,5 km en front de mer · Beach Club</span></div>
+          <div class="pr-price">À partir de 350 000 $</div>
         </div>
       </a>
-      <a class="pc" href="la-reserva-tulum.html" data-city="tulum" data-types="development" data-price="260000" data-order="19">
-        <div class="pc-img" data-bg="../la-reserva-1.webp"><span class="pc-tag">Programme neuf</span></div>
-        <div class="pc-body">
-          <div class="pc-eyebrow">Région 15 · Tulum</div>
-          <h2 class="pc-name">La Reserva</h2>
-          <div class="pc-specs"><span>Studios · 1–3 ch.</span><span class="pc-sep"> · </span><span>Livré et en activité</span></div>
-          <div class="pc-price">À partir de 260 000 $</div>
+      <a class="pr" href="la-reserva-tulum.html" data-city="tulum" data-types="development" data-price="260000" data-order="19">
+        <div class="pr-img" data-bg="../la-reserva-1.webp"><span class="pr-tag">Programme neuf</span></div>
+        <div class="pr-body">
+          <div class="pr-eyebrow">Région 15 · Tulum</div>
+          <h2 class="pr-name">La Reserva</h2>
+          <div class="pr-specs"><span>Studios · 1–3 ch.</span><span class="pr-sep"> · </span><span>Livré et en activité</span></div>
+          <div class="pr-price">À partir de 260 000 $</div>
         </div>
       </a>
-      <a class="pc" href="aflora-tulum.html" data-city="tulum" data-types="development" data-price="280000" data-order="20">
-        <div class="pc-img" data-bg="../aflora-1.webp"><span class="pc-tag">Programme neuf</span></div>
-        <div class="pc-body">
-          <div class="pc-eyebrow">Aldea Zama · Tulum</div>
-          <h2 class="pc-name">Aflora</h2>
-          <div class="pc-specs"><span>1–3 ch.</span><span class="pc-sep"> · </span><span>199 résidences</span><span class="pc-sep"> · </span><span>Vie de resort</span></div>
-          <div class="pc-price">À partir de 280 000 $</div>
+      <a class="pr" href="aflora-tulum.html" data-city="tulum" data-types="development" data-price="280000" data-order="20">
+        <div class="pr-img" data-bg="../aflora-1.webp"><span class="pr-tag">Programme neuf</span></div>
+        <div class="pr-body">
+          <div class="pr-eyebrow">Aldea Zama · Tulum</div>
+          <h2 class="pr-name">Aflora</h2>
+          <div class="pr-specs"><span>1–3 ch.</span><span class="pr-sep"> · </span><span>199 résidences</span><span class="pr-sep"> · </span><span>Vie de resort</span></div>
+          <div class="pr-price">À partir de 280 000 $</div>
         </div>
       </a>
-      <a class="pc" href="kaybe-tulum.html" data-city="tulum" data-types="development" data-price="200000" data-order="21">
-        <div class="pc-img" data-bg="../kaybe-1.webp"><span class="pc-tag">Programme neuf</span></div>
-        <div class="pc-body">
-          <div class="pc-eyebrow">Tulum</div>
-          <h2 class="pc-name">KAYBÉ</h2>
-          <div class="pc-specs"><span>Terrains et villas</span><span class="pc-sep"> · </span><span>Grupo Emerita</span></div>
-          <div class="pc-price">À partir de 200 000 $</div>
+      <a class="pr" href="kaybe-tulum.html" data-city="tulum" data-types="development" data-price="200000" data-order="21">
+        <div class="pr-img" data-bg="../kaybe-1.webp"><span class="pr-tag">Programme neuf</span></div>
+        <div class="pr-body">
+          <div class="pr-eyebrow">Tulum</div>
+          <h2 class="pr-name">KAYBÉ</h2>
+          <div class="pr-specs"><span>Terrains et villas</span><span class="pr-sep"> · </span><span>Grupo Emerita</span></div>
+          <div class="pr-price">À partir de 200 000 $</div>
         </div>
       </a>
-      <a class="pc" href="candela-tulum.html" data-city="tulum" data-types="development" data-price="250000" data-order="22">
-        <div class="pc-img" data-bg="../candela-1.webp"><span class="pc-tag">Programme neuf</span></div>
-        <div class="pc-body">
-          <div class="pc-eyebrow">Tulum</div>
-          <h2 class="pc-name">Candela</h2>
-          <div class="pc-specs"><span>Studios boutique</span><span class="pc-sep"> · </span><span>Jacuzzi sur le toit</span><span class="pc-sep"> · </span><span>12 bâtiments</span></div>
-          <div class="pc-price">À partir de 250 000 $</div>
+      <a class="pr" href="candela-tulum.html" data-city="tulum" data-types="development" data-price="250000" data-order="22">
+        <div class="pr-img" data-bg="../candela-1.webp"><span class="pr-tag">Programme neuf</span></div>
+        <div class="pr-body">
+          <div class="pr-eyebrow">Tulum</div>
+          <h2 class="pr-name">Candela</h2>
+          <div class="pr-specs"><span>Studios boutique</span><span class="pr-sep"> · </span><span>Jacuzzi sur le toit</span><span class="pr-sep"> · </span><span>12 bâtiments</span></div>
+          <div class="pr-price">À partir de 250 000 $</div>
         </div>
       </a>
-      <a class="pc" href="azulik-residences-tulum.html" data-city="tulum" data-types="development" data-price="650000" data-order="23">
-        <div class="pc-img" data-bg="../ext-azulik-residences-1024x576-31a56.webp"><span class="pc-tag">Programme neuf</span></div>
-        <div class="pc-body">
-          <div class="pc-eyebrow">Aldea Zama · Tulum</div>
-          <h2 class="pc-name">Azulik Residences</h2>
-          <div class="pc-specs"><span>1–2 ch.</span><span class="pc-sep"> · </span><span>84 logements</span><span class="pc-sep"> · </span><span>Livraison déc. 2027</span></div>
-          <div class="pc-price">À partir de 650 000 $</div>
+      <a class="pr" href="azulik-residences-tulum.html" data-city="tulum" data-types="development" data-price="650000" data-order="23">
+        <div class="pr-img" data-bg="../ext-azulik-residences-1024x576-31a56.webp"><span class="pr-tag">Programme neuf</span></div>
+        <div class="pr-body">
+          <div class="pr-eyebrow">Aldea Zama · Tulum</div>
+          <h2 class="pr-name">Azulik Residences</h2>
+          <div class="pr-specs"><span>1–2 ch.</span><span class="pr-sep"> · </span><span>84 logements</span><span class="pr-sep"> · </span><span>Livraison déc. 2027</span></div>
+          <div class="pr-price">À partir de 650 000 $</div>
         </div>
       </a>
-      <a class="pc" href="distrito-xcalacoco-playa-del-carmen.html" data-city="playa" data-types="development" data-price="243000" data-order="24">
-        <div class="pc-img" data-bg="../xcalacoco-1.webp"><span class="pc-tag">Programme neuf</span></div>
-        <div class="pc-body">
-          <div class="pc-eyebrow">Nord de Playa · Playa del Carmen</div>
-          <h2 class="pc-name">Distrito Xcalacoco</h2>
-          <div class="pc-specs"><span>1–3 ch. + penthouses</span><span class="pc-sep"> · </span><span>Beach Club</span><span class="pc-sep"> · </span><span>Nov. 2026</span></div>
-          <div class="pc-price">À partir de 243 000 $</div>
+      <a class="pr" href="distrito-xcalacoco-playa-del-carmen.html" data-city="playa" data-types="development" data-price="243000" data-order="24">
+        <div class="pr-img" data-bg="../xcalacoco-1.webp"><span class="pr-tag">Programme neuf</span></div>
+        <div class="pr-body">
+          <div class="pr-eyebrow">Nord de Playa · Playa del Carmen</div>
+          <h2 class="pr-name">Distrito Xcalacoco</h2>
+          <div class="pr-specs"><span>1–3 ch. + penthouses</span><span class="pr-sep"> · </span><span>Beach Club</span><span class="pr-sep"> · </span><span>Nov. 2026</span></div>
+          <div class="pr-price">À partir de 243 000 $</div>
         </div>
       </a>
-      <a class="pc" href="awa-playacar.html" data-city="playa" data-types="development" data-price="290000" data-order="25">
-        <div class="pc-img" data-bg="../awa-1.webp"><span class="pc-tag">Programme neuf</span></div>
-        <div class="pc-body">
-          <div class="pc-eyebrow">Playacar · Playa del Carmen</div>
-          <h2 class="pc-name">AWA Playacar</h2>
-          <div class="pc-specs"><span>1–2 ch.</span><span class="pc-sep"> · </span><span>Piscine de 163 m</span><span class="pc-sep"> · </span><span>Plage caribéenne</span></div>
-          <div class="pc-price">À partir de 290 000 $</div>
+      <a class="pr" href="awa-playacar.html" data-city="playa" data-types="development" data-price="290000" data-order="25">
+        <div class="pr-img" data-bg="../awa-1.webp"><span class="pr-tag">Programme neuf</span></div>
+        <div class="pr-body">
+          <div class="pr-eyebrow">Playacar · Playa del Carmen</div>
+          <h2 class="pr-name">AWA Playacar</h2>
+          <div class="pr-specs"><span>1–2 ch.</span><span class="pr-sep"> · </span><span>Piscine de 163 m</span><span class="pr-sep"> · </span><span>Plage caribéenne</span></div>
+          <div class="pr-price">À partir de 290 000 $</div>
         </div>
       </a>
-      <a class="pc" href="viceroy-residences-playa-del-carmen.html" data-city="playa" data-types="development" data-price="400000" data-order="26">
-        <div class="pc-img" data-bg="../viceroy-1.webp"><span class="pc-tag">Programme neuf</span></div>
-        <div class="pc-body">
-          <div class="pc-eyebrow">Centre-ville · Playa del Carmen</div>
-          <h2 class="pc-name">Viceroy Residences</h2>
-          <div class="pc-specs"><span>1–4 ch.</span><span class="pc-sep"> · </span><span>Bord de mer</span><span class="pc-sep"> · </span><span>Services hôteliers de marque</span></div>
-          <div class="pc-price">À partir de 400 000 $</div>
+      <a class="pr" href="viceroy-residences-playa-del-carmen.html" data-city="playa" data-types="development" data-price="400000" data-order="26">
+        <div class="pr-img" data-bg="../viceroy-1.webp"><span class="pr-tag">Programme neuf</span></div>
+        <div class="pr-body">
+          <div class="pr-eyebrow">Centre-ville · Playa del Carmen</div>
+          <h2 class="pr-name">Viceroy Residences</h2>
+          <div class="pr-specs"><span>1–4 ch.</span><span class="pr-sep"> · </span><span>Bord de mer</span><span class="pr-sep"> · </span><span>Services hôteliers de marque</span></div>
+          <div class="pr-price">À partir de 400 000 $</div>
         </div>
       </a>
-      <a class="pc" href="sls-cancun.html" data-city="cancun" data-types="development" data-price="1097000" data-order="27">
-        <div class="pc-img" data-bg="../sls-1.webp"><span class="pc-tag">Programme neuf</span></div>
-        <div class="pc-body">
-          <div class="pc-eyebrow">Puerto Cancún · Cancún</div>
-          <h2 class="pc-name">SLS Cancún</h2>
-          <div class="pc-specs"><span>1–4 ch.</span><span class="pc-sep"> · </span><span>Marina · Golf · Plage</span></div>
-          <div class="pc-price">À partir de 1 097 000 $</div>
+      <a class="pr" href="sls-cancun.html" data-city="cancun" data-types="development" data-price="1097000" data-order="27">
+        <div class="pr-img" data-bg="../sls-1.webp"><span class="pr-tag">Programme neuf</span></div>
+        <div class="pr-body">
+          <div class="pr-eyebrow">Puerto Cancún · Cancún</div>
+          <h2 class="pr-name">SLS Cancún</h2>
+          <div class="pr-specs"><span>1–4 ch.</span><span class="pr-sep"> · </span><span>Marina · Golf · Plage</span></div>
+          <div class="pr-price">À partir de 1 097 000 $</div>
         </div>
       </a>
-      <a class="pc" href="shark-tower-cancun.html" data-city="cancun" data-types="development" data-price="892000" data-order="28">
-        <div class="pc-img" data-bg="../shark-2.webp"><span class="pc-tag">Programme neuf</span></div>
-        <div class="pc-body">
-          <div class="pc-eyebrow">Puerto Cancún · Cancún</div>
-          <h2 class="pc-name">Shark Tower</h2>
-          <div class="pc-specs"><span>134 résidences</span><span class="pc-sep"> · </span><span>6 manoirs</span><span class="pc-sep"> · </span><span>Épuisé · Reventes</span></div>
-          <div class="pc-price">À partir de 892 000 $</div>
+      <a class="pr" href="shark-tower-cancun.html" data-city="cancun" data-types="development" data-price="892000" data-order="28">
+        <div class="pr-img" data-bg="../shark-2.webp"><span class="pr-tag">Programme neuf</span></div>
+        <div class="pr-body">
+          <div class="pr-eyebrow">Puerto Cancún · Cancún</div>
+          <h2 class="pr-name">Shark Tower</h2>
+          <div class="pr-specs"><span>134 résidences</span><span class="pr-sep"> · </span><span>6 manoirs</span><span class="pr-sep"> · </span><span>Épuisé · Reventes</span></div>
+          <div class="pr-price">À partir de 892 000 $</div>
         </div>
       </a>
-      <a class="pc" href="aria-puerto-cancun.html" data-city="cancun" data-types="development" data-price="420000" data-order="29">
-        <div class="pc-img" data-bg="../aria-2.webp"><span class="pc-tag">Programme neuf</span></div>
-        <div class="pc-body">
-          <div class="pc-eyebrow">Puerto Cancún · Cancún</div>
-          <h2 class="pc-name">Aria Puerto Cancún</h2>
-          <div class="pc-specs"><span>1–3 ch. · 190–600 m²</span><span class="pc-sep"> · </span><span>Jetée privée</span></div>
-          <div class="pc-price">À partir de 420 000 $</div>
+      <a class="pr" href="aria-puerto-cancun.html" data-city="cancun" data-types="development" data-price="420000" data-order="29">
+        <div class="pr-img" data-bg="../aria-2.webp"><span class="pr-tag">Programme neuf</span></div>
+        <div class="pr-body">
+          <div class="pr-eyebrow">Puerto Cancún · Cancún</div>
+          <h2 class="pr-name">Aria Puerto Cancún</h2>
+          <div class="pr-specs"><span>1–3 ch. · 190–600 m²</span><span class="pr-sep"> · </span><span>Jetée privée</span></div>
+          <div class="pr-price">À partir de 420 000 $</div>
         </div>
       </a>
     <div class="pg-empty" id="pg-empty">Aucun bien pour le moment. Écrivez-nous pour des options hors marché.</div>
@@ -676,7 +686,7 @@
     (function () {
       var state = { city: 'all', type: 'all', sort: 'featured' };
       var grid = document.getElementById('pg');
-      var cards = Array.prototype.slice.call(grid.querySelectorAll('.pc'));
+      var cards = Array.prototype.slice.call(grid.querySelectorAll('.pr'));
       var HASH = { tulum: ['city', 'tulum'], playa: ['city', 'playa'], cancun: ['city', 'cancun'],
                    villas: ['type', 'villa'], beachfront: ['type', 'beachfront'], developments: ['type', 'development'] };
       function apply() {
@@ -694,6 +704,11 @@
           if (y === null) return -1;
           return state.sort === 'asc' ? x - y : y - x;
         }).forEach(function (c) { grid.insertBefore(c, document.getElementById('pg-empty')); });
+        var k = 0;
+        Array.prototype.forEach.call(grid.querySelectorAll('.pr'), function (c) {
+          if (c.classList.contains('hidden')) return;
+          c.classList.toggle('first', k === 0); c.classList.toggle('flip', k % 2 === 1); k++;
+        });
         document.getElementById('pf-n').textContent = shown;
         document.getElementById('pf-count').classList.toggle('single', shown === 1);
         document.getElementById('pg-empty').style.display = shown ? 'none' : 'block';
