@@ -202,7 +202,7 @@
         <div class="success-icon">✦</div>
         <div class="success-title" data-i18n="guide.success.title">Tu guía está lista.</div>
         <p class="success-sub">La descarga debió iniciar automáticamente. Si no, usa el botón de abajo.</p>
-        <a href="../buyers-guide.pdf" download="BD-Realty_Buying-in-Mexico_Buyers-Guide.pdf" class="success-btn">Descargar ahora →</a>
+        <a href="../buyers-guide-es.pdf" download="BD-Realty_Guia-para-comprar-en-Mexico.pdf" class="success-btn">Descargar ahora →</a>
         <p class="success-alt">¿Dudas mientras la lees? <a href="https://wa.me/529988654691?text=Hola+Benjamin%2C+acabo+de+descargar+la+Gu%C3%ADa+del+Comprador+y+tengo+una+pregunta." target="_blank">Escríbele a Benjamin →</a></p>
       </div>
     </div>
@@ -256,19 +256,19 @@
       <div>
         <div class="sf-h">Comprar</div>
         <ul>
-          <li><a href="../properties.html">Todas las propiedades</a></li>
+          <li><a href="properties.html">Todas las propiedades</a></li>
           <li><a href="index.html#deal-of-the-month">Oportunidad del mes</a></li>
-          <li><a href="../top10-villas.html">Villas de lujo</a></li>
-          <li><a href="../top10-beachfront.html">Frente al mar</a></li>
-          <li><a href="../top10-developments.html">Nuevos desarrollos</a></li>
-          <li><a href="../investors.html">Círculo de Inversionistas</a></li>
+          <li><a href="top10-villas.html">Villas de lujo</a></li>
+          <li><a href="top10-beachfront.html">Frente al mar</a></li>
+          <li><a href="top10-developments.html">Nuevos desarrollos</a></li>
+          <li><a href="investors.html">Círculo de Inversionistas</a></li>
         </ul>
       </div>
       <div>
         <div class="sf-h">Rentar · Vender · Aprender</div>
         <ul>
-          <li><a href="../rentals-long-term.html">Rentas a largo plazo</a></li>
-          <li><a href="../rentals-vacation.html">Rentas vacacionales</a></li>
+          <li><a href="rentals-long-term.html">Rentas a largo plazo</a></li>
+          <li><a href="rentals-vacation.html">Rentas vacacionales</a></li>
           <li><a href="sell.html">Vende con nosotros</a></li>
           <li><a href="the-process.html">Cómo se compra</a></li>
           <li><a href="buyers-guide.html">Guía gratuita del comprador</a></li>
@@ -301,8 +301,8 @@
     ------------------------------------------------------------------ */
     var FORM_ENDPOINT = window.BD_FORM_ENDPOINT || '';  /* set once in site.js */
 
-    var PDF_FILE = '../buyers-guide.pdf';
-    var PDF_NAME = 'BD-Realty_Buying-in-Mexico_Buyers-Guide.pdf';
+    var PDF_FILE = '../buyers-guide-es.pdf';
+    var PDF_NAME = 'BD-Realty_Guia-para-comprar-en-Mexico.pdf';
 
     function triggerDownload() {
       var a = document.createElement('a');
@@ -344,7 +344,7 @@
 
       var btn = document.getElementById('gSubmit');
       btn.disabled = true;
-      btn.textContent = 'Preparing your guide…';
+      btn.textContent = 'Preparando tu guía…';
 
       /* The download is never blocked by the lead-capture request. */
       var finish = function () {
